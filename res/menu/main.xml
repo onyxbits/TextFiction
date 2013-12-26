@@ -1,0 +1,15 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+	<item
+		android:id="@+id/mi_browse"
+		android:icon="@drawable/ic_action_browse"
+		android:showAsAction="ifRoom|withText"
+		android:title="@string/mi_browse">
+	</item>
+	<item
+		android:id="@+id/mi_help"
+		android:icon="@drawable/ic_action_help"
+		android:title="@string/mi_help">
+	</item>
+
+</menu>

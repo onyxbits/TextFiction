@@ -1,0 +1,49 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/LinearLayout1"
+	android:orientation="vertical"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	tools:context=".StateFragment" >
+
+	<!-- TODO: Update blank fragment layout -->
+
+	<EditText
+		android:id="@+id/slotname"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:ems="10"
+		android:singleLine="true" />
+
+	<ListView
+		android:id="@+id/slots"
+		android:layout_width="match_parent"
+		android:layout_height="142dp" >
+	</ListView>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="0dp" >
+
+		<Button
+			android:id="@+id/do_save"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="SAVE" />
+
+		<Button
+			android:id="@+id/do_delete"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="28dp"
+			android:text="DELETE" />
+
+		<Button
+			android:id="@+id/do_restore"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginRight="18dp"
+			android:text="RESTORE" />
+	</LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,36 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+	<item
+		android:id="@+id/mi_flip_view"
+		android:icon="@drawable/ic_action_flip"
+		android:showAsAction="always|withText"
+		android:title="@string/mi_flip_view">
+	</item>
+	<item
+		android:id="@+id/mi_clear_log"
+		android:icon="@drawable/ic_action_clearlog"
+		android:showAsAction="ifRoom|withText"
+		android:title="@string/mi_clear_log">
+	</item>
+	<item
+		android:id="@+id/mi_save"
+		android:icon="@drawable/ic_action_save"
+		android:title="@string/mi_save">
+	</item>
+	<item
+		android:id="@+id/mi_restore"
+		android:icon="@drawable/ic_action_restore"
+		android:title="@string/mi_restore">
+	</item>
+	<item
+		android:id="@+id/mi_restart"
+		android:icon="@drawable/ic_action_restart"
+		android:title="@string/mi_restart">
+	</item>
+	<item
+		android:id="@+id/mi_help"
+		android:icon="@drawable/ic_action_help"
+		android:title="@string/mi_help">
+	</item>
+
+</menu>

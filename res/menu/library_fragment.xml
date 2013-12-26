@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:id="@+id/mi_import" android:title="@string/mi_import" android:showAsAction="ifRoom|withText" android:icon="@drawable/ic_action_import"></item>
+	
+
+</menu>

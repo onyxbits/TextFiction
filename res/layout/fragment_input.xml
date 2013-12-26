@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ViewFlipper xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent" >
+
+	<RelativeLayout
+		android:id="@+id/inputcontainer"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content" >
+
+		<HorizontalScrollView
+			android:id="@+id/horizontalScrollView1"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_below="@+id/userinput"
+			android:layout_centerInParent="true" >
+
+			<LinearLayout
+				android:id="@+id/quickcmdcontainer"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:orientation="horizontal" >
+			</LinearLayout>
+		</HorizontalScrollView>
+
+		<EditText
+			android:id="@+id/userinput"
+			style="?attr/prompt"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_alignTop="@+id/expand"
+			android:layout_toLeftOf="@+id/submit"
+			android:layout_toRightOf="@+id/expand"
+			android:hint="@string/msg_what_next"
+			android:inputType="text"
+			android:singleLine="true"
+			android:windowSoftInputMode="stateHidden" >
+		</EditText>
+
+		<ImageButton
+			android:id="@+id/expand"
+			style="?attr/cmdbox_buttons"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignBottom="@+id/submit"
+			android:layout_alignParentLeft="true"
+			android:layout_alignTop="@+id/submit"
+			android:src="@drawable/ic_action_expand" />
+
+		<ImageButton
+			android:id="@+id/submit"
+			style="?attr/cmdbox_buttons"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignParentRight="true"
+			android:layout_alignParentTop="true"
+			android:src="@drawable/ic_action_submit" />
+	</RelativeLayout>
+
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content" >
+
+		<ImageButton
+			android:id="@+id/forwards"
+			style="?attr/cmdbox_buttons"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignParentRight="true"
+			android:src="@drawable/ic_action_forward" />
+
+		<de.onyxbits.textfiction.input.KeyboardButton
+			android:id="@+id/keyboard"
+			style="?attr/cmdbox_buttons"
+			android:focusable="true"
+			android:focusableInTouchMode="true"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignParentLeft="true"
+			android:src="@drawable/ic_action_keyboard" />
+
+		<LinearLayout
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignParentTop="true"
+			android:layout_centerHorizontal="true"
+			android:gravity="center" >
+
+			<ImageButton
+				android:id="@+id/cursor_left"
+				style="?attr/cmdbox_buttons"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:src="@drawable/ic_action_left" />
+
+			<ImageButton
+				android:id="@+id/cursor_down"
+				style="?attr/cmdbox_buttons"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:src="@drawable/ic_action_down" />
+
+			<ImageButton
+				android:id="@+id/cursor_up"
+				style="?attr/cmdbox_buttons"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:src="@drawable/ic_action_up" />
+
+			<ImageButton
+				android:id="@+id/cursor_right"
+				style="?attr/cmdbox_buttons"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:src="@drawable/ic_action_right" />
+		</LinearLayout>
+	</RelativeLayout>
+
+</ViewFlipper>

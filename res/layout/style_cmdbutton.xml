@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+As it turns out, it is next to impossible to apply an XML defined style
+via code, hence this pseudo layout to apply styles to buttons in the buttonbar.
+-->
+
+<ImageButton xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/protocmdbutton"
+	style="?attr/cmdbox_buttons"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content" />

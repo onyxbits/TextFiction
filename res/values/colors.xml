@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	
+	<color name="white">#FFFFFF</color>
+	<color name="black">#000000</color>
+
+	<color name="nemo.background">#154a5e</color>
+	<color name="nemo.cmd_icon_tint">#FF888888</color>
+	<color name="nemo.selected_fill">#00000000</color>
+	<color name="nemo.selected_border">#FFFFFFFF</color>
+	<color name="nemo.prompt_input">#FFBBBBBB</color>
+	<color name="nemo.pressed">#FFAAAAAA</color>
+	<color name="nemo.text">#FF000000</color>
+	<color name="nemo.text.inverse">#FF999999</color>
+	<color name="nemo.text.shadow">#FF000000</color>
+	
+	
+	
+	<color name="alice.background">#FFF373</color>
+	<color name="alice.cmd_icon_tint">#63411F</color>
+	<color name="alice.selected_fill">#00000000</color>
+	<color name="alice.selected_border">#FF8400</color>
+	<color name="alice.prompt_input">#FFBBBBBB</color>
+	<color name="alice.pressed">#FFAAAAAA</color>
+	<color name="alice.text">#FF000000</color>
+	<color name="alice.text.inverse">#FF999999</color>
+	<color name="alice.text.shadow">#FF000000</color>
+
+</resources>

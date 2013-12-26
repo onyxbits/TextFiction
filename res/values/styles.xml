@@ -1,0 +1,209 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+	-->
+	<style name="AppBaseTheme" parent="android:Theme.Light">
+		<!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+		-->
+	</style>
+
+	<!-- Application theme. -->
+	<style name="AppTheme" parent="AppBaseTheme"></style>
+
+	<declare-styleable name="AppTheme">
+		<attr name="bubble_left" format="reference" />
+		<attr name="bubble_right" format="reference" />
+		<attr name="bubble_none" format="reference" />
+		<attr name="cmdbox" format="reference" />
+		<attr name="cmdbox_buttons" format="reference" />
+		<attr name="storyboard" format="reference" />
+		<attr name="library_item" format="reference" />
+		<attr name="library_list" format="reference" />
+		<attr name="upperwindow" format="reference" />
+		<attr name="prompt" format="reference" />
+	</declare-styleable>
+
+	<style name="gingerbread_hack" parent="@android:style/Theme.Dialog">
+		<item name="android:bottomBright">@color/white</item>
+		<item name="android:bottomDark">@color/white</item>
+		<item name="android:bottomMedium">@color/white</item>
+		<item name="android:centerBright">@color/white</item>
+		<item name="android:centerDark">@color/white</item>
+		<item name="android:centerMedium">@color/white</item>
+		<item name="android:fullBright">@color/white</item>
+		<item name="android:fullDark">@color/white</item>
+		<item name="android:topBright">@color/white</item>
+		<item name="android:topDark">@color/black</item>
+	</style>
+
+	<!-- NEMO - a darkish blue theme -->
+
+	<style name="Nemo" parent="AppTheme">
+		<item name="android:windowBackground">@color/nemo.background</item>
+		<item name="android:colorBackground">@color/nemo.background</item>
+		<item name="android:alertDialogStyle">@style/gingerbread_hack</item>
+		<item name="bubble_left">@style/nemo_bubble_left</item>
+		<item name="bubble_right">@style/nemo_bubble_right</item>
+		<item name="bubble_none">@style/nemo_bubble_flash</item>
+		<item name="cmdbox">@style/nemo_cmdbox</item>
+		<item name="cmdbox_buttons">@style/nemo_cmdbox_buttons</item>
+		<item name="storyboard">@style/nemo_storyboard</item>
+		<item name="library_item">@style/nemo_library_item</item>
+		<item name="library_list">@style/nemo_library_list</item>
+		<item name="upperwindow">@style/nemo_upperwindow</item>
+		<item name="prompt">@style/nemo_prompt</item>
+	</style>
+
+	<style name="nemo_cmdbox">
+		<item name="android:background">@drawable/shadedregion</item>
+	</style>
+
+	<style name="nemo_cmdbox_buttons">
+		<item name="android:background">@drawable/nemo_btn_selector</item>
+		<item name="android:tint">@color/nemo.cmd_icon_tint</item>
+	</style>
+
+	<style name="nemo_storyboard">
+		<item name="android:divider">@null</item>
+	</style>
+
+	<style name="nemo_bubble_left">
+		<item name="android:background">@drawable/nemo_bubble_left</item>
+		<item name="android:layout_marginRight">@dimen/nemo.bubble_sidemargin</item>
+		<item name="android:layout_marginTop">@dimen/nemo.bubble_topmargin</item>
+		<item name="android:layout_gravity">left</item>
+		<item name="android:textColor">@color/nemo.text</item>
+		<item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+	</style>
+
+	<style name="nemo_bubble_right">
+		<item name="android:background">@drawable/nemo_bubble_right</item>
+		<item name="android:layout_marginLeft">@dimen/nemo.bubble_sidemargin</item>
+		<item name="android:layout_marginTop">@dimen/nemo.bubble_topmargin</item>
+		<item name="android:layout_gravity">right</item>
+		<item name="android:textColor">@color/nemo.text</item>
+		<item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+	</style>
+
+	<style name="nemo_bubble_flash">
+		<item name="android:layout_gravity">center</item>
+		<item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
+		<item name="android:typeface">monospace</item>
+		<item name="android:textColor">@color/nemo.text.inverse</item>
+		<item name="android:shadowColor">@color/nemo.text.shadow</item>
+		<item name="android:shadowDx">2</item>
+		<item name="android:shadowDy">2</item>
+		<item name="android:shadowRadius">2</item>
+	</style>
+
+	<style name="nemo_library_item">
+		<item name="android:background">@drawable/nemo_box</item>
+		<item name="android:textColor">@color/nemo.text</item>
+	</style>
+
+	<style name="nemo_library_list">
+		<item name="android:listSelector">@drawable/nemo_lst_selector</item>
+	</style>
+
+	<style name="nemo_upperwindow">
+		<item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
+		<item name="android:typeface">monospace</item>
+		<item name="android:textColor">@color/nemo.text.inverse</item>
+		<item name="android:shadowColor">@color/nemo.text.shadow</item>
+		<item name="android:shadowDx">2</item>
+		<item name="android:shadowDy">2</item>
+		<item name="android:shadowRadius">2</item>
+	</style>
+
+	<style name="nemo_prompt">
+		<item name="android:textColor">@color/nemo.prompt_input</item>
+	</style>
+
+	<!-- ALICE - a girly bright theme -->
+
+	<style name="Alice" parent="AppTheme">
+		<item name="android:windowBackground">@color/alice.background</item>
+		<item name="android:colorBackground">@color/alice.background</item>
+		<item name="bubble_left">@style/alice_bubble_left</item>
+		<item name="bubble_right">@style/alice_bubble_right</item>
+		<item name="bubble_none">@style/alice_bubble_flash</item>
+		<item name="cmdbox">@style/alice_cmdbox</item>
+		<item name="cmdbox_buttons">@style/alice_cmdbox_buttons</item>
+		<item name="storyboard">@style/alice_storyboard</item>
+		<item name="library_item">@style/alice_library_item</item>
+		<item name="library_list">@style/alice_library_list</item>
+		<item name="upperwindow">@style/alice_upperwindow</item>
+		<item name="prompt">@style/alice_prompt</item>
+	</style>
+
+	<style name="alice_cmdbox">
+		<item name="android:background">@drawable/alice_inputbox</item>
+	</style>
+
+	<style name="alice_cmdbox_buttons">
+		<item name="android:background">@drawable/alice_btn_selector</item>
+		<item name="android:tint">@color/alice.cmd_icon_tint</item>
+	</style>
+
+	<style name="alice_storyboard">
+		<item name="android:divider">@null</item>
+	</style>
+
+	<style name="alice_bubble_left">
+		<item name="android:background">@drawable/alice_bubble_left</item>
+		<item name="android:layout_marginRight">@dimen/alice.bubble_sidemargin</item>
+		<item name="android:layout_marginTop">@dimen/alice.bubble_topmargin</item>
+		<item name="android:layout_gravity">left</item>
+		<item name="android:textColor">@color/alice.text</item>
+		<item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+	</style>
+
+	<style name="alice_bubble_right">
+		<item name="android:background">@drawable/alice_bubble_right</item>
+		<item name="android:layout_marginLeft">@dimen/alice.bubble_sidemargin</item>
+		<item name="android:layout_marginTop">@dimen/alice.bubble_topmargin</item>
+		<item name="android:layout_gravity">right</item>
+		<item name="android:textColor">@color/alice.text</item>
+		<item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+	</style>
+
+	<style name="alice_bubble_flash">
+		<item name="android:layout_gravity">center</item>
+		<item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
+		<item name="android:typeface">monospace</item>
+		<item name="android:textColor">@color/alice.text.inverse</item>
+		<item name="android:shadowColor">@color/alice.text.shadow</item>
+		<item name="android:shadowDx">2</item>
+		<item name="android:shadowDy">2</item>
+		<item name="android:shadowRadius">2</item>
+	</style>
+
+	<style name="alice_library_item">
+		<item name="android:background">@drawable/alice_box</item>
+		<item name="android:textColor">@color/alice.text</item>
+	</style>
+
+	<style name="alice_library_list">
+		<item name="android:listSelector">@drawable/alice_lst_selector</item>
+	</style>
+
+	<style name="alice_upperwindow">
+		<item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
+		<item name="android:typeface">monospace</item>
+		<item name="android:textColor">@color/alice.text.inverse</item>
+		<item name="android:shadowColor">@color/alice.text.shadow</item>
+		<item name="android:shadowDx">2</item>
+		<item name="android:shadowDy">2</item>
+		<item name="android:shadowRadius">2</item>
+	</style>
+
+	<style name="alice_prompt">
+		<item name="android:textColor">@color/alice.prompt_input</item>
+	</style>
+
+</resources>
