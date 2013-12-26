@@ -29,7 +29,7 @@
 	<string name="msg_no_cmd">Eine leere Kommandozeile kann nicht gebunden werden!</string>
 	<string name="mi_add">Hinzufügen</string>
 	<string name="title_really_delete">Wirklich löschen?</string>
-	<string name="msg_empty_library">Die Bibliothek ist leer! Neue Spiele können über \'Catalog ansehen\' heruntergeladen und (falls der Webbrowser sie nicht automatisch übergibt) mittels \'Importieren\' eingebunden werden.</string>
+	<string name="msg_empty_library">Die Bibliothek ist leer! Neue Spiele können über \'Katalog ansehen\' heruntergeladen und (falls der Webbrowser sie nicht automatisch übergibt) mittels \'Importieren\' eingebunden werden.</string>
 	<string name="mi_save">Speichern</string>
 	<string name="mi_restore">Laden</string>
 	<string name="mi_restart">Neu starten</string>

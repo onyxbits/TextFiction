@@ -11,7 +11,6 @@
 	<string name="apprater_neutral">Later</string>
 	<string name="msg_corrupt_z">Corrupt game file</string>
 	<string name="title_activity_game">GameActivity</string>
-	<string name="hello_blank_fragment">Hello blank fragment</string>
 	<string name="msg_what_next">What next?</string>
 	<string name="cmd_user0">look</string>
 	<string name="cmd_user1">examine</string>
