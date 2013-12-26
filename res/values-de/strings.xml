@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="app_name">Text Fiction</string>
+	<string name="action_settings">Settings</string>
+	<string name="hello_world">Hello world!</string>
+	<string name="apprater_message">Hi,\nist diese App nützlich? Wenn ja, dann wäre eine Bewertung auf Google Play sehr willkommen. Jetzt eine Bewertung schreiben?</string>
+	<string name="apprater_positive">Sicher!</string>
+	<string name="apprater_negative">Nein, danke</string>
+	<string name="apprater_neutral">Später</string>
+	
+	<string name="msg_corrupt_z">Spieldatei defekt</string>
+	<string name="title_activity_game">GameActivity</string>
+	<string name="msg_what_next">Was nun?</string>
+	<string name="cmd_user0">look</string>
+	<string name="cmd_user1">examine</string>
+	<string name="cmd_user2">read</string>
+	<string name="cmd_user3">yes</string>
+	<string name="cmd_user4">no</string>
+	<string name="cmd_user5">open</string>
+	<string name="cmd_user6">close</string>
+	<string name="cmd_user7">inventory</string>
+	<string name="cmd_user8">get</string>
+	<string name="cmd_user9">drop</string>
+	<string name="cmd_user10">take all</string>
+	<string name="cmd_user11">wait</string>
+	<string name="cmd_user12">use</string>
+	<string name="cmd_user13">again</string>
+	<string name="msg_no_cmd">Eine leere Kommandozeile kann nicht gebunden werden!</string>
+	<string name="mi_add">Hinzufügen</string>
+	<string name="title_really_delete">Wirklich löschen?</string>
+	<string name="msg_empty_library">Die Bibliothek ist leer! Neue Spiele können über \'Catalog ansehen\' heruntergeladen und (falls der Webbrowser sie nicht automatisch übergibt) mittels \'Importieren\' eingebunden werden.</string>
+	<string name="mi_save">Speichern</string>
+	<string name="mi_restore">Laden</string>
+	<string name="mi_restart">Neu starten</string>
+	<string name="mi_browse">Katalog ansehen</string>
+	<string name="catalog_url">http://www.onyxbits.de/textfiction/games</string>
+	<string name="help_url">http://www.onyxbits.de/textfiction/help</string>
+	<string name="mi_import">Importieren</string>
+	<string name="title_select_import">Spiele zum importieren auswählen</string>
+	<string name="msg_failure_import">Fehler!</string>
+	<string name="msg_nothing_to_import">Keine Spiele im Downloadfolder!</string>
+	<string name="mi_clear_log">Löschen</string>
+	<string name="cb_at_once">Sofort ausführen</string>
+	<string name="mi_help">Hilfe</string>
+	<string name="status_score">%1$s\nScore: %2$d Turn: %3$d</string>
+	<string name="status_time">%1$s\n%2$s</string>
+	<string name="title_change_commmand">Knopf ändern</string>
+	<string name="msg_corrupt_game_file">Kaputtes Spiel</string>
+	<string name="mi_flip_view">Ansicht wechseln</string>
+	<string name="title_please_confirm">Bitte bestätigen</string>
+	<string name="msg_really_restart">Spiel wirklich neu starten?</string>
+	<string name="title_restore_game">Spielstand laden</string>
+	<string name="msg_no_savegames">Keine Spielstände gefunden</string>
+	<string name="msg_game_restored">Spiel geladen</string>
+	<string name="msg_restore_failed">Laden fehlgeschlagen</string>
+	<string name="title_save_game">Spiel speichern</string>
+	<string name="msg_game_saved">Spiel gespeichert</string> 
+
+	
+</resources>
