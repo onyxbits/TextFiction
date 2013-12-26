@@ -5,3 +5,6 @@ http://sourceforge.net/projects/zplet/
 
 The icon is taken from Gartoon Redux: 
 http://gnome-look.org/content/show.php?content=74841
+
+The icons for the commandbuttons are taken from:
+http://typicons.com/
