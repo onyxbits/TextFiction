@@ -8,3 +8,6 @@ http://gnome-look.org/content/show.php?content=74841
 
 The icons for the commandbuttons are taken from:
 http://typicons.com/
+
+External dependencies:
+Andoir support library
