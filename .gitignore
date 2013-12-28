@@ -18,3 +18,9 @@ build.xml
 assets/build.properties
 .settings/
 .settings/*
+
+build
+.gradle
+.DS_Store
+.idea
+*.iml
