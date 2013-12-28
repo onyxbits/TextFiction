@@ -11,3 +11,9 @@ http://typicons.com/
 
 External dependencies:
 Andoir support library
+
+Homepage:
+http://www.onyxbits.de/textfiction
+
+Google Play:
+https://play.google.com/store/apps/details?id=de.onyxbits.textfiction
