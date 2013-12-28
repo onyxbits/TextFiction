@@ -229,9 +229,7 @@ public class GameActivity extends FragmentActivity implements
 				return true;
 			}
 			case R.id.mi_help: {
-				Intent browserIntent = new Intent(Intent.ACTION_VIEW,
-						Uri.parse(getString(R.string.help_url)));
-				startActivity(browserIntent);
+				MainActivity.openUri(this,Uri.parse(getString(R.string.help_url)));
 				return true;
 			}
 			case R.id.mi_restart: {

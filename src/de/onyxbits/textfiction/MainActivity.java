@@ -2,7 +2,9 @@ package de.onyxbits.textfiction;
 
 import java.io.File;
 
+import android.content.ActivityNotFoundException;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,6 +12,7 @@ import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
+import android.widget.Toast;
 
 /**
  * From this activity, the player can manage his/her library and start games.
@@ -58,6 +61,22 @@ public class MainActivity extends FragmentActivity {
 			}
 		}
 		return false;
+	}
+	
+	/**
+	 * Open an url in a webbrowser
+	 * @param ctx a context
+	 * @param uri target
+	 */
+	public static void openUri(Context ctx, Uri uri) {
+		try {
+			Intent browserIntent = new Intent(Intent.ACTION_VIEW,uri);
+			ctx.startActivity(browserIntent);
+		}
+		catch (ActivityNotFoundException e) {
+			// There are actually people who don't have a webbrowser installed
+			Toast.makeText(ctx,R.string.msg_no_webbrowser,Toast.LENGTH_SHORT).show();
+		}
 	}
 
 }

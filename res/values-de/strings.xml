@@ -56,6 +56,7 @@
 	<string name="msg_restore_failed">Laden fehlgeschlagen</string>
 	<string name="title_save_game">Spiel speichern</string>
 	<string name="msg_game_saved">Spiel gespeichert</string> 
+	<string name="msg_no_webbrowser">Kein Webbrowser gefunden!</string> 
 
 	
 </resources>
