@@ -45,7 +45,7 @@
 	<string name="mi_help">Help</string>
 	<string name="status_score">%1$s\nScore: %2$d Turn: %3$d</string>
 	<string name="status_time">%1$s\n%2$s</string>
-	<string name="title_change_commmand">Change Commmand Button</string>
+	<string name="title_change_commmand">Edit Commmand Button</string>
 	<string name="msg_corrupt_game_file">Corrupt game file</string>
 	<string name="mi_flip_view">Flip view</string>
 	<string name="title_please_confirm">Please confirm</string>

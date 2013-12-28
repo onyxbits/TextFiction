@@ -45,7 +45,7 @@
 	<string name="mi_help">Hilfe</string>
 	<string name="status_score">%1$s\nScore: %2$d Turn: %3$d</string>
 	<string name="status_time">%1$s\n%2$s</string>
-	<string name="title_change_commmand">Knopf ändern</string>
+	<string name="title_change_commmand">Knopf bearbeiten</string>
 	<string name="msg_corrupt_game_file">Kaputtes Spiel</string>
 	<string name="mi_flip_view">Ansicht wechseln</string>
 	<string name="title_please_confirm">Bitte bestätigen</string>
