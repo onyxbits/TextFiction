@@ -22,18 +22,12 @@ public class FileUtil implements Comparator<File> {
 	public static final String GAMEDIR = "games";
 
 	/**
-	 * Where to keep the auto save files
-	 */
-	public static final String AUTOSAVEDIR = "autosave";
-
-	/**
 	 * Where the save game files are stored (relative to the HOMEDIR or app data
 	 * dir).
 	 */
 	public static final String SAVEDIR = "savegames";
 
 	private static final File library;
-	private static final File autosaves;
 	private static final File saves;
 
 	/**
@@ -42,10 +36,8 @@ public class FileUtil implements Comparator<File> {
 	static {
 		File root = Environment.getExternalStorageDirectory();
 		library = new File(new File(root, HOMEDIR), GAMEDIR);
-		autosaves = new File(new File(root, HOMEDIR), AUTOSAVEDIR);
 		saves = new File(new File(root, HOMEDIR), SAVEDIR);
 		library.mkdirs();
-		autosaves.mkdirs();
 		saves.mkdirs();
 	}
 
@@ -123,24 +115,12 @@ public class FileUtil implements Comparator<File> {
 	 *          the game file
 	 */
 	public static void deleteGame(File game) {
-		getAutosave(game).delete();
 		File[] lst = getSaveGameDir(game).listFiles();
 		for (File f : lst) {
 			f.delete();
 		}
 		getSaveGameDir(game).delete();
 		game.delete();
-	}
-
-	/**
-	 * Query the autosave for a game
-	 * 
-	 * @param game
-	 *          the game file
-	 * @return the autosave file for the game.
-	 */
-	public static File getAutosave(File game) {
-		return new File(autosaves, game.getName());
 	}
 
 	/**

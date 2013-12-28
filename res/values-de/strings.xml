@@ -57,6 +57,7 @@
 	<string name="title_save_game">Spiel speichern</string>
 	<string name="msg_game_saved">Spiel gespeichert</string> 
 	<string name="msg_no_webbrowser">Kein Webbrowser gefunden!</string> 
+	<string name="mg_not_at_a_commandprompt">Nicht an einer Eingabeaufforderung! Spielstand kontne nicht gespeichert werden!</string> 
 
 	
 </resources>

@@ -167,6 +167,17 @@ public class GameActivity extends FragmentActivity implements
 
 	@Override
 	public void onDestroy() {
+		if (retainerFragment != null && retainerFragment.engine != null
+				&& retainerFragment.engine.getRunState() == ZMachine.STATE_WAIT_CMD) {
+			ZState state = new ZState(retainerFragment.engine);
+			File f = new File(FileUtil.getSaveGameDir(storyFile),
+					getString(R.string.autosavename));
+			state.disk_save(f.getPath(), retainerFragment.engine.pc);
+		}
+		else {
+			Toast.makeText(this, R.string.mg_not_at_a_commandprompt,
+					Toast.LENGTH_LONG).show();
+		}
 		super.onDestroy();
 	}
 
@@ -229,7 +240,7 @@ public class GameActivity extends FragmentActivity implements
 				return true;
 			}
 			case R.id.mi_help: {
-				MainActivity.openUri(this,Uri.parse(getString(R.string.help_url)));
+				MainActivity.openUri(this, Uri.parse(getString(R.string.help_url)));
 				return true;
 			}
 			case R.id.mi_restart: {
