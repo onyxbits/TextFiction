@@ -60,7 +60,7 @@ class CommandChanger implements OnItemClickListener, OnLongClickListener {
 			View layout = li.inflate(R.layout.quickcmdsettings, null);
 			GridView gridView = (GridView) layout.findViewById(R.id.iconselect);
 			atOnce = (CheckBox) layout.findViewById(R.id.executeatonce);
-			gridView.setAdapter(new IconAdapter(this, ctx));
+			gridView.setAdapter(new IconAdapter(ctx));
 			TextView txt = (TextView) layout.findViewById(R.id.replacementcmd);
 			txt.setText("'" + text.trim() + "'");
 			gridView.setOnItemClickListener(this);

@@ -9,11 +9,9 @@ import android.widget.ImageView;
 class IconAdapter extends BaseAdapter {
 
 	private Context context;
-	private CommandChanger callback;
 	
-	public IconAdapter(CommandChanger callback, Context context) {
+	public IconAdapter(Context context) {
 		this.context=context;
-		this.callback=callback;
 	}
 
 	@Override

@@ -33,6 +33,7 @@ public class CmdIcon {
 	 * List of all icon resource ids, the user is allowed to assign to a button
 	 */
 	public static final int[] ICONS = {
+			R.drawable.ic_action_user0,
 			R.drawable.ic_action_user1,
 			R.drawable.ic_action_user2,
 			R.drawable.ic_action_user3,
@@ -49,7 +50,9 @@ public class CmdIcon {
 			R.drawable.ic_action_user14,
 			R.drawable.ic_action_user15,
 			R.drawable.ic_action_user16,
-			R.drawable.ic_action_user17 };
+			R.drawable.ic_action_user17,
+			R.drawable.ic_action_user18,
+	};
 
 	/**
 	 * the (user) command (string) associated with the button-
@@ -198,7 +201,8 @@ public class CmdIcon {
 	 *          context to get the sharedpreferences from
 	 */
 	public void save(Context ctx) {
-		SharedPreferences prefs = ctx.getSharedPreferences(InputFragment.PREFSFILE, 0);
+		SharedPreferences prefs = ctx.getSharedPreferences(InputFragment.PREFSFILE,
+				0);
 		Editor editor = prefs.edit();
 		editor.putString(PREFSCMD + "." + slot, cmd);
 		editor.putInt(PREFSIMG + "." + slot, imgid);
