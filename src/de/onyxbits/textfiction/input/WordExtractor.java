@@ -101,14 +101,16 @@ public class WordExtractor implements OnTouchListener, OnGestureListener,
 
 	@Override
 	public boolean onSingleTapConfirmed(MotionEvent e) {
+		String tmp = extractWord(view, e);
+		if (tmp.length() != 0) {
+			target.appendToCommandLine(tmp);
+		}
 		return true;
 	}
 
 	@Override
 	public boolean onDoubleTap(MotionEvent e) {
-		if (extractWord(view, e).length() == 0) {
-			target.appendToCommandLine("");
-		}
+		target.appendToCommandLine("");
 		return true;
 	}
 
@@ -130,10 +132,6 @@ public class WordExtractor implements OnTouchListener, OnGestureListener,
 
 	@Override
 	public boolean onSingleTapUp(MotionEvent e) {
-		String tmp = extractWord(view, e);
-		if (tmp.length() != 0) {
-			target.appendToCommandLine(tmp);
-		}
 		return true;
 	}
 

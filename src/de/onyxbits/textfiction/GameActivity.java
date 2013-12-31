@@ -12,8 +12,6 @@ import de.onyxbits.textfiction.zengine.ZWindow;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.GestureDetector;
-import android.view.GestureDetector.OnGestureListener;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -33,7 +31,6 @@ import android.support.v4.app.NavUtils;
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Build;
 
 /**
@@ -42,8 +39,8 @@ import android.os.Build;
  * @author patrick
  * 
  */
-public class GameActivity extends FragmentActivity implements
-		OnGestureListener, OnTouchListener, DialogInterface.OnClickListener {
+public class GameActivity extends FragmentActivity implements 
+		DialogInterface.OnClickListener {
 
 	/**
 	 * This activity must be started through an intent and be passed the filename
@@ -57,9 +54,6 @@ public class GameActivity extends FragmentActivity implements
 	 */
 	public static final int MAXMESSAGES = 81;
 
-	private static final float SWIPE_THRESHOLD = 100;
-
-	private static final float SWIPE_VELOCITY_THRESHOLD = 100;
 
 	private static final int PENDING_NONE = 0;
 	private static final int PENDING_RESTART = 1;
@@ -90,11 +84,6 @@ public class GameActivity extends FragmentActivity implements
 	 * The input prompt
 	 */
 	private InputFragment inputFragment;
-
-	/**
-	 * For flinging between the storyboard and the status screen
-	 */
-	private GestureDetector gestureDetector;
 
 	/**
 	 * Contains story- and status screen.
@@ -151,10 +140,8 @@ public class GameActivity extends FragmentActivity implements
 		// Show the Up button in the action bar.
 		setupActionBar();
 
-		gestureDetector = new GestureDetector(this, this);
 
 		storyBoard = (ListView) content.findViewById(R.id.storyboard);
-		storyBoard.setOnTouchListener(this);
 		WordExtractor we = new WordExtractor(this, inputFragment);
 		messages = new StoryAdapter(this, 0, retainerFragment.messageBuffer, we);
 		storyBoard.setAdapter(messages);
@@ -162,7 +149,6 @@ public class GameActivity extends FragmentActivity implements
 		windowFlipper = (ViewFlipper) content.findViewById(R.id.window_flipper);
 		statusWindow = (TextView) content.findViewById(R.id.status);
 		statusWindow.setText(retainerFragment.upperWindow);
-		content.findViewById(R.id.scroll_status).setOnTouchListener(this);
 	}
 
 	@Override
@@ -368,65 +354,6 @@ public class GameActivity extends FragmentActivity implements
 		}
 	}
 
-	@Override
-	public boolean onDown(MotionEvent e) {
-		return false;
-	}
-
-	@Override
-	public void onShowPress(MotionEvent e) {
-	}
-
-	@Override
-	public boolean onSingleTapUp(MotionEvent e) {
-		return false;
-	}
-
-	@Override
-	public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX,
-			float distanceY) {
-		return false;
-	}
-
-	@Override
-	public void onLongPress(MotionEvent e) {
-	}
-
-	@Override
-	public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
-			float velocityY) {
-		boolean result = false;
-		try {
-			float diffY = e2.getY() - e1.getY();
-			float diffX = e2.getX() - e1.getX();
-			if (Math.abs(diffX) > Math.abs(diffY)) {
-				if (Math.abs(diffX) > SWIPE_THRESHOLD
-						&& Math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) {
-					if (diffX > 0) {
-						windowFlipper.setInAnimation(AnimationUtils.loadAnimation(this,
-								android.R.anim.slide_in_left));
-						windowFlipper.setOutAnimation(AnimationUtils.loadAnimation(this,
-								android.R.anim.slide_out_right));
-						windowFlipper.showPrevious();
-						result = true;
-					}
-					else {
-
-						windowFlipper.setInAnimation(AnimationUtils.loadAnimation(this,
-								R.animator.slide_in_right));
-						windowFlipper.setOutAnimation(AnimationUtils.loadAnimation(this,
-								R.animator.slide_out_left));
-						windowFlipper.showPrevious();
-						result = true;
-					}
-				}
-			}
-		}
-		catch (Exception exception) {
-			exception.printStackTrace();
-		}
-		return result;
-	}
 
 	/**
 	 * Make either the storyboard or the statusscreen visible
@@ -458,11 +385,6 @@ public class GameActivity extends FragmentActivity implements
 		}
 	}
 
-	@Override
-	public boolean onTouch(View v, MotionEvent event) {
-		gestureDetector.onTouchEvent(event);
-		return false; // NOTE: always use false when flinging scrollviews.
-	}
 
 	@Override
 	public void onClick(DialogInterface dialog, int which) {
