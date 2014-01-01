@@ -83,7 +83,8 @@ public class InputFragment extends Fragment implements OnClickListener,
 		Context ctx = getActivity();
 		CommandChanger changer = new CommandChanger(cmdLine);
 
-		for (int i = CmdIcon.MINVERBS; i <= CmdIcon.MAXVERBS; i++) {
+		// FIXME: make max number of buttons configurable
+		for (int i = 0; i < 14; i++) {
 			ImageButton b = (ImageButton) inflater.inflate(R.layout.style_cmdbutton,
 					null).findViewById(R.id.protocmdbutton);
 			CmdIcon ico = CmdIcon.create(ctx, i);
@@ -103,7 +104,7 @@ public class InputFragment extends Fragment implements OnClickListener,
 	}
 
 	protected void updateShortCut(CmdIcon ci) {
-		for (int i = CmdIcon.MINVERBS; i <= CmdIcon.MAXVERBS; i++) {
+		for (int i = 0; i < CmdIcon.ICONS.length; i++) {
 			ImageButton b = (ImageButton) buttonBar.getChildAt(i);
 			if (ci == b.getTag()) {
 				b.setImageResource(ci.imgid);

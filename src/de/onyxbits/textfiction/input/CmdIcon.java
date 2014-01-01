@@ -20,16 +20,6 @@ public class CmdIcon {
 	public static final String PREFSCMD = "cmd";
 
 	/**
-	 * Minimum slot id for which create() will return a verb command
-	 */
-	public static final int MINVERBS = 0;
-
-	/**
-	 * Maximum slot id for which create() will return a verb command
-	 */
-	public static final int MAXVERBS = 13;
-
-	/**
 	 * List of all icon resource ids, the user is allowed to assign to a button
 	 */
 	public static final int[] ICONS = {
@@ -188,7 +178,9 @@ public class CmdIcon {
 				break;
 			}
 			default: {
-				throw new ArrayIndexOutOfBoundsException("No default for icon #" + slot);
+				imgid = prefs.getInt(PREFSIMG + "."+slot, R.drawable.ic_action_user0);
+				cmdstr = prefs.getString(PREFSCMD + "."+slot,"???");
+				instantly = prefs.getBoolean(PREFSATONCE + "."+slot, false);
 			}
 		}
 		return new CmdIcon(slot, imgid, cmdstr, instantly);
