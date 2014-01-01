@@ -217,6 +217,18 @@ public class GameActivity extends FragmentActivity implements
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
+		if (retainerFragment == null || retainerFragment.engine == null
+				|| retainerFragment.engine.getRunState() == ZMachine.STATE_RUNNING
+				|| retainerFragment.engine.getRunState() == ZMachine.STATE_INIT) {
+			// Safety catch: Only let the user do stuff in the menu while the machine
+			// is at rest. Ideally we would enable/disable menuitems that are
+			// dangerous to use while the machine is running, but silently ignoring
+			// requests is easier. Most users intuitively understand that certain
+			// things can't work at certain times, so we only need to guard against
+			// accidents.
+			return super.onOptionsItemSelected(item);
+		}
+
 		switch (item.getItemId()) {
 			case R.id.mi_flip_view: {
 				flipView(windowFlipper.getCurrentView() != storyBoard);
