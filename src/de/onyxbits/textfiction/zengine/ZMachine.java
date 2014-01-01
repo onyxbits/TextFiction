@@ -347,15 +347,15 @@ public abstract class ZMachine {
 		catch (ArrayIndexOutOfBoundsException booga) {
 			System.err.print("pc = ");
 			System.err.println(Integer.toString(pc, 16));
-
-			throw booga;
+			fatal("Memory address corruption");
 		}
 		catch (ClassCastException booga) {
 			System.err.print("pc = ");
 			System.err.println(Integer.toString(pc, 16));
-
-			throw booga;
+			fatal("Story corruption");
 		}
+		
+		return STATE_RUNNING; // We actually never get here
 	}
 
 	void calculate_checksum() {
@@ -396,8 +396,7 @@ public abstract class ZMachine {
 	}
 
 	public void fatal(String s) {
-		System.err.println(s + " @ $" + Integer.toString(pc, 16));
-		System.exit(-1);
+		throw new GrueException(s);
 	}
 
 	public short get_variable(short varnum) {

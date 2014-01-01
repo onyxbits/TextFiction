@@ -4,6 +4,7 @@ import java.io.File;
 
 import de.onyxbits.textfiction.input.InputFragment;
 import de.onyxbits.textfiction.input.WordExtractor;
+import de.onyxbits.textfiction.zengine.GrueException;
 import de.onyxbits.textfiction.zengine.ZMachine;
 import de.onyxbits.textfiction.zengine.ZState;
 import de.onyxbits.textfiction.zengine.ZStatus;
@@ -167,8 +168,20 @@ public class GameActivity extends FragmentActivity implements
 
 	@Override
 	public void onDestroy() {
-		if (retainerFragment != null && retainerFragment.engine != null
-				&& retainerFragment.engine.getRunState() == ZMachine.STATE_WAIT_CMD) {
+		if (retainerFragment == null) {
+			super.onDestroy();
+			return;
+		}
+
+		if (retainerFragment.postMortem != null) {
+			// Let's not go into details here. The user won't understand them anyways.
+			Toast.makeText(this, R.string.msg_corrupt_game_file, Toast.LENGTH_SHORT)
+					.show();
+			super.onDestroy();
+			return;
+		}
+
+		if (retainerFragment.engine.getRunState() == ZMachine.STATE_WAIT_CMD) {
 			ZState state = new ZState(retainerFragment.engine);
 			File f = new File(FileUtil.getSaveGameDir(storyFile),
 					getString(R.string.autosavename));
@@ -283,8 +296,14 @@ public class GameActivity extends FragmentActivity implements
 				retainerFragment.messageBuffer.add(new StoryItem(
 						new String(tmp).trim(), StoryItem.MYSELF));
 			}
-			retainerFragment.engine.run();
-			publishResult();
+			try {
+				retainerFragment.engine.run();
+				publishResult();
+			}
+			catch (GrueException e) {
+				retainerFragment.postMortem = e;
+				finish();
+			}
 		}
 	}
 
@@ -470,8 +489,15 @@ public class GameActivity extends FragmentActivity implements
 			case PENDING_RESTART: {
 				if (which == DialogInterface.BUTTON_POSITIVE) {
 					retainerFragment.messageBuffer.clear();
-					retainerFragment.engine.restart();
-					retainerFragment.engine.run();
+					try {
+						retainerFragment.engine.restart();
+						retainerFragment.engine.run();
+					}
+					catch (GrueException e) {
+						// This should never happen
+						retainerFragment.postMortem = e;
+						finish();
+					}
 					publishResult();
 				}
 				break;

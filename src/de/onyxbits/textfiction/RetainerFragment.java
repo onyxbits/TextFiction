@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.List;
 import java.util.Vector;
 
+import de.onyxbits.textfiction.zengine.GrueException;
 import de.onyxbits.textfiction.zengine.ZMachine;
 import android.app.Activity;
 import android.os.Bundle;
@@ -33,6 +34,12 @@ public class RetainerFragment extends Fragment {
 	public List<StoryItem> messageBuffer;
 
 	/**
+	 * Always surround engine.run() in try/catch and put the caught exception
+	 * here, call finish() afterwards.
+	 */
+	public GrueException postMortem;
+
+	/**
 	 * Contents of the upper window
 	 */
 	public String upperWindow;
@@ -40,6 +47,8 @@ public class RetainerFragment extends Fragment {
 	public RetainerFragment() {
 		messageBuffer = new Vector<StoryItem>();
 		upperWindow = "";
+		postMortem = null;
+		engine = null;
 	}
 
 	@Override

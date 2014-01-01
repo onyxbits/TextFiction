@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
+import de.onyxbits.textfiction.zengine.GrueException;
 import de.onyxbits.textfiction.zengine.ZMachine;
 import de.onyxbits.textfiction.zengine.ZMachine3;
 import de.onyxbits.textfiction.zengine.ZMachine5;
@@ -71,9 +72,15 @@ public class LoaderTask extends AsyncTask<File, Integer, ZMachine> {
 		catch (ArrayIndexOutOfBoundsException e) {
 			Log.w(getClass().getName(), "Empty file");
 		}
+
 		if (engine != null) {
-			engine.restart();
-			engine.run();
+			try {
+				engine.restart();
+				engine.run();
+			}
+			catch (GrueException e) {
+				engine = null;
+			}
 		}
 		return engine;
 	}
@@ -90,9 +97,9 @@ public class LoaderTask extends AsyncTask<File, Integer, ZMachine> {
 				gameActivity.publishResult();
 			}
 			else {
+				retainer.postMortem = new GrueException(
+						gameActivity.getString(R.string.msg_corrupt_game_file));
 				gameActivity.finish();
-				Toast.makeText(gameActivity, R.string.msg_corrupt_game_file,
-						Toast.LENGTH_SHORT).show();
 			}
 		}
 	}
