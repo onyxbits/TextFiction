@@ -117,11 +117,6 @@ public class GameActivity extends FragmentActivity implements
 	 */
 	private int pendingAction = PENDING_NONE;
 
-	/**
-	 * Reference to the "save" entry in the menu
-	 */
-	private MenuItem menuSave;
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -144,6 +139,7 @@ public class GameActivity extends FragmentActivity implements
 			// happened while loading, so don't figure if we don't have an engine.
 			if (retainerFragment.engine != null) {
 				figurePromptStyle();
+				figureMenuState();
 			}
 		}
 		storyFile = new File(getIntent().getStringExtra(LOADFILE));
@@ -211,24 +207,24 @@ public class GameActivity extends FragmentActivity implements
 		// Inflate the menu; this adds items to the action bar if it is present.
 		super.onCreateOptionsMenu(menu);
 		getMenuInflater().inflate(R.menu.game, menu);
-		menuSave = menu.findItem(R.id.mi_save);
+		return true;
+	}
+
+	@Override
+	public boolean onPrepareOptionsMenu(Menu menu) {
+		super.onPrepareOptionsMenu(menu);
+		boolean rest = !(retainerFragment == null
+				|| retainerFragment.engine == null
+				|| retainerFragment.engine.getRunState() == ZMachine.STATE_RUNNING || retainerFragment.engine
+				.getRunState() == ZMachine.STATE_INIT);
+		menu.findItem(R.id.mi_save).setEnabled(rest && inputFragment.isPrompt());
+		menu.findItem(R.id.mi_restore).setEnabled(rest && inputFragment.isPrompt());
+		menu.findItem(R.id.mi_restart).setEnabled(rest);
 		return true;
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		if (retainerFragment == null || retainerFragment.engine == null
-				|| retainerFragment.engine.getRunState() == ZMachine.STATE_RUNNING
-				|| retainerFragment.engine.getRunState() == ZMachine.STATE_INIT) {
-			// Safety catch: Only let the user do stuff in the menu while the machine
-			// is at rest. Ideally we would enable/disable menuitems that are
-			// dangerous to use while the machine is running, but silently ignoring
-			// requests is easier. Most users intuitively understand that certain
-			// things can't work at certain times, so we only need to guard against
-			// accidents.
-			return super.onOptionsItemSelected(item);
-		}
-
 		switch (item.getItemId()) {
 			case R.id.mi_flip_view: {
 				flipView(windowFlipper.getCurrentView() != storyBoard);
@@ -376,10 +372,11 @@ public class GameActivity extends FragmentActivity implements
 		// display the upperwindow
 		flipView(showLower);
 		figurePromptStyle();
+		figureMenuState();
 	}
 
 	/**
-	 * show the correct prompt.
+	 * Show the correct prompt.
 	 */
 	private void figurePromptStyle() {
 		if (retainerFragment.engine.getRunState() == ZMachine.STATE_WAIT_CHAR
@@ -390,12 +387,15 @@ public class GameActivity extends FragmentActivity implements
 				&& !inputFragment.isPrompt()) {
 			inputFragment.toggleInput();
 		}
+	}
 
-		// NOTE: on Gingerbread, onCreateOptionsMenu is not called till the user
-		// presses the menu button. In that case menuSave is null.
-		if (menuSave != null) {
-			// See: ZMachine.restore()
-			menuSave.setEnabled(inputFragment.isPrompt());
+	/**
+	 * Enable/Disable menu items
+	 */
+	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
+	private void figureMenuState() {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+			invalidateOptionsMenu();
 		}
 	}
 
@@ -536,6 +536,7 @@ public class GameActivity extends FragmentActivity implements
 						messages.notifyDataSetChanged();
 						retainerFragment.engine.restore(state);
 						figurePromptStyle();
+						figureMenuState();
 						Toast
 								.makeText(this, R.string.msg_game_restored, Toast.LENGTH_SHORT)
 								.show();
