@@ -170,7 +170,7 @@ public class GameActivity extends FragmentActivity implements
 
 	@Override
 	public void onDestroy() {
-		if (retainerFragment == null) {
+		if (retainerFragment == null || retainerFragment.engine == null) {
 			super.onDestroy();
 			return;
 		}
@@ -307,8 +307,8 @@ public class GameActivity extends FragmentActivity implements
 			retainerFragment.engine.fillInputBuffer(inputBuffer);
 			if (retainerFragment.engine.getRunState() != ZMachine.STATE_WAIT_CHAR) {
 				String tmp = new String(inputBuffer).replaceAll("\n", "").trim();
-				retainerFragment.messageBuffer.add(new StoryItem(
-						new SpannableString(tmp), StoryItem.MYSELF));
+				retainerFragment.messageBuffer.add(new StoryItem(new SpannableString(
+						tmp), StoryItem.MYSELF));
 			}
 			try {
 				retainerFragment.engine.run();
@@ -329,7 +329,7 @@ public class GameActivity extends FragmentActivity implements
 		ZWindow upper = retainerFragment.engine.window[1];
 		ZWindow lower = retainerFragment.engine.window[0];
 		ZStatus status = retainerFragment.engine.status_line;
-		String tmp="";
+		String tmp = "";
 		boolean showLower = false;
 
 		if (status != null) {
@@ -355,28 +355,29 @@ public class GameActivity extends FragmentActivity implements
 			tmp = new String(lower.frameBuffer, 0, lower.noPrompt());
 			SpannableString stmp = new SpannableString(tmp);
 			StyleRegion reg = lower.regions;
-			if (reg!=null) {
-				while(reg!=null) {
-					if (reg.next==null) {
+			if (reg != null) {
+				while (reg != null) {
+					if (reg.next == null) {
 						// The printer does not "close" the last style since it doesn't know
 						// when the last character is printed.
-						reg.end=tmp.length()-1;
+						reg.end = tmp.length() - 1;
 					}
 					switch (reg.style) {
 						case ZWindow.BOLD: {
-							stmp.setSpan(new StyleSpan(Typeface.BOLD),reg.start,reg.end,0);
+							stmp.setSpan(new StyleSpan(Typeface.BOLD), reg.start, reg.end, 0);
 							break;
 						}
 						case ZWindow.ITALIC: {
-							stmp.setSpan(new StyleSpan(Typeface.ITALIC),reg.start,reg.end,0);
+							stmp.setSpan(new StyleSpan(Typeface.ITALIC), reg.start, reg.end,
+									0);
 							break;
 						}
 						case ZWindow.FIXED: {
-							stmp.setSpan(new TypefaceSpan("monospace"),reg.start,reg.end,0);
+							stmp.setSpan(new TypefaceSpan("monospace"), reg.start, reg.end, 0);
 							break;
 						}
 					}
-					reg=reg.next;
+					reg = reg.next;
 				}
 			}
 			retainerFragment.messageBuffer
