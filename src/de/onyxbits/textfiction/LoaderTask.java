@@ -2,7 +2,6 @@ package de.onyxbits.textfiction;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -12,15 +11,13 @@ import de.onyxbits.textfiction.zengine.ZMachine3;
 import de.onyxbits.textfiction.zengine.ZMachine5;
 import de.onyxbits.textfiction.zengine.ZMachine8;
 import de.onyxbits.textfiction.zengine.ZScreen;
-import de.onyxbits.textfiction.zengine.ZState;
 import de.onyxbits.textfiction.zengine.ZStatus;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.Toast;
 
 /**
- * Takes care of creating an engine from a story file
+ * Loader for z-code games. Supports z3, z5, z8 and zblorb files.
  * 
  * @author patrick
  * 
@@ -29,6 +26,10 @@ public class LoaderTask extends AsyncTask<File, Integer, ZMachine> {
 
 	private RetainerFragment retainer;
 
+	/**
+	 * 
+	 * @param retainer where to deliver the loaded engine.
+	 */
 	public LoaderTask(RetainerFragment retainer) {
 		this.retainer = retainer;
 	}
@@ -48,6 +49,11 @@ public class LoaderTask extends AsyncTask<File, Integer, ZMachine> {
 		ZMachine engine = null;
 		try {
 			byte[] memImage = createMemImage(new FileInputStream(story[0]));
+
+			if (isBlorb(memImage)) {
+				memImage = extractGame(memImage);
+			}
+
 			switch (memImage[0]) {
 				case 3: {
 					engine = new ZMachine3(new ZScreen(), new ZStatus(), memImage);
@@ -60,9 +66,6 @@ public class LoaderTask extends AsyncTask<File, Integer, ZMachine> {
 				case 8: {
 					engine = new ZMachine8(new ZScreen(), memImage);
 					break;
-				}
-				default: {
-					// TODO: create a dummy machine?
 				}
 			}
 		}
@@ -79,6 +82,7 @@ public class LoaderTask extends AsyncTask<File, Integer, ZMachine> {
 				engine.run();
 			}
 			catch (GrueException e) {
+				Log.w(getClass().getName(), e);
 				engine = null;
 			}
 		}
@@ -105,7 +109,7 @@ public class LoaderTask extends AsyncTask<File, Integer, ZMachine> {
 	}
 
 	/**
-	 * Load the Rom code
+	 * Load a binary file into RAM
 	 * 
 	 * @param mystream
 	 *          where to read from
@@ -144,4 +148,92 @@ public class LoaderTask extends AsyncTask<File, Integer, ZMachine> {
 		return buffer;
 	}
 
+	/**
+	 * Check if a file is an zblorb archive
+	 * 
+	 * @param image
+	 *          the memory image of the file
+	 * @return true if the file starts with a FORM header.
+	 */
+	public static boolean isBlorb(byte[] image) {
+		// detect "FORM" header
+		return (image != null && image.length >= 40 && image[0] == 'F'
+				&& image[1] == 'O' && image[2] == 'R' && image[3] == 'M');
+	}
+
+	/**
+	 * 
+	 * @param image
+	 * @param index
+	 * @return
+	 */
+	static int readInt(byte[] image, int index) {
+		return image[index] << 24 | (image[index + 1] & 0xFF) << 16
+				| (image[index + 2] & 0xFF) << 8 | (image[index + 3] & 0xFF);
+	}
+
+	/**
+	 * Pull the z-code out of a zblorb.
+	 * 
+	 * @param image
+	 *          raw memory of the zblorb file
+	 * @return either the z-code of the game or an empty array if no z-code was
+	 *         found.
+	 */
+	public static byte[] extractGame(byte[] image) {
+		int size = readInt(image, 4);
+
+		// allow for 4 bytes "FORM" and 4 bytes size
+		int offset = 8;
+		if ((size + offset) != image.length) {
+			// size check failed!
+			return new byte[0];
+		}
+
+		if (image[offset] != 'I' || image[offset + 1] != 'F'
+				|| image[offset + 2] != 'R' || image[offset + 3] != 'S') {
+			// IFRS chunk header not found!
+			return new byte[0];
+		}
+
+		offset += 4;
+		if (image[offset] != 'R' || image[offset + 1] != 'I'
+				|| image[offset + 2] != 'd' || image[offset + 3] != 'x') {
+			// RIdx not found
+			return new byte[0];
+		}
+
+		offset += 4;
+		offset += 4;
+		int resources = readInt(image, offset);
+		offset += 4;
+
+		// iterate through 12-byte long index entries
+		int start = -1;
+		int i;
+		for (i = 0; i < resources; i += 12) {
+			if (image[offset] == 'E' && image[offset + 1] == 'x'
+					&& image[offset + 2] == 'e' && image[offset + 3] == 'c') {
+				int number = readInt(image, offset + 4);
+				if (number == 0) {
+					// start of ZCOD chunk, hopefully
+					start = readInt(image, offset + 8);
+				}
+			}
+		}
+		if (start > -1) {
+			// check "ZCOD", 4 bytes
+			if (image[start] == 'Z' && image[start + 1] == 'C'
+					&& image[start + 2] == 'O' && image[start + 3] == 'D') {
+				int zlength = readInt(image, start + 4);
+				offset = start + 8;
+				byte[] result = new byte[zlength];
+				for (i = 0; i < zlength; i++) {
+					result[i] = image[offset + i];
+				}
+				return result;
+			}
+		}
+		return new byte[0];
+	}
 }

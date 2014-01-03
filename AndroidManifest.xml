@@ -31,6 +31,7 @@
 				<category android:name="android.intent.category.DEFAULT" />
 
 				<data android:mimeType="application/x-zmachine" />
+				<data android:mimeType="application/x-blorb" />
 			</intent-filter>
 		</activity>
 		<activity
