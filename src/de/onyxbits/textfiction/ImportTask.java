@@ -23,7 +23,7 @@ class ImportTask extends AsyncTask<Object, Integer, Exception> implements
 	/**
 	 * Supported filename suffixes
 	 */
-	public static final String[] SUFFIXES = { "Z3", "Z5", "Z8" };
+	public static final String[] SUFFIXES = { "Z3", "Z5", "Z8", "ZBLORB" };
 
 	/**
 	 * The import candidates from which the user may choose.
