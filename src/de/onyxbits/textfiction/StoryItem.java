@@ -1,5 +1,7 @@
 package de.onyxbits.textfiction;
 
+import android.text.SpannableString;
+
 /**
  * A story element to be shown in the story fragment.
  * 
@@ -26,14 +28,14 @@ class StoryItem {
 	/**
 	 * What to show to the user
 	 */
-	protected String message;
+	protected SpannableString message;
 
 	/**
 	 * Is this a message from the player or the narrator?
 	 */
 	protected int type;
 
-	public StoryItem(String message, int type) {
+	public StoryItem(SpannableString message, int type) {
 		this.message = message;
 		this.type = type;
 	}

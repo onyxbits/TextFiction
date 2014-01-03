@@ -5,6 +5,7 @@ import java.io.File;
 import de.onyxbits.textfiction.input.InputFragment;
 import de.onyxbits.textfiction.input.WordExtractor;
 import de.onyxbits.textfiction.zengine.GrueException;
+import de.onyxbits.textfiction.zengine.StyleRegion;
 import de.onyxbits.textfiction.zengine.ZMachine;
 import de.onyxbits.textfiction.zengine.ZState;
 import de.onyxbits.textfiction.zengine.ZStatus;
@@ -12,6 +13,10 @@ import de.onyxbits.textfiction.zengine.ZWindow;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.style.StyleSpan;
+import android.text.style.TypefaceSpan;
+import android.text.style.UnderlineSpan;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.GestureDetector.OnGestureListener;
@@ -35,6 +40,7 @@ import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Build;
 
 /**
@@ -302,7 +308,7 @@ public class GameActivity extends FragmentActivity implements
 			if (retainerFragment.engine.getRunState() != ZMachine.STATE_WAIT_CHAR) {
 				String tmp = new String(inputBuffer).replaceAll("\n", "").trim();
 				retainerFragment.messageBuffer.add(new StoryItem(
-						new String(tmp).trim(), StoryItem.MYSELF));
+						new SpannableString(tmp), StoryItem.MYSELF));
 			}
 			try {
 				retainerFragment.engine.run();
@@ -323,7 +329,7 @@ public class GameActivity extends FragmentActivity implements
 		ZWindow upper = retainerFragment.engine.window[1];
 		ZWindow lower = retainerFragment.engine.window[0];
 		ZStatus status = retainerFragment.engine.status_line;
-		String tmp;
+		String tmp="";
 		boolean showLower = false;
 
 		if (status != null) {
@@ -347,8 +353,34 @@ public class GameActivity extends FragmentActivity implements
 
 		if (lower.cursor > 0) {
 			tmp = new String(lower.frameBuffer, 0, lower.noPrompt());
+			SpannableString stmp = new SpannableString(tmp);
+			StyleRegion reg = lower.regions;
+			if (reg!=null) {
+				while(reg!=null) {
+					if (reg.next==null) {
+						// The printer does not "close" the last style since it doesn't know
+						// when the last character is printed.
+						reg.end=tmp.length()-1;
+					}
+					switch (reg.style) {
+						case ZWindow.BOLD: {
+							stmp.setSpan(new StyleSpan(Typeface.BOLD),reg.start,reg.end,0);
+							break;
+						}
+						case ZWindow.ITALIC: {
+							stmp.setSpan(new StyleSpan(Typeface.ITALIC),reg.start,reg.end,0);
+							break;
+						}
+						case ZWindow.FIXED: {
+							stmp.setSpan(new TypefaceSpan("monospace"),reg.start,reg.end,0);
+							break;
+						}
+					}
+					reg=reg.next;
+				}
+			}
 			retainerFragment.messageBuffer
-					.add(new StoryItem(tmp, StoryItem.NARRATOR));
+					.add(new StoryItem(stmp, StoryItem.NARRATOR));
 			showLower = true;
 		}
 		lower.retrieved();

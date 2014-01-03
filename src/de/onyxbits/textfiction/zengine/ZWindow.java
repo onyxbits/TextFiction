@@ -8,11 +8,11 @@ package de.onyxbits.textfiction.zengine;
 import java.util.Arrays;
 
 public class ZWindow {
-	final static int ROMAN = 0;
-	final static int REVERSE = 1;
-	final static int BOLD = 2;
-	final static int ITALIC = 4;
-	final static int FIXED = 8;
+	public final static int ROMAN = 0;
+	public final static int REVERSE = 1;
+	public final static int BOLD = 2;
+	public final static int ITALIC = 4;
+	public final static int FIXED = 8;
 
 	final static char FIRST_STYLE = '\u8000';
 	final static char BUF_ROMAN = (char) (FIRST_STYLE + ROMAN);
@@ -46,6 +46,7 @@ public class ZWindow {
 
 	public boolean upper;
 	public char[] frameBuffer;
+	public StyleRegion regions;
 	public int cursor;
 	public int maxCursor;
 	public int endWindow;
@@ -186,6 +187,21 @@ public class ZWindow {
 	}
 
 	public void set_text_style(int style) {
+		StyleRegion region = new StyleRegion();
+		region.style=style;
+		region.start=cursor;
+		region.end=cursor;
+		if (regions==null) {
+			regions=region;
+		}
+		else {
+			StyleRegion tmp = regions;
+			while(tmp.next!=null) {
+				tmp=tmp.next;
+			}
+			tmp.end=cursor;
+			tmp.next=region;
+		}
 	}
 
 	public int getHeight() {
@@ -214,6 +230,7 @@ public class ZWindow {
 			cursory = 0;
 			cursor = 0;
 		}
+		regions=null;
 	}
 
 	/**
