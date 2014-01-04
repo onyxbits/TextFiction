@@ -103,14 +103,14 @@ public class WordExtractor implements OnTouchListener, OnGestureListener,
 	public boolean onSingleTapConfirmed(MotionEvent e) {
 		String tmp = extractWord(view, e);
 		if (tmp.length() != 0) {
-			target.appendToCommandLine(tmp);
+			target.appendWord(tmp);
 		}
 		return true;
 	}
 
 	@Override
 	public boolean onDoubleTap(MotionEvent e) {
-		target.appendToCommandLine("");
+		target.removeWord();
 		return true;
 	}
 
