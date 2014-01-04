@@ -203,23 +203,33 @@ public class InputFragment extends Fragment implements OnClickListener,
 	}
 
 	/**
-	 * Add something to the command prompt
-	 * 
+	 * Append a "word" to the prompt. 
 	 * @param str
 	 *          the string to add (does not require whitespaces at the start or
 	 *          end).
 	 */
-	public void appendToCommandLine(String str) {
-		if (str.length() == 0) {
-			// User touched the chatbubble but hit no word. Interpret this as
-			// "delete"
-			reset();
-		}
-		else {
+	public void appendWord(String str) {
+		if (str.length() > 0) {
 			String tmp = cmdLine.getText().toString().trim();
 			tmp = tmp.trim() + " " + str.trim();
 			cmdLine.setText(tmp);
 			cmdLine.setSelection(tmp.length());
+		}
+	}
+	
+	/**
+	 * Delete the rightmost word on the prompt.
+	 */
+	public void removeWord() {
+		String tmp = cmdLine.getText().toString().trim();
+		int idx = tmp.lastIndexOf(' ');
+		if (idx>0) {
+			tmp=tmp.substring(0,idx);
+			cmdLine.setText(tmp);
+			cmdLine.setSelection(tmp.length());
+		}
+		else {
+			reset();
 		}
 	}
 

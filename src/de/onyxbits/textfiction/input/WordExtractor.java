@@ -1,10 +1,12 @@
 package de.onyxbits.textfiction.input;
 
 import android.content.Context;
+import android.support.v4.view.GestureDetectorCompat;
+import android.view.GestureDetector.OnDoubleTapListener;
+import android.view.GestureDetector.OnGestureListener;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
-import android.view.ViewConfiguration;
 import android.widget.TextView;
 
 /**
@@ -14,28 +16,36 @@ import android.widget.TextView;
  * @author patrick
  * 
  */
-public class WordExtractor implements OnTouchListener {
+public class WordExtractor implements OnTouchListener, OnGestureListener,
+		OnDoubleTapListener {
 
 	private InputFragment target;
-	private long lastUp = -1;
-	private static final int DOUBLE_TAP_TIMEOUT = ViewConfiguration
-			.getDoubleTapTimeout();
+	private Context context;
+	private TextView view;
+
+	private GestureDetectorCompat detector;
 
 	public WordExtractor(Context context, InputFragment target) {
 		this.target = target;
-
+		this.context = context;
 	}
 
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
+		if (detector == null) {
+			detector = new GestureDetectorCompat(context, this);
+			detector.setOnDoubleTapListener(this);
+			detector.setIsLongpressEnabled(false);
+		}
+		view = (TextView) v;
+		return detector.onTouchEvent(event);
+	}
 
-		TextView tv = (TextView) v;
+	private String extractWord(TextView tv, MotionEvent event) {
 		int pos = getOffsetForPosition(tv, event.getX(), event.getY());
 		int start = pos;
 		int end = pos;
 		String sel = "";
-
-		// Word touched? -> Append it to the commandline
 		char[] buf = tv.getText().toString().toCharArray();
 		if (pos > -1 && pos < buf.length) {
 			while (start > 0 && Character.isLetterOrDigit(buf[start])) {
@@ -53,18 +63,9 @@ public class WordExtractor implements OnTouchListener {
 
 			if (end - start + 1 > 0) {
 				sel = new String(buf, start, end - start + 1);
-				target.appendToCommandLine(sel);
 			}
 		}
-
-		// Empty space double tapped? -> Clear the commandline
-		if ((event.getEventTime() - lastUp < DOUBLE_TAP_TIMEOUT)
-				&& (sel.length() == 0)) {
-			target.appendToCommandLine("");
-		}
-		lastUp = event.getEventTime();
-
-		return false;
+		return sel;
 	}
 
 	private int getOffsetForPosition(TextView tv, float x, float y) {
@@ -96,6 +97,62 @@ public class WordExtractor implements OnTouchListener {
 	private int getOffsetAtCoordinate(TextView tv, int line, float x) {
 		x = convertToLocalHorizontalCoordinate(tv, x);
 		return tv.getLayout().getOffsetForHorizontal(line, x);
+	}
+
+	@Override
+	public boolean onSingleTapConfirmed(MotionEvent e) {
+		String tmp = extractWord(view, e);
+		if (tmp.length() != 0) {
+			target.appendWord(tmp);
+		}
+		return true;
+	}
+
+	@Override
+	public boolean onDoubleTap(MotionEvent e) {
+		target.removeWord();
+		return true;
+	}
+
+	@Override
+	public boolean onDoubleTapEvent(MotionEvent e) {
+		return false;
+	}
+
+	@Override
+	public boolean onDown(MotionEvent e) {
+		return true;
+	}
+
+	@Override
+	public void onShowPress(MotionEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public boolean onSingleTapUp(MotionEvent e) {
+		return true;
+	}
+
+	@Override
+	public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX,
+			float distanceY) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void onLongPress(MotionEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
+			float velocityY) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }
