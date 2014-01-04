@@ -4,10 +4,10 @@
 	<dimen name="activity_horizontal_margin">16dp</dimen>
 	<dimen name="activity_vertical_margin">16dp</dimen>
 	
-	<dimen name="nemo.bubble_sidemargin">25dp</dimen>
-	<dimen name="nemo.bubble_topmargin">10dp</dimen>
+	<dimen name="nemo.bubble_sidemargin">75dp</dimen>
+	<dimen name="nemo.bubble_topmargin">20dp</dimen>
 	
-	<dimen name="alice.bubble_sidemargin">25dp</dimen>
-	<dimen name="alice.bubble_topmargin">10dp</dimen>
+	<dimen name="alice.bubble_sidemargin">75dp</dimen>
+	<dimen name="alice.bubble_topmargin">20dp</dimen>
 
 </resources>
