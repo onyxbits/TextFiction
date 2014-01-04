@@ -108,6 +108,7 @@
 
 	<style name="nemo_library_list">
 		<item name="android:listSelector">@drawable/nemo_lst_selector</item>
+		<item name="android:divider">@null</item>
 	</style>
 
 	<style name="nemo_upperwindow">
@@ -190,6 +191,7 @@
 
 	<style name="alice_library_list">
 		<item name="android:listSelector">@drawable/alice_lst_selector</item>
+		<item name="android:divider">@null</item>
 	</style>
 
 	<style name="alice_upperwindow">
