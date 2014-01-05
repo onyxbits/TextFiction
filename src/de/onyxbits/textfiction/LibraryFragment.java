@@ -63,7 +63,6 @@ public class LibraryFragment extends Fragment implements
 	 */
 	public void reScan() {
 		File[] stories = FileUtil.listGames();
-		Arrays.sort(stories);
 		games.clear();
 		for (File f : stories) {
 			games.add(f);

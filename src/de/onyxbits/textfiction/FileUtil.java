@@ -42,8 +42,13 @@ public class FileUtil implements Comparator<File> {
 	}
 
 	public static File[] listGames() {
+		File[] ret = library.listFiles();
+		if (ret==null) {
+			return new File[0];
+		}
+		Arrays.sort(ret);
 
-		return library.listFiles();
+		return ret;
 	}
 
 	/**
