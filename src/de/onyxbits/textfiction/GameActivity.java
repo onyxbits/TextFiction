@@ -344,6 +344,8 @@ public class GameActivity extends FragmentActivity implements
 						// when the last character is printed.
 						reg.end = tmp.length() - 1;
 					}
+					// Did the game style the prompt (which we cut away)?
+					reg.end = Math.min(reg.end,tmp.length()-1);
 					switch (reg.style) {
 						case ZWindow.BOLD: {
 							stmp.setSpan(new StyleSpan(Typeface.BOLD), reg.start, reg.end, 0);
