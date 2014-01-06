@@ -42,7 +42,7 @@ import android.os.Build;
  * @author patrick
  * 
  */
-public class GameActivity extends FragmentActivity implements 
+public class GameActivity extends FragmentActivity implements
 		DialogInterface.OnClickListener {
 
 	/**
@@ -56,7 +56,6 @@ public class GameActivity extends FragmentActivity implements
 	 * an odd number so the log starts with a narrator entry.
 	 */
 	public static final int MAXMESSAGES = 81;
-
 
 	private static final int PENDING_NONE = 0;
 	private static final int PENDING_RESTART = 1;
@@ -139,7 +138,6 @@ public class GameActivity extends FragmentActivity implements
 		// Show the Up button in the action bar.
 		setupActionBar();
 
-
 		storyBoard = (ListView) content.findViewById(R.id.storyboard);
 		WordExtractor we = new WordExtractor(this, inputFragment);
 		messages = new StoryAdapter(this, 0, retainerFragment.messageBuffer, we);
@@ -153,6 +151,13 @@ public class GameActivity extends FragmentActivity implements
 	@Override
 	public void onDestroy() {
 		if (retainerFragment == null || retainerFragment.engine == null) {
+			if (retainerFragment.postMortem != null) {
+				// Let's not go into details here. The user won't understand them
+				// anyways.
+				Toast
+						.makeText(this, R.string.msg_corrupt_game_file, Toast.LENGTH_SHORT)
+						.show();
+			}
 			super.onDestroy();
 			return;
 		}
@@ -345,7 +350,7 @@ public class GameActivity extends FragmentActivity implements
 						reg.end = tmp.length() - 1;
 					}
 					// Did the game style the prompt (which we cut away)?
-					reg.end = Math.min(reg.end,tmp.length()-1);
+					reg.end = Math.min(reg.end, tmp.length() - 1);
 					switch (reg.style) {
 						case ZWindow.BOLD: {
 							stmp.setSpan(new StyleSpan(Typeface.BOLD), reg.start, reg.end, 0);
@@ -416,7 +421,6 @@ public class GameActivity extends FragmentActivity implements
 		}
 	}
 
-
 	/**
 	 * Make either the storyboard or the statusscreen visible
 	 * 
@@ -446,7 +450,6 @@ public class GameActivity extends FragmentActivity implements
 			}
 		}
 	}
-
 
 	@Override
 	public void onClick(DialogInterface dialog, int which) {
