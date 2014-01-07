@@ -43,6 +43,7 @@
 	<string name="mi_clear_log">Löschen</string>
 	<string name="cb_at_once">Sofort ausführen</string>
 	<string name="mi_help">Hilfe</string>
+	<string name="mi_settings">Einstellungen</string>
 	<string name="status_score">%1$s\nScore: %2$d Turn: %3$d</string>
 	<string name="status_time">%1$s\n%2$s</string>
 	<string name="title_change_commmand">Knopf bearbeiten</string>
@@ -58,6 +59,6 @@
 	<string name="msg_game_saved">Spiel gespeichert</string> 
 	<string name="msg_no_webbrowser">Kein Webbrowser gefunden!</string> 
 	<string name="mg_not_at_a_commandprompt">Nicht an einer Eingabeaufforderung! Spielstand kontne nicht gespeichert werden!</string> 
-
+	<string name="title_activity_setting">Einstellungen</string>
 	
 </resources>

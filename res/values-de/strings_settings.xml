@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string-array name="fontsize_names">
+		<item name="0">Klein</item>
+		<item name="1">Mittel</item>
+		<item name="2">Groß</item>
+	</string-array>
+		<string name="title_theme">Thema</string>
+		<string name="fontsize_title">Font Größe</string>
+		<string name="category_appearance">Erscheinung</string>
+		<string name="keyclick_summary">Klickton bei Beührung von Worten in der Geschichte</string>
+		<string name="keyclick_title">Akkustische Rückmeldung</string>
+		<string name="narrator_summary">Neue Einträge automatisch vorlesen. Vorlesen kann immer durch Berühren von Leerräumen in Sprechblasen angehalten und durch langes Berühren neu gestartet werden.</string>
+		<string name="narrator_title">Text zu Sprache</string>
+		<string name="category_misc">Verschiedenes</string>
+		<string name="smoothscrolling_title">Weiches scrollen</string>
+		<string name="smoothscrolling_summary">Geschichte weich scrollen</string>
+
+</resources>

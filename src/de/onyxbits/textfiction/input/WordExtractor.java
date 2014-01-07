@@ -1,6 +1,10 @@
 package de.onyxbits.textfiction.input;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.media.AudioManager;
+import android.preference.PreferenceManager;
+import android.speech.tts.TextToSpeech;
 import android.support.v4.view.GestureDetectorCompat;
 import android.view.GestureDetector.OnDoubleTapListener;
 import android.view.GestureDetector.OnGestureListener;
@@ -22,12 +26,36 @@ public class WordExtractor implements OnTouchListener, OnGestureListener,
 	private InputFragment target;
 	private Context context;
 	private TextView view;
+	private AudioManager audioManager;
+	private TextToSpeech speaker;
+	private boolean doClick;
 
 	private GestureDetectorCompat detector;
 
 	public WordExtractor(Context context, InputFragment target) {
 		this.target = target;
 		this.context = context;
+		audioManager = (AudioManager) context
+				.getSystemService(Context.AUDIO_SERVICE);
+	}
+
+	/**
+	 * If set to non null, bubble text will be spoken when long touching empty
+	 * space. Touching empty space while utterance is in progress will stop it.
+	 * 
+	 * @param tts
+	 *          a speech engine (must be ready to use).
+	 */
+	public void setSpeaker(TextToSpeech tts) {
+		speaker = tts;
+	}
+	
+	/**
+	 * Play a click sound when words are touched for copy?
+	 * @param doClick true to click
+	 */
+	public void setKeyclick(boolean doClick) {
+		this.doClick=doClick;
 	}
 
 	@Override
@@ -35,7 +63,7 @@ public class WordExtractor implements OnTouchListener, OnGestureListener,
 		if (detector == null) {
 			detector = new GestureDetectorCompat(context, this);
 			detector.setOnDoubleTapListener(this);
-			detector.setIsLongpressEnabled(false);
+			detector.setIsLongpressEnabled(true);
 		}
 		view = (TextView) v;
 		return detector.onTouchEvent(event);
@@ -104,6 +132,9 @@ public class WordExtractor implements OnTouchListener, OnGestureListener,
 		String tmp = extractWord(view, e);
 		if (tmp.length() != 0) {
 			target.appendWord(tmp);
+			if (doClick) {
+				audioManager.playSoundEffect(AudioManager.FX_KEY_CLICK, 1f);
+			}
 		}
 		return true;
 	}
@@ -132,6 +163,11 @@ public class WordExtractor implements OnTouchListener, OnGestureListener,
 
 	@Override
 	public boolean onSingleTapUp(MotionEvent e) {
+		if (speaker != null && extractWord(view, e).length() == 0) {
+			if (speaker != null && speaker.isSpeaking()) {
+				speaker.stop();
+			}
+		}
 		return true;
 	}
 
@@ -144,8 +180,9 @@ public class WordExtractor implements OnTouchListener, OnGestureListener,
 
 	@Override
 	public void onLongPress(MotionEvent e) {
-		// TODO Auto-generated method stub
-
+		if (speaker != null) {
+			speaker.speak(view.getText().toString(), TextToSpeech.QUEUE_FLUSH, null);
+		}
 	}
 
 	@Override
@@ -154,5 +191,4 @@ public class WordExtractor implements OnTouchListener, OnGestureListener,
 		// TODO Auto-generated method stub
 		return false;
 	}
-
 }

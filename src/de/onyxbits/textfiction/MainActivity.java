@@ -6,8 +6,10 @@ import android.content.ActivityNotFoundException;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,6 +26,10 @@ public class MainActivity extends FragmentActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		if (prefs.getString("theme","").equals("alice")) {
+			setTheme(R.style.Alice);
+		}
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_PROGRESS);
 		setContentView(R.layout.activity_main);
@@ -57,6 +63,10 @@ public class MainActivity extends FragmentActivity {
 				Intent browserIntent = new Intent(Intent.ACTION_VIEW,
 						Uri.parse(getString(R.string.help_url)));
 				startActivity(browserIntent);
+				return true;
+			}
+			case R.id.mi_settings: {
+				startActivity(new Intent(this,SettingActivity.class));
 				return true;
 			}
 		}

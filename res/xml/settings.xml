@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+	<PreferenceCategory
+		android:key="appearance_category"
+		android:title="@string/category_appearance" >
+		<ListPreference
+			android:entries="@array/theme_names"
+			android:entryValues="@array/theme_names_values"
+			android:key="theme"
+			android:summary=""
+			android:title="@string/title_theme" />
+		<ListPreference
+			android:entries="@array/font_names"
+			android:entryValues="@array/font_names_values"
+			android:key="font"
+			android:summary=""
+			android:title="@string/font_title" />
+		<ListPreference
+			android:entries="@array/fontsize_names"
+			android:entryValues="@array/fontsize_names_values"
+			android:key="fontsize"
+			android:summary=""
+			android:title="@string/fontsize_title" />
+	</PreferenceCategory>
+	<PreferenceCategory
+		android:key="audio_category"
+		android:title="@string/category_audio" >
+		<CheckBoxPreference
+			android:defaultValue="false"
+			android:key="keyclick"
+			android:summary="@string/keyclick_summary"
+			android:title="@string/keyclick_title" />
+		<CheckBoxPreference
+			android:defaultValue="false"
+			android:key="narrator"
+			android:summary="@string/narrator_summary"
+			android:title="@string/narrator_title" />
+	</PreferenceCategory>
+	<PreferenceCategory
+		android:key="misc_category"
+		android:title="@string/category_misc" >
+		<CheckBoxPreference
+			android:defaultValue="true"
+			android:key="smoothscrolling"
+			android:summary="@string/smoothscrolling_summary"
+			android:title="@string/smoothscrolling_title" />
+	</PreferenceCategory>
+
+</PreferenceScreen>

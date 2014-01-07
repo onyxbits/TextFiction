@@ -27,14 +27,19 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
+import android.speech.tts.TextToSpeech;
+import android.speech.tts.TextToSpeech.OnInitListener;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.NavUtils;
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.graphics.Typeface;
 import android.os.Build;
+import android.preference.PreferenceManager;
 
 /**
  * The activity where actual gameplay takes place.
@@ -43,7 +48,8 @@ import android.os.Build;
  * 
  */
 public class GameActivity extends FragmentActivity implements
-		DialogInterface.OnClickListener {
+		DialogInterface.OnClickListener, OnInitListener,
+		OnSharedPreferenceChangeListener {
 
 	/**
 	 * This activity must be started through an intent and be passed the filename
@@ -107,8 +113,19 @@ public class GameActivity extends FragmentActivity implements
 	 */
 	private int pendingAction = PENDING_NONE;
 
+	private SharedPreferences prefs;
+	private TextToSpeech speaker;
+	private boolean ttsReady;
+	private WordExtractor wordExtractor;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		if (prefs.getString("theme", "").equals("alice")) {
+			setTheme(R.style.Alice);
+		}
+		prefs.registerOnSharedPreferenceChangeListener(this);
+
 		super.onCreate(savedInstanceState);
 		LayoutInflater infl = getLayoutInflater();
 		requestWindowFeature(Window.FEATURE_PROGRESS);
@@ -139,17 +156,27 @@ public class GameActivity extends FragmentActivity implements
 		setupActionBar();
 
 		storyBoard = (ListView) content.findViewById(R.id.storyboard);
-		WordExtractor we = new WordExtractor(this, inputFragment);
-		messages = new StoryAdapter(this, 0, retainerFragment.messageBuffer, we);
+		wordExtractor = new WordExtractor(this, inputFragment);
+		messages = new StoryAdapter(this, 0, retainerFragment.messageBuffer,
+				wordExtractor);
+
 		storyBoard.setAdapter(messages);
 
 		windowFlipper = (ViewFlipper) content.findViewById(R.id.window_flipper);
 		statusWindow = (TextView) content.findViewById(R.id.status);
 		statusWindow.setText(retainerFragment.upperWindow);
+
+		speaker = new TextToSpeech(this, this);
+		onSharedPreferenceChanged(prefs,"");
 	}
 
 	@Override
 	public void onDestroy() {
+		prefs.unregisterOnSharedPreferenceChangeListener(this);
+		if (ttsReady) {
+			speaker.shutdown();
+		}
+
 		if (retainerFragment == null || retainerFragment.engine == null) {
 			if (retainerFragment.postMortem != null) {
 				// Let's not go into details here. The user won't understand them
@@ -319,6 +346,7 @@ public class GameActivity extends FragmentActivity implements
 		String tmp = "";
 		boolean showLower = false;
 
+		// Evaluate game status
 		if (status != null) {
 			// Z3 game -> copy the status bar object into the upper window.
 			retainerFragment.engine.update_status_line();
@@ -338,8 +366,13 @@ public class GameActivity extends FragmentActivity implements
 		}
 		upper.retrieved();
 
+		// Evaluate story progress
 		if (lower.cursor > 0) {
+			showLower = true;
 			tmp = new String(lower.frameBuffer, 0, lower.noPrompt());
+			if (ttsReady && prefs.getBoolean("narrator", false)) {
+				speaker.speak(tmp, TextToSpeech.QUEUE_FLUSH, null);
+			}
 			SpannableString stmp = new SpannableString(tmp);
 			StyleRegion reg = lower.regions;
 			if (reg != null) {
@@ -371,20 +404,25 @@ public class GameActivity extends FragmentActivity implements
 			}
 			retainerFragment.messageBuffer
 					.add(new StoryItem(stmp, StoryItem.NARRATOR));
-			showLower = true;
 		}
 		lower.retrieved();
 
+		// Throw out old story items.
 		while (retainerFragment.messageBuffer.size() > MAXMESSAGES) {
-			// Throw out old stuff.
 			retainerFragment.messageBuffer.remove(0);
 		}
 		messages.notifyDataSetChanged();
 
-		// NOTE:smoothScroll() does not work properly if the theme defines
-		// dividerheight > 0!
-		storyBoard
-				.smoothScrollToPosition(retainerFragment.messageBuffer.size() - 1);
+		// Scroll the storyboard to the latest item.
+		if (prefs.getBoolean("smoothscrolling", true)) {
+			// NOTE:smoothScroll() does not work properly if the theme defines
+			// dividerheight > 0!
+			storyBoard
+					.smoothScrollToPosition(retainerFragment.messageBuffer.size() - 1);
+		}
+		else {
+			storyBoard.setSelection(retainerFragment.messageBuffer.size() - 1);
+		}
 
 		inputFragment.reset();
 
@@ -507,4 +545,55 @@ public class GameActivity extends FragmentActivity implements
 		pendingAction = PENDING_NONE;
 	}
 
+	@Override
+	public void onInit(int status) {
+		ttsReady = (status == TextToSpeech.SUCCESS);
+		if (ttsReady) {
+			wordExtractor.setSpeaker(speaker);
+
+			// Was the game faster to load?
+			if (retainerFragment != null && retainerFragment.messageBuffer.size() > 0
+					&& prefs.getBoolean("narrator", false)) {
+				speaker.speak(retainerFragment.messageBuffer
+						.get(retainerFragment.messageBuffer.size() - 1).message.toString(),
+						TextToSpeech.QUEUE_FLUSH, null);
+			}
+		}
+	}
+
+	@Override
+	public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
+
+		String font = prefs.getString("font", "");
+		if (font.equals("default")) {
+			messages.setTypeface(Typeface.DEFAULT);
+		}
+		if (font.equals("sans")) {
+			messages.setTypeface(Typeface.SANS_SERIF);
+		}
+		if (font.equals("serif")) {
+			messages.setTypeface(Typeface.SERIF);
+		}
+		if (font.equals("monospace")) {
+			messages.setTypeface(Typeface.MONOSPACE);
+		}
+
+		String fontSize = prefs.getString("fontsize", "");
+		TextView tmp = new TextView(this);
+		if (fontSize.equals("small")) {
+			tmp.setTextAppearance(this, android.R.style.TextAppearance_Small);
+			messages.setTextSize(tmp.getTextSize());
+		}
+		if (fontSize.equals("medium")) {
+			tmp.setTextAppearance(this, android.R.style.TextAppearance_Medium);
+			messages.setTextSize(tmp.getTextSize());
+		}
+		if (fontSize.equals("large")) {
+			tmp.setTextAppearance(this, android.R.style.TextAppearance_Large);
+			messages.setTextSize(tmp.getTextSize());
+		}
+
+		wordExtractor.setKeyclick(prefs.getBoolean("keyclick", false));
+
+	}
 }

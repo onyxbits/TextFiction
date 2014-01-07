@@ -43,6 +43,15 @@
 				android:name="android.support.PARENT_ACTIVITY"
 				android:value="de.onyxbits.textfiction.MainActivity" />
 		</activity>
+		<activity
+			android:name="de.onyxbits.textfiction.SettingActivity"
+			android:theme="@style/AppTheme"
+			android:parentActivityName="de.onyxbits.textfiction.MainActivity"
+			android:label="@string/title_activity_setting" >
+			<meta-data
+				android:name="android.support.PARENT_ACTIVITY"
+				android:value="de.onyxbits.textfiction.MainActivity" />
+		</activity>
 	</application>
 
 </manifest>

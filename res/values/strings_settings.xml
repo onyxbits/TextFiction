@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string-array name="theme_names_values">
+		<item name="0">nemo</item>
+		<item name="1">alice</item>
+	</string-array>
+	<string-array name="theme_names">
+		<item name="0">Nemo</item>
+		<item name="1">Alice</item>
+	</string-array>
+	<string-array name="font_names_values">
+		<item name="0">default</item>
+		<item name="1">sans</item>
+		<item name="2">serif</item>
+		<item name="3">monospace</item>
+	</string-array>
+	<string-array name="font_names">
+		<item name="0">Default</item>
+		<item name="1">Sans</item>
+		<item name="2">Serif</item>
+		<item name="3">Monospace</item>
+	</string-array>
+	<string-array name="fontsize_names_values">
+		<item name="0">small</item>
+		<item name="1">medium</item>
+		<item name="2">large</item>
+	</string-array>
+	<string-array name="fontsize_names">
+		<item name="0">Small</item>
+		<item name="1">Medium</item>
+		<item name="2">Large</item>
+	</string-array>
+		<string name="title_theme">Theme</string>
+		<string name="font_title">Font</string>
+		<string name="fontsize_title">Fontsize</string>
+		<string name="category_appearance">Appearance</string>
+		<string name="category_audio">Audio</string>
+		<string name="keyclick_summary">Click when words are touched in a story item.</string>
+		<string name="keyclick_title">Acoustic Feedback</string>
+		<string name="narrator_summary">Automatically read out new story items. Narration can always be stopped by touching empty space within the item and restarted through a long touch.</string>
+		<string name="narrator_title">Text to Speech</string>
+		<string name="category_misc">Miscellaneous Category</string>
+		<string name="smoothscrolling_title">Smooth scrolling</string>
+		<string name="smoothscrolling_summary">Scroll the storyboard smoothly.</string>
+
+</resources>
