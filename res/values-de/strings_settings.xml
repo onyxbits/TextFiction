@@ -11,7 +11,7 @@
 		<string name="category_appearance">Erscheinung</string>
 		<string name="keyclick_summary">Klickton bei Beührung von Worten in der Geschichte</string>
 		<string name="keyclick_title">Akkustische Rückmeldung</string>
-		<string name="narrator_summary">Neue Einträge automatisch vorlesen. Vorlesen kann immer durch Berühren von Leerräumen in Sprechblasen angehalten und durch langes Berühren neu gestartet werden.</string>
+		<string name="narrator_summary">Neue Einträge automatisch vorlesen (Vorlesen kann immer durch Berühren von Leerräumen in Sprechblasen angehalten und durch langes Berühren neu gestartet werden).</string>
 		<string name="narrator_title">Text zu Sprache</string>
 		<string name="category_misc">Verschiedenes</string>
 		<string name="smoothscrolling_title">Weiches scrollen</string>

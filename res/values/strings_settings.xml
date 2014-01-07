@@ -38,7 +38,7 @@
 		<string name="category_audio">Audio</string>
 		<string name="keyclick_summary">Click when words are touched in a story item.</string>
 		<string name="keyclick_title">Acoustic Feedback</string>
-		<string name="narrator_summary">Automatically read out new story items. Narration can always be stopped by touching empty space within the item and restarted through a long touch.</string>
+		<string name="narrator_summary">Automatically read out new story items (narration can always be stopped by touching empty space within the item and restarted through a long touch).</string>
 		<string name="narrator_title">Text to Speech</string>
 		<string name="category_misc">Miscellaneous Category</string>
 		<string name="smoothscrolling_title">Smooth scrolling</string>
