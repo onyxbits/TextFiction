@@ -25,5 +25,16 @@
 	<color name="alice.text">#FF000000</color>
 	<color name="alice.text.inverse">#FF999999</color>
 	<color name="alice.text.shadow">#FF000000</color>
+	
+	<color name="lucy.background">#000000</color>
+	<color name="lucy.cmd_icon_tint">#1D2951</color>
+	<color name="lucy.selected_fill">#1D2951</color>
+	<color name="lucy.selected_border">#1D2951</color>
+	<color name="lucy.prompt_input">#8A0707</color>
+	<color name="lucy.pressed">#1D2951</color>
+	<color name="lucy.text">#8A0707</color>
+	<color name="lucy.prompt.hint">#1D2951</color>
+	<color name="lucy.text.inverse">#8A0707</color>
+	<color name="lucy.text.shadow">#771514</color>
 
 </resources>

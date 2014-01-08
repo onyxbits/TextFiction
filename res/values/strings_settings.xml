@@ -4,10 +4,12 @@
 	<string-array name="theme_names_values">
 		<item name="0">nemo</item>
 		<item name="1">alice</item>
+		<item name="2">lucy</item>
 	</string-array>
 	<string-array name="theme_names">
 		<item name="0">Nemo</item>
 		<item name="1">Alice</item>
+		<item name="2">Lucy</item>
 	</string-array>
 	<string-array name="font_names_values">
 		<item name="0">default</item>

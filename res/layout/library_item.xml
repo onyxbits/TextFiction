@@ -24,7 +24,6 @@
 		android:layout_alignParentLeft="true"
 		android:layout_alignParentTop="true"
 		android:layout_toLeftOf="@+id/btn_delete"
-		android:text=""
-		android:textAppearance="?android:attr/textAppearanceLarge" />
+		style="?attr/library_item_text" />
 
 </RelativeLayout>

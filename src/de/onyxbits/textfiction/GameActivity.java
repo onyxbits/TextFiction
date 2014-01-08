@@ -124,6 +124,9 @@ public class GameActivity extends FragmentActivity implements
 		if (prefs.getString("theme", "").equals("alice")) {
 			setTheme(R.style.Alice);
 		}
+		if (prefs.getString("theme","").equals("lucy")) {
+			setTheme(R.style.Lucy);
+		}
 		prefs.registerOnSharedPreferenceChangeListener(this);
 
 		super.onCreate(savedInstanceState);
