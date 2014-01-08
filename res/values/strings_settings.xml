@@ -42,7 +42,7 @@
 		<string name="keyclick_title">Acoustic Feedback</string>
 		<string name="narrator_summary">Automatically read out new story items (narration can always be stopped by touching empty space within the item and restarted through a long touch).</string>
 		<string name="narrator_title">Text to Speech</string>
-		<string name="category_misc">Miscellaneous Category</string>
+		<string name="category_misc">Miscellaneous</string>
 		<string name="smoothscrolling_title">Smooth scrolling</string>
 		<string name="smoothscrolling_summary">Scroll the storyboard smoothly.</string>
 
