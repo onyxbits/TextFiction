@@ -58,6 +58,12 @@ public class GameActivity extends FragmentActivity implements
 	public static final String LOADFILE = "loadfile";
 
 	/**
+	 * Optionally, the name of the game may be passed (if none is passed, the
+	 * filename is used as a title).
+	 */
+	public static final String GAMETITLE = "gametitle";
+
+	/**
 	 * How many items to keep in the messagebuffer at most. Note: this should be
 	 * an odd number so the log starts with a narrator entry.
 	 */
@@ -124,7 +130,7 @@ public class GameActivity extends FragmentActivity implements
 		if (prefs.getString("theme", "").equals("alice")) {
 			setTheme(R.style.Alice);
 		}
-		if (prefs.getString("theme","").equals("lucy")) {
+		if (prefs.getString("theme", "").equals("lucy")) {
 			setTheme(R.style.Lucy);
 		}
 		prefs.registerOnSharedPreferenceChangeListener(this);
@@ -153,10 +159,12 @@ public class GameActivity extends FragmentActivity implements
 			}
 		}
 		storyFile = new File(getIntent().getStringExtra(LOADFILE));
-		setTitle(storyFile.getName());
-
-		// Show the Up button in the action bar.
-		setupActionBar();
+		String title = getIntent().getStringExtra(GAMETITLE);
+		if (title == null) {
+			title = storyFile.getName();
+		}
+		setTitle(title);
+		setupActionBar(title);
 
 		storyBoard = (ListView) content.findViewById(R.id.storyboard);
 		wordExtractor = new WordExtractor(this, inputFragment);
@@ -170,7 +178,7 @@ public class GameActivity extends FragmentActivity implements
 		statusWindow.setText(retainerFragment.upperWindow);
 
 		speaker = new TextToSpeech(this, this);
-		onSharedPreferenceChanged(prefs,"");
+		onSharedPreferenceChanged(prefs, "");
 	}
 
 	@Override
@@ -215,12 +223,13 @@ public class GameActivity extends FragmentActivity implements
 
 	/**
 	 * Set up the {@link android.app.ActionBar}, if the API is available.
+	 * @param subTitle should be the game name
 	 */
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
-	private void setupActionBar() {
+	private void setupActionBar(String subTitle) {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
 			getActionBar().setDisplayHomeAsUpEnabled(true);
-			getActionBar().setSubtitle(storyFile.getName());
+			getActionBar().setSubtitle(subTitle);
 			setTitle(R.string.app_name);
 		}
 	}

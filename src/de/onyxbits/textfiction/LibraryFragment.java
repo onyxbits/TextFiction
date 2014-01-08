@@ -39,7 +39,7 @@ public class LibraryFragment extends Fragment implements
 	 * The Adapter which will be used to populate the ListView/GridView with
 	 * Views.
 	 */
-	private ArrayAdapter<File> mAdapter;
+	private LibraryAdapter mAdapter;
 
 	private ArrayList<File> games;
 
@@ -56,6 +56,7 @@ public class LibraryFragment extends Fragment implements
 		setHasOptionsMenu(true);
 		games = new ArrayList<File>();
 		mAdapter = new LibraryAdapter(getActivity(), 0, games);
+		mAdapter.setStripSuffix(true);
 	}
 
 	/**
@@ -120,6 +121,7 @@ public class LibraryFragment extends Fragment implements
 		File game = (File) mAdapter.getItem(position);
 		Intent intent = new Intent(getActivity(), GameActivity.class);
 		intent.putExtra(GameActivity.LOADFILE, game.getAbsolutePath());
+		intent.putExtra(GameActivity.GAMETITLE,FileUtil.basename(game));
 		startActivity(intent);
 	}
 }

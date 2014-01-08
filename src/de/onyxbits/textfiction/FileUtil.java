@@ -140,10 +140,26 @@ public class FileUtil implements Comparator<File> {
 		ret.mkdirs();
 		return ret;
 	}
+	
+	/**
+	 * Strip filename extension from file name
+	 * @param file the file in question
+	 * @return basename
+	 */
+	public static String basename(File file) {
+		String tmp = file.getName();
+		int idx = tmp.lastIndexOf('.');
+		if (idx>0) {
+			return tmp.substring(0,idx);
+		}
+		else {
+			return tmp;
+		}
+	}
 
 	@Override
 	public int compare(File lhs, File rhs) {
 		return Long.valueOf(rhs.lastModified()).compareTo(lhs.lastModified());
 	}
-
+	
 }

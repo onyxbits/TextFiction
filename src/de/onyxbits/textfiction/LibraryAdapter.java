@@ -15,15 +15,16 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-class LibraryAdapter extends ArrayAdapter<File> implements
-		OnClickListener, android.content.DialogInterface.OnClickListener {
+class LibraryAdapter extends ArrayAdapter<File> implements OnClickListener,
+		android.content.DialogInterface.OnClickListener {
 
 	private File deleteMe;
+	private boolean stripSuffix;
 
-	public LibraryAdapter(Context context, int textViewResourceId, ArrayList<File> stories) {
+	public LibraryAdapter(Context context, int textViewResourceId,
+			ArrayList<File> stories) {
 		super(context, textViewResourceId, stories);
 	}
-
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
@@ -35,11 +36,20 @@ class LibraryAdapter extends ArrayAdapter<File> implements
 		}
 		TextView name = (TextView) ret.findViewById(R.id.gamename);
 		ImageButton trash = (ImageButton) ret.findViewById(R.id.btn_delete);
-		name.setText(getItem(position).getName());
+		if (stripSuffix) {
+			name.setText(FileUtil.basename(getItem(position)));
+		}
+		else {
+			name.setText(getItem(position).getName());
+		}
 		trash.setTag(getItem(position));
 		trash.setOnClickListener(this);
 
 		return ret;
+	}
+
+	public void setStripSuffix(boolean strip) {
+		stripSuffix = strip;
 	}
 
 	@Override
@@ -48,7 +58,7 @@ class LibraryAdapter extends ArrayAdapter<File> implements
 			deleteMe = (File) v.getTag();
 			AlertDialog.Builder ab = new AlertDialog.Builder(getContext());
 			ab.setTitle(R.string.title_really_delete).setMessage(deleteMe.getName())
-					.setNegativeButton(android.R.string.no,this)
+					.setNegativeButton(android.R.string.no, this)
 					.setPositiveButton(android.R.string.yes, this).create().show();
 		}
 	}
