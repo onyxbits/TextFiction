@@ -387,8 +387,8 @@ public class GameActivity extends FragmentActivity implements
 			retainerFragment.engine.fillInputBuffer(inputBuffer);
 			if (retainerFragment.engine.getRunState() != ZMachine.STATE_WAIT_CHAR) {
 				String tmp = new String(inputBuffer).replaceAll("\n", "").trim();
-				retainerFragment.messageBuffer.add(new StoryItem(new SpannableString(
-						tmp), StoryItem.MYSELF));
+				SpannableString ss = new SpannableString(tmp);
+				retainerFragment.messageBuffer.add(new StoryItem(ss, StoryItem.MYSELF));
 			}
 			try {
 				retainerFragment.engine.run();
@@ -663,8 +663,9 @@ public class GameActivity extends FragmentActivity implements
 	}
 
 	@Override
-	public void toggleTextHighlight(String txt) {
+	public void toggleTextHighlight(String str) {
 		int tmp;
+		String txt = str.toLowerCase();
 		if (retainerFragment.highlighted.contains(txt)) {
 			retainerFragment.highlighted.remove(txt);
 			tmp = R.string.msg_unmarked;
@@ -703,22 +704,40 @@ public class GameActivity extends FragmentActivity implements
 	 * @param span
 	 *          the blob to modify
 	 * @param words
-	 *          the words to underline
+	 *          the words to underline (all lowercase!)
 	 */
 	private static void highlight(SpannableString span, String... words) {
 		UnderlineSpan old[] = span.getSpans(0, span.length(), UnderlineSpan.class);
 		for (UnderlineSpan del : old) {
 			span.removeSpan(del);
 		}
-		String tmp = span.toString();
-
-		for (String w : words) {
-			int start = 0;
-			int idx = tmp.indexOf(w, start);
-			while (idx != -1) {
-				span.setSpan(new UnderlineSpan(), idx, idx + w.length(), 0);
-				start = idx + w.length();
-				idx = tmp.indexOf(w, start);
+		char spanChars[] = span.toString().toLowerCase().toCharArray();
+		for (String word : words) {
+			char[] wc = word.toCharArray();
+			int last = spanChars.length - wc.length + 1;
+			for (int i = 0; i < last; i++) {
+				// First check if there is a word-sized gap at spanchars[i] as we don't
+				// want to highlight words that are actually just substrings (e.g.
+				// "east" in "lEASTwise").
+				if ((i > 0 && Character.isLetterOrDigit(spanChars[i - 1]))
+						|| (i + wc.length != spanChars.length && Character
+								.isLetterOrDigit(spanChars[i + wc.length]))) {
+					continue;
+				}
+				int a = i;
+				int b = 0;
+				while (b < wc.length) {
+					if (spanChars[a] != wc[b]) {
+						b = 0;
+						break;
+					}
+					a++;
+					b++;
+				}
+				if (b == wc.length) {
+					span.setSpan(new UnderlineSpan(), i, a, 0);
+					i = a;
+				}
 			}
 		}
 	}

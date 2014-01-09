@@ -78,6 +78,10 @@
 		<item >down</item>
 		<item >door</item>
 		<item >key</item>
+		<item >box</item>
+		<item >photo</item>
+		<item >picture</item>
+		
 	</string-array>
 
 </resources>
