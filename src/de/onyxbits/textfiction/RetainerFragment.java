@@ -43,9 +43,15 @@ public class RetainerFragment extends Fragment {
 	 * Contents of the upper window
 	 */
 	public String upperWindow;
+	
+	/**
+	 * Words that should be highlighted in the story
+	 */
+	public Vector<String> highlighted;
 
 	public RetainerFragment() {
 		messageBuffer = new Vector<StoryItem>();
+		highlighted = new Vector<String>();
 		upperWindow = "";
 		postMortem = null;
 		engine = null;

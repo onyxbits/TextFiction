@@ -1,8 +1,10 @@
 package de.onyxbits.textfiction;
 
 import java.io.File;
+import java.util.Iterator;
 
 import de.onyxbits.textfiction.input.InputFragment;
+import de.onyxbits.textfiction.input.InputProcessor;
 import de.onyxbits.textfiction.input.WordExtractor;
 import de.onyxbits.textfiction.zengine.GrueException;
 import de.onyxbits.textfiction.zengine.StyleRegion;
@@ -16,6 +18,7 @@ import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.style.StyleSpan;
 import android.text.style.TypefaceSpan;
+import android.text.style.UnderlineSpan;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -37,6 +40,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
+import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.preference.PreferenceManager;
@@ -49,7 +53,7 @@ import android.preference.PreferenceManager;
  */
 public class GameActivity extends FragmentActivity implements
 		DialogInterface.OnClickListener, OnInitListener,
-		OnSharedPreferenceChangeListener {
+		OnSharedPreferenceChangeListener, InputProcessor {
 
 	/**
 	 * This activity must be started through an intent and be passed the filename
@@ -119,6 +123,11 @@ public class GameActivity extends FragmentActivity implements
 	 */
 	private int pendingAction = PENDING_NONE;
 
+	/**
+	 * Words we are highligting in the story
+	 */
+	private String[] highlighted;
+
 	private SharedPreferences prefs;
 	private TextToSpeech speaker;
 	private boolean ttsReady;
@@ -158,6 +167,7 @@ public class GameActivity extends FragmentActivity implements
 				figureMenuState();
 			}
 		}
+		highlighted = retainerFragment.highlighted.toArray(new String[0]);
 		storyFile = new File(getIntent().getStringExtra(LOADFILE));
 		String title = getIntent().getStringExtra(GAMETITLE);
 		if (title == null) {
@@ -167,7 +177,9 @@ public class GameActivity extends FragmentActivity implements
 		setupActionBar(title);
 
 		storyBoard = (ListView) content.findViewById(R.id.storyboard);
-		wordExtractor = new WordExtractor(this, inputFragment);
+		wordExtractor = new WordExtractor(this);
+		wordExtractor.setInputFragment(inputFragment);
+		wordExtractor.setInputProcessor(this);
 		messages = new StoryAdapter(this, 0, retainerFragment.messageBuffer,
 				wordExtractor);
 
@@ -223,7 +235,9 @@ public class GameActivity extends FragmentActivity implements
 
 	/**
 	 * Set up the {@link android.app.ActionBar}, if the API is available.
-	 * @param subTitle should be the game name
+	 * 
+	 * @param subTitle
+	 *          should be the game name
 	 */
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	private void setupActionBar(String subTitle) {
@@ -320,13 +334,7 @@ public class GameActivity extends FragmentActivity implements
 		return super.onOptionsItemSelected(item);
 	}
 
-	/**
-	 * Fill the inputbuffer, start the engine. Calling this while the engine is
-	 * not idle is a no-op.
-	 * 
-	 * @param inputBuffer
-	 *          what to put on the inputbuffer
-	 */
+	@Override
 	public void executeCommand(byte[] inputBuffer) {
 		ZMachine engine = retainerFragment.engine;
 		if (engine != null && engine.getRunState() != ZMachine.STATE_RUNNING) {
@@ -414,6 +422,7 @@ public class GameActivity extends FragmentActivity implements
 					reg = reg.next;
 				}
 			}
+			highlight(stmp, highlighted);
 			retainerFragment.messageBuffer
 					.add(new StoryItem(stmp, StoryItem.NARRATOR));
 		}
@@ -561,8 +570,6 @@ public class GameActivity extends FragmentActivity implements
 	public void onInit(int status) {
 		ttsReady = (status == TextToSpeech.SUCCESS);
 		if (ttsReady) {
-			wordExtractor.setSpeaker(speaker);
-
 			// Was the game faster to load?
 			if (retainerFragment != null && retainerFragment.messageBuffer.size() > 0
 					&& prefs.getBoolean("narrator", false)) {
@@ -607,5 +614,64 @@ public class GameActivity extends FragmentActivity implements
 
 		wordExtractor.setKeyclick(prefs.getBoolean("keyclick", false));
 
+	}
+
+	@Override
+	public void toggleTextHighlight(String txt) {
+		int tmp;
+		if (retainerFragment.highlighted.contains(txt)) {
+			retainerFragment.highlighted.remove(txt);
+			tmp=R.string.msg_unmarked;
+		}
+		else {
+			retainerFragment.highlighted.add(txt);
+			tmp=R.string.msg_marked;
+		}
+		Toast.makeText(this,getResources().getString(tmp,txt),Toast.LENGTH_SHORT).show();
+		highlighted = retainerFragment.highlighted.toArray(new String[0]);
+		Iterator<StoryItem> it = retainerFragment.messageBuffer.listIterator();
+		while (it.hasNext()) {
+			highlight(it.next().message, highlighted);
+		}
+		messages.notifyDataSetChanged();
+	}
+
+	@Override
+	public void utterText(CharSequence txt) {
+		if (ttsReady) {
+			if (speaker.isSpeaking() && txt == null) {
+				speaker.stop();
+			}
+			if (txt != null) {
+				speaker.speak(txt.toString(), TextToSpeech.QUEUE_FLUSH, null);
+			}
+		}
+	}
+
+	/**
+	 * Add underlines to a text blob. Any existing underlines are removed. before
+	 * new ones are added.
+	 * 
+	 * @param span
+	 *          the blob to modify
+	 * @param words
+	 *          the words to underline
+	 */
+	private static void highlight(SpannableString span, String... words) {
+		UnderlineSpan old[] = span.getSpans(0, span.length(), UnderlineSpan.class);
+		for (UnderlineSpan del : old) {
+			span.removeSpan(del);
+		}
+		String tmp = span.toString();
+
+		for (String w : words) {
+			int start = 0;
+			int idx = tmp.indexOf(w, start);
+			while (idx != -1) {
+				span.setSpan(new UnderlineSpan(), idx, idx + w.length(), 0);
+				start = idx + w.length();
+				idx = tmp.indexOf(w, start);
+			}
+		}
 	}
 }

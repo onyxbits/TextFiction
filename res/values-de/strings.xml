@@ -8,7 +8,6 @@
 	<string name="apprater_positive">Sicher!</string>
 	<string name="apprater_negative">Nein, danke</string>
 	<string name="apprater_neutral">Später</string>
-	
 	<string name="msg_corrupt_z">Spieldatei defekt</string>
 	<string name="title_activity_game">GameActivity</string>
 	<string name="msg_what_next">Was nun?</string>
@@ -56,9 +55,11 @@
 	<string name="msg_game_restored">Spiel geladen</string>
 	<string name="msg_restore_failed">Laden fehlgeschlagen</string>
 	<string name="title_save_game">Spiel speichern</string>
-	<string name="msg_game_saved">Spiel gespeichert</string> 
-	<string name="msg_no_webbrowser">Kein Webbrowser gefunden!</string> 
-	<string name="mg_not_at_a_commandprompt">Nicht an einer Eingabeaufforderung! Spielstand kontne nicht gespeichert werden!</string> 
+	<string name="msg_game_saved">Spiel gespeichert</string>
+	<string name="msg_marked">\'%1$s\' markiert</string>
+	<string name="msg_unmarked">Markierung \'%1$s\' entfernt</string>
+	<string name="msg_no_webbrowser">Kein Webbrowser gefunden!</string>
+	<string name="mg_not_at_a_commandprompt">Nicht an einer Eingabeaufforderung! Spielstand kontne nicht gespeichert werden!</string>
 	<string name="title_activity_setting">Einstellungen</string>
-	
+
 </resources>

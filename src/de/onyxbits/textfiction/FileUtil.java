@@ -27,8 +27,14 @@ public class FileUtil implements Comparator<File> {
 	 */
 	public static final String SAVEDIR = "savegames";
 
+	/**
+	 * Where games store misc data
+	 */
+	public static final String DATADIR = "config";
+
 	private static final File library;
 	private static final File saves;
+	private static final File data;
 
 	/**
 	 * Just make sure we got all of our directories.
@@ -37,13 +43,15 @@ public class FileUtil implements Comparator<File> {
 		File root = Environment.getExternalStorageDirectory();
 		library = new File(new File(root, HOMEDIR), GAMEDIR);
 		saves = new File(new File(root, HOMEDIR), SAVEDIR);
+		data = new File(new File(root, HOMEDIR), DATADIR);
 		library.mkdirs();
 		saves.mkdirs();
+		data.mkdirs();
 	}
 
 	public static File[] listGames() {
 		File[] ret = library.listFiles();
-		if (ret==null) {
+		if (ret == null) {
 			return new File[0];
 		}
 		Arrays.sort(ret);
@@ -124,7 +132,12 @@ public class FileUtil implements Comparator<File> {
 		for (File f : lst) {
 			f.delete();
 		}
+		lst = getDataDir(game).listFiles();
+		for (File f : lst) {
+			f.delete();
+		}
 		getSaveGameDir(game).delete();
+		getDataDir(game).delete();
 		game.delete();
 	}
 
@@ -136,21 +149,36 @@ public class FileUtil implements Comparator<File> {
 	 * @return a directory for saving games.
 	 */
 	public static File getSaveGameDir(File game) {
-		File ret =new File(saves, game.getName());
+		File ret = new File(saves, game.getName());
 		ret.mkdirs();
 		return ret;
 	}
-	
+
+	/**
+	 * Get the directory where a game may keep various (config) data.
+	 * 
+	 * @param game
+	 *          the game in question.
+	 * @return a directory for keeping misc data.
+	 */
+	public static File getDataDir(File game) {
+		File ret = new File(data, game.getName());
+		ret.mkdirs();
+		return ret;
+	}
+
 	/**
 	 * Strip filename extension from file name
-	 * @param file the file in question
+	 * 
+	 * @param file
+	 *          the file in question
 	 * @return basename
 	 */
 	public static String basename(File file) {
 		String tmp = file.getName();
 		int idx = tmp.lastIndexOf('.');
-		if (idx>0) {
-			return tmp.substring(0,idx);
+		if (idx > 0) {
+			return tmp.substring(0, idx);
 		}
 		else {
 			return tmp;
@@ -161,5 +189,5 @@ public class FileUtil implements Comparator<File> {
 	public int compare(File lhs, File rhs) {
 		return Long.valueOf(rhs.lastModified()).compareTo(lhs.lastModified());
 	}
-	
+
 }

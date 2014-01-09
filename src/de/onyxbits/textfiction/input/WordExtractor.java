@@ -1,10 +1,8 @@
 package de.onyxbits.textfiction.input;
 
+
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.media.AudioManager;
-import android.preference.PreferenceManager;
-import android.speech.tts.TextToSpeech;
 import android.support.v4.view.GestureDetectorCompat;
 import android.view.GestureDetector.OnDoubleTapListener;
 import android.view.GestureDetector.OnGestureListener;
@@ -23,39 +21,45 @@ import android.widget.TextView;
 public class WordExtractor implements OnTouchListener, OnGestureListener,
 		OnDoubleTapListener {
 
-	private InputFragment target;
+	private InputFragment inputFragment;
 	private Context context;
 	private TextView view;
 	private AudioManager audioManager;
-	private TextToSpeech speaker;
 	private boolean doClick;
+	private InputProcessor inputProcessor;
 
 	private GestureDetectorCompat detector;
 
-	public WordExtractor(Context context, InputFragment target) {
-		this.target = target;
+	public WordExtractor(Context context) {
 		this.context = context;
 		audioManager = (AudioManager) context
 				.getSystemService(Context.AUDIO_SERVICE);
 	}
 
+
 	/**
-	 * If set to non null, bubble text will be spoken when long touching empty
-	 * space. Touching empty space while utterance is in progress will stop it.
+	 * If set, the fragment will be notified when the user touches a word or
+	 * double taps empty space.
 	 * 
-	 * @param tts
-	 *          a speech engine (must be ready to use).
+	 * @param input
+	 *          target fragment
 	 */
-	public void setSpeaker(TextToSpeech tts) {
-		speaker = tts;
+	public void setInputFragment(InputFragment input) {
+		this.inputFragment = input;
 	}
-	
+
+	public void setInputProcessor(InputProcessor input) {
+		this.inputProcessor = input;
+	}
+
 	/**
 	 * Play a click sound when words are touched for copy?
-	 * @param doClick true to click
+	 * 
+	 * @param doClick
+	 *          true to click
 	 */
 	public void setKeyclick(boolean doClick) {
-		this.doClick=doClick;
+		this.doClick = doClick;
 	}
 
 	@Override
@@ -130,8 +134,8 @@ public class WordExtractor implements OnTouchListener, OnGestureListener,
 	@Override
 	public boolean onSingleTapConfirmed(MotionEvent e) {
 		String tmp = extractWord(view, e);
-		if (tmp.length() != 0) {
-			target.appendWord(tmp);
+		if (inputFragment != null && tmp.length() != 0) {
+			inputFragment.appendWord(tmp);
 			if (doClick) {
 				audioManager.playSoundEffect(AudioManager.FX_KEY_CLICK, 1f);
 			}
@@ -141,7 +145,9 @@ public class WordExtractor implements OnTouchListener, OnGestureListener,
 
 	@Override
 	public boolean onDoubleTap(MotionEvent e) {
-		target.removeWord();
+		if (inputFragment != null) {
+			inputFragment.removeWord();
+		}
 		return true;
 	}
 
@@ -157,16 +163,12 @@ public class WordExtractor implements OnTouchListener, OnGestureListener,
 
 	@Override
 	public void onShowPress(MotionEvent e) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public boolean onSingleTapUp(MotionEvent e) {
-		if (speaker != null && extractWord(view, e).length() == 0) {
-			if (speaker != null && speaker.isSpeaking()) {
-				speaker.stop();
-			}
+		if (inputProcessor!=null && extractWord(view, e).length() == 0) {
+			inputProcessor.utterText(null);
 		}
 		return true;
 	}
@@ -174,14 +176,19 @@ public class WordExtractor implements OnTouchListener, OnGestureListener,
 	@Override
 	public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX,
 			float distanceY) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public void onLongPress(MotionEvent e) {
-		if (speaker != null) {
-			speaker.speak(view.getText().toString(), TextToSpeech.QUEUE_FLUSH, null);
+		String tmp = extractWord(view, e);
+		if (tmp.length() == 0) {
+			if (inputProcessor != null) {
+				inputProcessor.utterText(view.getText());
+			}
+		}
+		else {
+			inputProcessor.toggleTextHighlight(tmp);
 		}
 	}
 

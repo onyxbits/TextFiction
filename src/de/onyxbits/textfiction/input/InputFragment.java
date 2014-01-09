@@ -10,16 +10,13 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnLongClickListener;
 import android.view.animation.AnimationUtils;
-import android.view.inputmethod.InputMethodManager;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
-import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 /**
@@ -51,6 +48,8 @@ public class InputFragment extends Fragment implements OnClickListener,
 	public static final byte[] DELETE = { (byte) 8 };
 
 	private int currentVerb = -1;
+
+	private InputProcessor inputProcessor;
 
 	public InputFragment() {
 	}
@@ -131,6 +130,13 @@ public class InputFragment extends Fragment implements OnClickListener,
 	@Override
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
+		try {
+			inputProcessor = (InputProcessor) activity;
+		}
+		catch (ClassCastException e) {
+			throw new ClassCastException(activity.toString()
+					+ " must implement OnArticleSelectedListener");
+		}
 	}
 
 	@Override
@@ -203,7 +209,8 @@ public class InputFragment extends Fragment implements OnClickListener,
 	}
 
 	/**
-	 * Append a "word" to the prompt. 
+	 * Append a "word" to the prompt.
+	 * 
 	 * @param str
 	 *          the string to add (does not require whitespaces at the start or
 	 *          end).
@@ -216,15 +223,15 @@ public class InputFragment extends Fragment implements OnClickListener,
 			cmdLine.setSelection(tmp.length());
 		}
 	}
-	
+
 	/**
 	 * Delete the rightmost word on the prompt.
 	 */
 	public void removeWord() {
 		String tmp = cmdLine.getText().toString().trim();
 		int idx = tmp.lastIndexOf(' ');
-		if (idx>0) {
-			tmp=tmp.substring(0,idx);
+		if (idx > 0) {
+			tmp = tmp.substring(0, idx);
 			cmdLine.setText(tmp);
 			cmdLine.setSelection(tmp.length());
 		}
@@ -240,10 +247,8 @@ public class InputFragment extends Fragment implements OnClickListener,
 	}
 
 	private void executeCommand() {
-		// FIXME: Don't callback by making the assumption that the context is
-		// GameActivity
-		((GameActivity) getActivity())
-				.executeCommand((cmdLine.getText().toString() + "\n").getBytes());
+		inputProcessor.executeCommand((cmdLine.getText().toString() + "\n")
+				.getBytes());
 	}
 
 }
