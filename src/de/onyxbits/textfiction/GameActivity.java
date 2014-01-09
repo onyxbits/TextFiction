@@ -192,6 +192,14 @@ public class GameActivity extends FragmentActivity implements
 		speaker = new TextToSpeech(this, this);
 		onSharedPreferenceChanged(prefs, "");
 	}
+	
+	@Override
+	public void onPause() {
+		if (ttsReady && speaker.isSpeaking()) {
+			speaker.stop();
+		}
+		super.onPause();
+	}
 
 	@Override
 	public void onDestroy() {
