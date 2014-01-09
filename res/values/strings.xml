@@ -63,5 +63,21 @@
 	<string name="msg_unmarked">Unmarked \'%1$s\'</string>
 	<string name="mg_not_at_a_commandprompt">Not at a commandprompt! Gamestate not saved!</string>
 	<string name="title_activity_setting">Settings</string>
+	
+	<!-- NOTE: Don't translate these! -->
+	<string-array name="initial_highlights">
+		<item >north</item>
+		<item >northeast</item>
+		<item >east</item>
+		<item >southeast</item>
+		<item >south</item>
+		<item >southwest</item>
+		<item >west</item>
+		<item >northwest</item>
+		<item >up</item>
+		<item >down</item>
+		<item >door</item>
+		<item >key</item>
+	</string-array>
 
 </resources>

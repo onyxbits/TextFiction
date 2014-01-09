@@ -1,7 +1,13 @@
 package de.onyxbits.textfiction;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.Iterator;
+import java.util.Vector;
 
 import de.onyxbits.textfiction.input.InputFragment;
 import de.onyxbits.textfiction.input.InputProcessor;
@@ -19,6 +25,7 @@ import android.text.SpannableString;
 import android.text.style.StyleSpan;
 import android.text.style.TypefaceSpan;
 import android.text.style.UnderlineSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -40,7 +47,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
-import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.preference.PreferenceManager;
@@ -54,6 +60,11 @@ import android.preference.PreferenceManager;
 public class GameActivity extends FragmentActivity implements
 		DialogInterface.OnClickListener, OnInitListener,
 		OnSharedPreferenceChangeListener, InputProcessor {
+
+	/**
+	 * Name of the file we keep our highlights in
+	 */
+	public static final String HIGHLIGHTFILE = "highlights.ser";
 
 	/**
 	 * This activity must be started through an intent and be passed the filename
@@ -167,8 +178,23 @@ public class GameActivity extends FragmentActivity implements
 				figureMenuState();
 			}
 		}
-		highlighted = retainerFragment.highlighted.toArray(new String[0]);
 		storyFile = new File(getIntent().getStringExtra(LOADFILE));
+
+		try {
+			FileInputStream fin = new FileInputStream(new File(
+					FileUtil.getDataDir(storyFile), HIGHLIGHTFILE));
+			ObjectInputStream ois = new ObjectInputStream(fin);
+			retainerFragment.highlighted = (Vector<String>) ois.readObject();
+		}
+		catch (Exception e) {
+			// Probably the first time this game is started -> populate with defautls.
+			String[] ini = getResources().getStringArray(R.array.initial_highlights);
+			for (String i : ini) {
+				retainerFragment.highlighted.add(i);
+			}
+		}
+		highlighted = retainerFragment.highlighted.toArray(new String[0]);
+
 		String title = getIntent().getStringExtra(GAMETITLE);
 		if (title == null) {
 			title = storyFile.getName();
@@ -192,7 +218,7 @@ public class GameActivity extends FragmentActivity implements
 		speaker = new TextToSpeech(this, this);
 		onSharedPreferenceChanged(prefs, "");
 	}
-	
+
 	@Override
 	public void onPause() {
 		if (ttsReady && speaker.isSpeaking()) {
@@ -206,6 +232,18 @@ public class GameActivity extends FragmentActivity implements
 		prefs.unregisterOnSharedPreferenceChangeListener(this);
 		if (ttsReady) {
 			speaker.shutdown();
+		}
+
+		if (retainerFragment != null) {
+			try {
+				File f = new File(FileUtil.getDataDir(storyFile), HIGHLIGHTFILE);
+				ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(f));
+				out.writeObject(retainerFragment.highlighted);
+				out.close();
+			}
+			catch (IOException e) {
+				Log.w(getClass().getName(), e);
+			}
 		}
 
 		if (retainerFragment == null || retainerFragment.engine == null) {
@@ -629,13 +667,15 @@ public class GameActivity extends FragmentActivity implements
 		int tmp;
 		if (retainerFragment.highlighted.contains(txt)) {
 			retainerFragment.highlighted.remove(txt);
-			tmp=R.string.msg_unmarked;
+			tmp = R.string.msg_unmarked;
 		}
 		else {
 			retainerFragment.highlighted.add(txt);
-			tmp=R.string.msg_marked;
+			tmp = R.string.msg_marked;
 		}
-		Toast.makeText(this,getResources().getString(tmp,txt),Toast.LENGTH_SHORT).show();
+		Toast
+				.makeText(this, getResources().getString(tmp, txt), Toast.LENGTH_SHORT)
+				.show();
 		highlighted = retainerFragment.highlighted.toArray(new String[0]);
 		Iterator<StoryItem> it = retainerFragment.messageBuffer.listIterator();
 		while (it.hasNext()) {
