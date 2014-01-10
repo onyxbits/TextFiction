@@ -49,6 +49,7 @@ public class InputFragment extends Fragment implements OnClickListener,
 	private int currentVerb = -1;
 
 	private InputProcessor inputProcessor;
+	private boolean autoCollapse;
 
 	public InputFragment() {
 	}
@@ -108,6 +109,15 @@ public class InputFragment extends Fragment implements OnClickListener,
 				b.setImageResource(ci.imgid);
 			}
 		}
+	}
+	
+	/**
+	 * Set whether or not the keyboard should collapse when the "DONE" button
+	 * is pressed.
+	 * @param ac true to automatically collapse the keyboard on DONE
+	 */
+	public void setAutoCollapse(boolean ac) {
+		autoCollapse = ac;
 	}
 
 	/**
@@ -241,7 +251,7 @@ public class InputFragment extends Fragment implements OnClickListener,
 	@Override
 	public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
 		executeCommand();
-		return true;
+		return !autoCollapse;
 	}
 
 	private void executeCommand() {

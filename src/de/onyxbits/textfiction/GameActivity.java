@@ -660,6 +660,8 @@ public class GameActivity extends FragmentActivity implements
 			tmp.setTextAppearance(this, android.R.style.TextAppearance_Large);
 			messages.setTextSize(tmp.getTextSize());
 		}
+		
+		inputFragment.setAutoCollapse(prefs.getBoolean("autocollapse",false));
 
 		wordExtractor.setKeyclick(prefs.getBoolean("keyclick", false));
 

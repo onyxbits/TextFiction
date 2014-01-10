@@ -33,6 +33,7 @@
 			android:layout_toRightOf="@+id/expand"
 			android:hint="@string/msg_what_next"
 			android:inputType="text"
+			android:imeOptions="actionDone"
 			android:singleLine="true"
 			android:windowSoftInputMode="stateHidden" >
 		</EditText>

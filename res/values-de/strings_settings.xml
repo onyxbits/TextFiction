@@ -16,5 +16,6 @@
 		<string name="category_misc">Verschiedenes</string>
 		<string name="smoothscrolling_title">Weiches scrollen</string>
 		<string name="smoothscrolling_summary">Geschichte weich scrollen</string>
-
+		<string name="autocollapse_keyboard">Tastatur einklappen</string>
+		<string name="hide_the_keyboard_when_pressing_done">Tastatur automatisch einklappen bei druck auf \'Fertig\'</string>
 </resources>

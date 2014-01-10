@@ -45,6 +45,11 @@
 			android:key="smoothscrolling"
 			android:summary="@string/smoothscrolling_summary"
 			android:title="@string/smoothscrolling_title" />
+		<CheckBoxPreference
+			android:defaultValue="false"
+			android:key="autocollapse"
+			android:title="@string/autocollapse_keyboard"
+			android:summary="@string/hide_the_keyboard_when_pressing_done" />
 	</PreferenceCategory>
 
 </PreferenceScreen>
