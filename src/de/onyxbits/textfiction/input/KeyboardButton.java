@@ -28,20 +28,25 @@ import android.widget.LinearLayout;
 public class KeyboardButton extends ImageButton {
 
 	private CharInputConnection con;
+	private InputProcessor inputProcessor;
 
 	public KeyboardButton(Context context, AttributeSet attrs) {
-		this(context,attrs,0);
+		this(context, attrs, 0);
 	}
-	
+
 	public KeyboardButton(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 		// TODO Auto-generated constructor stub
 	}
+	
+	public void setInputProcessor(InputProcessor ip) {
+		inputProcessor=ip;
+	}
 
 	public InputConnection onCreateInputConnection(EditorInfo info) {
 		info.inputType = InputType.TYPE_NULL; // We can't do fancy stuff!
-		if (con==null) {
-			con= new CharInputConnection(this,false);
+		if (con == null) {
+			con = new CharInputConnection(this, false, inputProcessor);
 		}
 		return con;
 	}

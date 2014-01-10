@@ -79,6 +79,9 @@ public class InputFragment extends Fragment implements OnClickListener,
 		right.setOnClickListener(this);
 		up.setOnClickListener(this);
 
+		((KeyboardButton) flipper.findViewById(R.id.keyboard))
+				.setInputProcessor(inputProcessor);
+
 		Context ctx = getActivity();
 		CommandChanger changer = new CommandChanger(cmdLine);
 
@@ -110,11 +113,13 @@ public class InputFragment extends Fragment implements OnClickListener,
 			}
 		}
 	}
-	
+
 	/**
-	 * Set whether or not the keyboard should collapse when the "DONE" button
-	 * is pressed.
-	 * @param ac true to automatically collapse the keyboard on DONE
+	 * Set whether or not the keyboard should collapse when the "DONE" button is
+	 * pressed.
+	 * 
+	 * @param ac
+	 *          true to automatically collapse the keyboard on DONE
 	 */
 	public void setAutoCollapse(boolean ac) {
 		autoCollapse = ac;
