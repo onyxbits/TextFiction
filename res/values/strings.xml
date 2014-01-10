@@ -74,14 +74,6 @@
 		<item >southwest</item>
 		<item >west</item>
 		<item >northwest</item>
-		<item >up</item>
-		<item >down</item>
-		<item >door</item>
-		<item >key</item>
-		<item >box</item>
-		<item >photo</item>
-		<item >picture</item>
-		
 	</string-array>
 
 </resources>
