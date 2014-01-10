@@ -1,0 +1,102 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<!-- ALICE - a girly bright theme -->
+
+	<color name="alice.background">#FFF373</color>
+	<color name="alice.cmd_icon_tint">#63411F</color>
+	<color name="alice.selected_fill">#00000000</color>
+	<color name="alice.selected_border">#FF8400</color>
+	<color name="alice.prompt_input">#FFBBBBBB</color>
+	<color name="alice.pressed">#FFAAAAAA</color>
+	<color name="alice.text">#FF000000</color>
+	<color name="alice.text.inverse">#FF999999</color>
+	<color name="alice.text.shadow">#FF000000</color>
+
+	<style name="Alice" parent="AppTheme">
+		<item name="android:windowBackground">@color/alice.background</item>
+		<item name="android:colorBackground">@color/alice.background</item>
+		<item name="bubble_left">@style/alice_bubble_left</item>
+		<item name="bubble_right">@style/alice_bubble_right</item>
+		<item name="bubble_none">@style/alice_bubble_flash</item>
+		<item name="cmdbox">@style/alice_cmdbox</item>
+		<item name="cmdbox_buttons">@style/alice_cmdbox_buttons</item>
+		<item name="storyboard">@style/alice_storyboard</item>
+		<item name="library_item">@style/alice_library_item</item>
+		<item name="library_list">@style/alice_library_list</item>
+		<item name="library_item_text">@style/alice_library_item_text</item>
+		<item name="upperwindow">@style/alice_upperwindow</item>
+		<item name="prompt">@style/alice_prompt</item>
+	</style>
+
+	<style name="alice_cmdbox">
+		<item name="android:background">@drawable/alice_inputbox</item>
+	</style>
+
+	<style name="alice_cmdbox_buttons">
+		<item name="android:background">@drawable/alice_btn_selector</item>
+		<item name="android:tint">@color/alice.cmd_icon_tint</item>
+	</style>
+
+	<style name="alice_storyboard">
+		<item name="android:divider">@null</item>
+	</style>
+
+	<style name="alice_bubble_left">
+		<item name="android:background">@drawable/alice_bubble_left</item>
+		<item name="android:layout_marginRight">@dimen/alice.bubble_sidemargin</item>
+		<item name="android:layout_marginTop">@dimen/alice.bubble_topmargin</item>
+		<item name="android:layout_gravity">left</item>
+		<item name="android:textColor">@color/alice.text</item>
+		<item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+	</style>
+
+	<style name="alice_bubble_right">
+		<item name="android:background">@drawable/alice_bubble_right</item>
+		<item name="android:layout_marginLeft">@dimen/alice.bubble_sidemargin</item>
+		<item name="android:layout_marginTop">@dimen/alice.bubble_topmargin</item>
+		<item name="android:layout_gravity">right</item>
+		<item name="android:textColor">@color/alice.text</item>
+		<item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+	</style>
+
+	<style name="alice_bubble_flash">
+		<item name="android:layout_gravity">center</item>
+		<item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
+		<item name="android:typeface">monospace</item>
+		<item name="android:textColor">@color/alice.text.inverse</item>
+		<item name="android:shadowColor">@color/alice.text.shadow</item>
+		<item name="android:shadowDx">2</item>
+		<item name="android:shadowDy">2</item>
+		<item name="android:shadowRadius">2</item>
+	</style>
+
+	<style name="alice_library_item">
+		<item name="android:background">@drawable/alice_box</item>
+		<item name="android:textColor">@color/alice.text</item>
+	</style>
+
+	<style name="alice_library_item_text">
+		<item name="android:textAppearance">?android:attr/textAppearanceLarge</item>
+		<item name="android:textColor">@color/alice.text</item>
+	</style>
+
+	<style name="alice_library_list">
+		<item name="android:listSelector">@drawable/alice_lst_selector</item>
+		<item name="android:divider">@null</item>
+	</style>
+
+	<style name="alice_upperwindow">
+		<item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
+		<item name="android:typeface">monospace</item>
+		<item name="android:textColor">@color/alice.text.inverse</item>
+		<item name="android:shadowColor">@color/alice.text.shadow</item>
+		<item name="android:shadowDx">2</item>
+		<item name="android:shadowDy">2</item>
+		<item name="android:shadowRadius">2</item>
+	</style>
+
+	<style name="alice_prompt">
+		<item name="android:textColor">@color/alice.prompt_input</item>
+	</style>
+
+</resources>

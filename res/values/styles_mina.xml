@@ -1,0 +1,45 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<!-- MINA - an alternative vampiresque theme which is based on LUCY -->
+
+	<color name="mina.prompt_input">#7BCC70</color>
+	<color name="mina.text">#7BCC70</color>
+	<color name="mina.text.inverse">#7BCC70</color>
+	<color name="mina.text.shadow">#771514</color>
+
+	<style name="Mina" parent="Lucy">
+		<item name="bubble_left">@style/mina_bubble_left</item>
+		<item name="bubble_right">@style/mina_bubble_right</item>
+		<item name="bubble_none">@style/mina_bubble_flash</item>
+		<item name="library_item_text">@style/mina_library_item_text</item>
+		<item name="upperwindow">@style/mina_upperwindow</item>
+		<item name="prompt">@style/mina_prompt</item>
+	</style>
+
+	<style name="mina_bubble_left" parent="@style/lucy_bubble_left">
+		<item name="android:textColor">@color/mina.text</item>
+	</style>
+
+	<style name="mina_bubble_right" parent="@style/lucy_bubble_right">
+		<item name="android:textColor">@color/mina.text</item>
+	</style>
+
+	<style name="mina_bubble_flash" parent="@style/lucy_bubble_flash">
+		<item name="android:textColor">@color/mina.text.inverse</item>
+		<item name="android:shadowColor">@color/mina.text.shadow</item>
+	</style>
+
+	<style name="mina_library_item_text" parent="@style/lucy_library_item_text">
+		<item name="android:textColor">@color/mina.text</item>
+	</style>
+
+	<style name="mina_upperwindow" parent="@style/lucy_upperwindow">
+		<item name="android:textColor">@color/mina.text.inverse</item>
+		<item name="android:shadowColor">@color/mina.text.shadow</item>
+	</style>
+
+	<style name="mina_prompt" parent="@style/lucy_prompt">
+		<item name="android:textColor">@color/mina.prompt_input</item>
+	</style>
+
+</resources>

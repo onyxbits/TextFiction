@@ -1,0 +1,103 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<!-- NEMO - a darkish blue theme -->
+
+	<color name="nemo.background">#154a5e</color>
+	<color name="nemo.cmd_icon_tint">#FF888888</color>
+	<color name="nemo.selected_fill">#00000000</color>
+	<color name="nemo.selected_border">#FFFFFFFF</color>
+	<color name="nemo.prompt_input">#FFBBBBBB</color>
+	<color name="nemo.pressed">#FFAAAAAA</color>
+	<color name="nemo.text">#FF000000</color>
+	<color name="nemo.text.inverse">#FF999999</color>
+	<color name="nemo.text.shadow">#FF000000</color>
+
+	<style name="Nemo" parent="AppTheme">
+		<item name="android:windowBackground">@color/nemo.background</item>
+		<item name="android:colorBackground">@color/nemo.background</item>
+		<item name="android:alertDialogStyle">@style/gingerbread_hack</item>
+		<item name="bubble_left">@style/nemo_bubble_left</item>
+		<item name="bubble_right">@style/nemo_bubble_right</item>
+		<item name="bubble_none">@style/nemo_bubble_flash</item>
+		<item name="cmdbox">@style/nemo_cmdbox</item>
+		<item name="cmdbox_buttons">@style/nemo_cmdbox_buttons</item>
+		<item name="storyboard">@style/nemo_storyboard</item>
+		<item name="library_item">@style/nemo_library_item</item>
+		<item name="library_list">@style/nemo_library_list</item>
+		<item name="library_item_text">@style/nemo_library_item_text</item>
+		<item name="upperwindow">@style/nemo_upperwindow</item>
+		<item name="prompt">@style/nemo_prompt</item>
+	</style>
+
+	<style name="nemo_cmdbox">
+		<item name="android:background">@drawable/shadedregion</item>
+	</style>
+
+	<style name="nemo_cmdbox_buttons">
+		<item name="android:background">@drawable/nemo_btn_selector</item>
+		<item name="android:tint">@color/nemo.cmd_icon_tint</item>
+	</style>
+
+	<style name="nemo_storyboard">
+		<item name="android:divider">@null</item>
+	</style>
+
+	<style name="nemo_bubble_left">
+		<item name="android:background">@drawable/nemo_bubble_left</item>
+		<item name="android:layout_marginRight">@dimen/nemo.bubble_sidemargin</item>
+		<item name="android:layout_marginTop">@dimen/nemo.bubble_topmargin</item>
+		<item name="android:layout_gravity">left</item>
+		<item name="android:textColor">@color/nemo.text</item>
+		<item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+	</style>
+
+	<style name="nemo_bubble_right">
+		<item name="android:background">@drawable/nemo_bubble_right</item>
+		<item name="android:layout_marginLeft">@dimen/nemo.bubble_sidemargin</item>
+		<item name="android:layout_marginTop">@dimen/nemo.bubble_topmargin</item>
+		<item name="android:layout_gravity">right</item>
+		<item name="android:textColor">@color/nemo.text</item>
+		<item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+	</style>
+
+	<style name="nemo_bubble_flash">
+		<item name="android:layout_gravity">center</item>
+		<item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
+		<item name="android:typeface">monospace</item>
+		<item name="android:textColor">@color/nemo.text.inverse</item>
+		<item name="android:shadowColor">@color/nemo.text.shadow</item>
+		<item name="android:shadowDx">2</item>
+		<item name="android:shadowDy">2</item>
+		<item name="android:shadowRadius">2</item>
+	</style>
+
+	<style name="nemo_library_item">
+		<item name="android:background">@drawable/nemo_box</item>
+		<item name="android:textColor">@color/nemo.text</item>
+	</style>
+
+	<style name="nemo_library_item_text">
+		<item name="android:textAppearance">?android:attr/textAppearanceLarge</item>
+		<item name="android:textColor">@color/nemo.text</item>
+	</style>
+
+	<style name="nemo_library_list">
+		<item name="android:listSelector">@drawable/nemo_lst_selector</item>
+		<item name="android:divider">@null</item>
+	</style>
+
+	<style name="nemo_upperwindow">
+		<item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
+		<item name="android:typeface">monospace</item>
+		<item name="android:textColor">@color/nemo.text.inverse</item>
+		<item name="android:shadowColor">@color/nemo.text.shadow</item>
+		<item name="android:shadowDx">2</item>
+		<item name="android:shadowDy">2</item>
+		<item name="android:shadowRadius">2</item>
+	</style>
+
+	<style name="nemo_prompt">
+		<item name="android:textColor">@color/nemo.prompt_input</item>
+	</style>
+
+</resources>
