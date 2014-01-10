@@ -37,4 +37,9 @@
 	<color name="lucy.text.inverse">#8A0707</color>
 	<color name="lucy.text.shadow">#771514</color>
 
+	
+	<color name="mina.prompt_input">#7BCC70</color>
+	<color name="mina.text">#7BCC70</color>
+	<color name="mina.text.inverse">#7BCC70</color>
+	<color name="mina.text.shadow">#771514</color>
 </resources>

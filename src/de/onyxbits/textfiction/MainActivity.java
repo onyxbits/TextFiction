@@ -33,6 +33,9 @@ public class MainActivity extends FragmentActivity {
 		if (prefs.getString("theme","").equals("lucy")) {
 			setTheme(R.style.Lucy);
 		}
+		if (prefs.getString("theme","").equals("mina")) {
+			setTheme(R.style.Mina);
+		}
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_PROGRESS);
 		setContentView(R.layout.activity_main);
