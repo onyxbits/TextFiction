@@ -9,13 +9,13 @@
 		<string name="title_theme">Thema</string>
 		<string name="fontsize_title">Font Größe</string>
 		<string name="category_appearance">Erscheinung</string>
-		<string name="keyclick_summary">Klickton bei Beührung von Worten in der Geschichte</string>
+		<string name="keyclick_summary">Klickton bei Berührung von Worten in der Geschichte</string>
 		<string name="keyclick_title">Akkustische Rückmeldung</string>
-		<string name="narrator_summary">Neue Einträge automatisch vorlesen (Vorlesen kann immer durch Berühren von Leerräumen in Sprechblasen angehalten und durch langes Berühren neu gestartet werden).</string>
-		<string name="narrator_title">Text zu Sprache</string>
+		<string name="narrator_summary">Neue Einträge automatisch vorlesen (kann durch Berühren von Leerräumen in Sprechblasen angehalten und durch langes Berühren neu gestartet werden)</string>
+		<string name="narrator_title">Vorlesen</string>
 		<string name="category_misc">Verschiedenes</string>
-		<string name="smoothscrolling_title">Weiches scrollen</string>
-		<string name="smoothscrolling_summary">Geschichte weich scrollen</string>
+		<string name="smoothscrolling_title">Fliesend scrollen</string>
+		<string name="smoothscrolling_summary">Text rollt fliesend</string>
 		<string name="autocollapse_keyboard">Tastatur einklappen</string>
 		<string name="hide_the_keyboard_when_pressing_done">Tastatur automatisch einklappen bei druck auf \'Fertig\'</string>
 </resources>
