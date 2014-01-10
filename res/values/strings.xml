@@ -34,8 +34,6 @@
 	<string name="mi_restore">Restore</string>
 	<string name="mi_restart">Restart</string>
 	<string name="mi_browse">Browse Catalog</string>
-	<string name="catalog_url">http://www.onyxbits.de/textfiction/games</string>
-	<string name="help_url">http://www.onyxbits.de/textfiction/help</string>
 	<string name="mi_import">Import</string>
 	<string name="title_select_import">Select games to import</string>
 	<string name="msg_failure_import">Failure!</string>

@@ -356,7 +356,7 @@ public class GameActivity extends FragmentActivity implements
 				return true;
 			}
 			case R.id.mi_help: {
-				MainActivity.openUri(this, Uri.parse(getString(R.string.help_url)));
+				MainActivity.openUri(this, Uri.parse(getString(R.string.url_help)));
 				return true;
 			}
 			case R.id.mi_restart: {
