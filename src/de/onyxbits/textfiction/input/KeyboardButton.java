@@ -1,22 +1,13 @@
 package de.onyxbits.textfiction.input;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.text.InputType;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.MotionEvent;
-import android.view.View;
-import android.view.inputmethod.CompletionInfo;
-import android.view.inputmethod.CorrectionInfo;
 import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.ExtractedText;
-import android.view.inputmethod.ExtractedTextRequest;
 import android.view.inputmethod.InputConnection;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 
 /**
  * A subclass of imagebutton that pops up the keyboard and provides an
@@ -36,7 +27,6 @@ public class KeyboardButton extends ImageButton {
 
 	public KeyboardButton(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
-		// TODO Auto-generated constructor stub
 	}
 	
 	public void setInputProcessor(InputProcessor ip) {

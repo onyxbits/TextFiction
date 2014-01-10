@@ -11,7 +11,7 @@ import android.view.inputmethod.BaseInputConnection;
  * @author patrick
  * 
  */
-public class CharInputConnection extends BaseInputConnection {
+class CharInputConnection extends BaseInputConnection {
 
 	private InputProcessor inputProcessor;
 
