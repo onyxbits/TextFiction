@@ -1,6 +1,7 @@
 package de.onyxbits.textfiction;
 
 import java.io.File;
+import java.lang.reflect.Field;
 
 import android.content.ActivityNotFoundException;
 import android.content.ContentResolver;
@@ -11,6 +12,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
@@ -26,26 +28,25 @@ public class MainActivity extends FragmentActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-		if (prefs.getString("theme","").equals("alice")) {
-			setTheme(R.style.Alice);
+		SharedPreferences prefs = PreferenceManager
+				.getDefaultSharedPreferences(this);
+		try {
+			Field field = R.style.class.getField(prefs.getString("theme", ""));
+			setTheme(field.getInt(null));
 		}
-		if (prefs.getString("theme","").equals("lucy")) {
-			setTheme(R.style.Lucy);
-		}
-		if (prefs.getString("theme","").equals("mina")) {
-			setTheme(R.style.Mina);
+		catch (Exception e) {
+			Log.w(getClass().getName(), e);
 		}
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_PROGRESS);
 		setContentView(R.layout.activity_main);
 		AppRater.appLaunched(this);
 		Uri game = getIntent().getData();
-		if (game!=null && game.getScheme().equals(ContentResolver.SCHEME_FILE)) {
+		if (game != null && game.getScheme().equals(ContentResolver.SCHEME_FILE)) {
 			LibraryFragment frag = (LibraryFragment) getSupportFragmentManager()
 					.findFragmentById(R.id.fragment_library);
-			File[] f = {new File(game.getPath())};
-			ImportTask.importGames(frag,f);
+			File[] f = { new File(game.getPath()) };
+			ImportTask.importGames(frag, f);
 		}
 	}
 
@@ -66,26 +67,30 @@ public class MainActivity extends FragmentActivity {
 				return true;
 			}
 			case R.id.mi_settings: {
-				startActivity(new Intent(this,SettingActivity.class));
+				startActivity(new Intent(this, SettingActivity.class));
 				return true;
 			}
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Open an url in a webbrowser
-	 * @param ctx a context
-	 * @param uri target
+	 * 
+	 * @param ctx
+	 *          a context
+	 * @param uri
+	 *          target
 	 */
 	public static void openUri(Context ctx, Uri uri) {
 		try {
-			Intent browserIntent = new Intent(Intent.ACTION_VIEW,uri);
+			Intent browserIntent = new Intent(Intent.ACTION_VIEW, uri);
 			ctx.startActivity(browserIntent);
 		}
 		catch (ActivityNotFoundException e) {
 			// There are actually people who don't have a webbrowser installed
-			Toast.makeText(ctx,R.string.msg_no_webbrowser,Toast.LENGTH_SHORT).show();
+			Toast.makeText(ctx, R.string.msg_no_webbrowser, Toast.LENGTH_SHORT)
+					.show();
 		}
 	}
 

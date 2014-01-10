@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.lang.reflect.Field;
 import java.util.Iterator;
 import java.util.Vector;
 
@@ -147,14 +148,12 @@ public class GameActivity extends FragmentActivity implements
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);
-		if (prefs.getString("theme", "").equals("alice")) {
-			setTheme(R.style.Alice);
+		try {
+			Field field = R.style.class.getField(prefs.getString("theme", ""));
+			setTheme(field.getInt(null));
 		}
-		if (prefs.getString("theme", "").equals("lucy")) {
-			setTheme(R.style.Lucy);
-		}
-		if (prefs.getString("theme","").equals("mina")) {
-			setTheme(R.style.Mina);
+		catch (Exception e) {
+			Log.w(getClass().getName(), e);
 		}
 		prefs.registerOnSharedPreferenceChangeListener(this);
 
@@ -660,8 +659,8 @@ public class GameActivity extends FragmentActivity implements
 			tmp.setTextAppearance(this, android.R.style.TextAppearance_Large);
 			messages.setTextSize(tmp.getTextSize());
 		}
-		
-		inputFragment.setAutoCollapse(prefs.getBoolean("autocollapse",false));
+
+		inputFragment.setAutoCollapse(prefs.getBoolean("autocollapse", false));
 
 		wordExtractor.setKeyclick(prefs.getBoolean("keyclick", false));
 
