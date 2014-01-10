@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+	<!-- Name of the app (to be shown in the title bar) -->
+	<string name="app_name">Text Fiction</string>
+
 	<!-- The url to open when the player requests the game catalog -->
 	<string name="url_catalog">http://www.onyxbits.de/textfiction/games</string>
 
@@ -9,5 +12,20 @@
 
 	<!-- Where the interpreter can be downloaded from (for app recommendation) -->
 	<string name="url_apphome">http://www.onyxbits.de/textfiction</string>
+
+	<!--
+    Words that are highlighted 'out of the box' (player may override this). 
+	NOTE: only lowercase letters and digits are allowed.
+	-->
+	<string-array name="initial_highlights">
+		<item>north</item>
+		<item>northeast</item>
+		<item>east</item>
+		<item>southeast</item>
+		<item>south</item>
+		<item>southwest</item>
+		<item>west</item>
+		<item>northwest</item>
+	</string-array>
 
 </resources>
