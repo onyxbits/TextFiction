@@ -17,7 +17,7 @@
 		android:label="@string/app_name"
 		android:theme="@style/Nemo" >
 		<activity
-			android:name="de.onyxbits.textfiction.MainActivity"
+			android:name=".MainActivity"
 			android:label="@string/app_name"
 			android:windowSoftInputMode="stateAlwaysHidden" >
 			<intent-filter>
@@ -37,20 +37,20 @@
 		<activity
 			android:name="de.onyxbits.textfiction.GameActivity"
 			android:label="@string/title_activity_game"
-			android:parentActivityName="de.onyxbits.textfiction.MainActivity"
+			android:parentActivityName=".MainActivity"
 			android:windowSoftInputMode="stateAlwaysHidden" >
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
-				android:value="de.onyxbits.textfiction.MainActivity" />
+				android:value=".MainActivity" />
 		</activity>
 		<activity
 			android:name="de.onyxbits.textfiction.SettingActivity"
 			android:theme="@style/AppTheme"
-			android:parentActivityName="de.onyxbits.textfiction.MainActivity"
+			android:parentActivityName=".MainActivity"
 			android:label="@string/title_activity_setting" >
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
-				android:value="de.onyxbits.textfiction.MainActivity" />
+				android:value=".MainActivity" />
 		</activity>
 	</application>
 
