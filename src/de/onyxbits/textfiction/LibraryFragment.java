@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -74,6 +75,12 @@ public class LibraryFragment extends Fragment implements
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
+			case R.id.mi_browse: {
+				Intent browserIntent = new Intent(Intent.ACTION_VIEW,
+						Uri.parse(getString(R.string.url_catalog)));
+				startActivity(browserIntent);
+				return true;
+			}
 			case R.id.mi_import: {
 				ImportTask.showSelectDialog(this);
 				return true;
