@@ -1,6 +1,5 @@
 package de.onyxbits.textfiction.input;
 
-import de.onyxbits.textfiction.GameActivity;
 import de.onyxbits.textfiction.R;
 import android.app.Activity;
 import android.content.Context;
@@ -160,26 +159,25 @@ public class InputFragment extends Fragment implements OnClickListener,
 			return;
 		}
 		if (v == forwards) {
-			((GameActivity) getActivity()).executeCommand(ENTER);
+			inputProcessor.executeCommand(ENTER);
 		}
 		if (v == up) {
-			((GameActivity) getActivity()).executeCommand(C_UP);
+			inputProcessor.executeCommand(C_UP);
 		}
 		if (v == down) {
-			((GameActivity) getActivity()).executeCommand(C_DOWN);
+			inputProcessor.executeCommand(C_DOWN);
 		}
 		if (v == left) {
-			((GameActivity) getActivity()).executeCommand(C_LEFT);
+			inputProcessor.executeCommand(C_LEFT);
 		}
 		if (v == right) {
-			((GameActivity) getActivity()).executeCommand(C_RIGHT);
+			inputProcessor.executeCommand(C_RIGHT);
 		}
 
 		if (v.getTag() instanceof CmdIcon) {
 			CmdIcon ci = (CmdIcon) v.getTag();
 			if (ci.atOnce) {
-				GameActivity ga = (GameActivity) getActivity();
-				ga.executeCommand((ci.cmd + "\n").getBytes());
+				inputProcessor.executeCommand((ci.cmd + "\n").getBytes());
 			}
 			else {
 				// Allow the player to select either the verb or an object first. If
