@@ -3,13 +3,9 @@ package de.onyxbits.textfiction;
 import java.util.List;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Typeface;
-import android.preference.PreferenceManager;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;

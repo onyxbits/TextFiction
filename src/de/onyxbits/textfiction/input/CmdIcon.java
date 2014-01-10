@@ -1,8 +1,6 @@
 package de.onyxbits.textfiction.input;
 
 import de.onyxbits.textfiction.R;
-import de.onyxbits.textfiction.R.drawable;
-import de.onyxbits.textfiction.R.string;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;

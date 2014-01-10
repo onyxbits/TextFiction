@@ -8,7 +8,6 @@ import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.view.Menu;
 
 public class SettingActivity extends PreferenceActivity implements

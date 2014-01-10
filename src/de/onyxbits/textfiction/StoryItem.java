@@ -2,7 +2,6 @@ package de.onyxbits.textfiction;
 
 
 import android.text.SpannableString;
-import android.text.style.UnderlineSpan;
 
 /**
  * A story element to be shown in the story fragment.
