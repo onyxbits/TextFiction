@@ -30,7 +30,7 @@ public class FileUtil implements Comparator<File> {
 	/**
 	 * Where games store misc data
 	 */
-	public static final String DATADIR = "config";
+	public static final String DATADIR = "gamedata";
 
 	private static final File library;
 	private static final File saves;
