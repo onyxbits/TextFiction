@@ -406,6 +406,7 @@ public class GameActivity extends FragmentActivity implements
 			}
 			catch (GrueException e) {
 				retainerFragment.postMortem = e;
+				Log.w(getClass().getName(),e);
 				finish();
 			}
 		}

@@ -504,7 +504,7 @@ public class ZInstruction {
 	}
 
 	protected short op_illegal() {
-		zm.fatal("Unknown opcode");
+		zm.fatal("Unknown opcode: "+opnum);
 		return ZFALSE;
 	}
 
