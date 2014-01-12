@@ -102,14 +102,14 @@ public class ZScreen {
 				return accent_table[zascii - 155];
 			}
 			else
-				return '?';
+				return '\ufffd';
 		}
 		else if ((zascii == 0) || (zascii >= 256)) {
-			return '?';
+			return '\ufffd';
 		}
 		else {
 			//System.err.println("Illegal character code: " + zascii);
-			return '?';
+			return '\ufffd';
 		}
 	}
 

@@ -374,15 +374,18 @@ public class ZInstruction5 extends ZInstruction {
 				result = op_restore_undo();
 				break;
 			case OP_PRINT_UNICODE: {
-				// FIXME: In OP_CHECK_UNICODE we state that we can't do it. Appearently
-				// that doesn't stop some games from trying anyways, so this should 
-				// probably be implemented. Doing a NOP is a safe workaround that 
-				// at least keeps the game from crashing.
-				result = op_nop();
+				// FIXME: PRINT and CHECK unicode are standard v1.0 extensions. They are
+				// not defined in the original ZPlet. Theoretically, neither should
+				// be called, but it happens anyways. In CHECK we state we can't handle
+				// unicode, but that doesn't seem to stop games from trying anyways.
+			  // Since unicode support is kinda a low priority, we work around this
+				// by doing a normal print_char, which will eventually fall through 
+				// a \ufffd character. That's not pretty, but at least its safe.
+				result = op_print_char();
 				break;
 			}
 			case OP_CHECK_UNICODE: {
-				result=0;
+				result = 0;
 				break;
 			}
 			default:
