@@ -13,19 +13,24 @@
 		android:title="@string/mi_clear_log">
 	</item>
 	<item
-		android:id="@+id/mi_save"
-		android:icon="@drawable/ic_action_save"
-		android:title="@string/mi_save">
-	</item>
-	<item
 		android:id="@+id/mi_restore"
 		android:icon="@drawable/ic_action_restore"
 		android:title="@string/mi_restore">
 	</item>
 	<item
+		android:id="@+id/mi_save"
+		android:icon="@drawable/ic_action_save"
+		android:title="@string/mi_save">
+	</item>
+	<item
 		android:id="@+id/mi_restart"
 		android:icon="@drawable/ic_action_restart"
 		android:title="@string/mi_restart">
+	</item>
+	<item
+		android:id="@+id/mi_fullscreen"
+		android:icon="@drawable/ic_action_fullscreen"
+		android:title="@string/mi_fullscreen">
 	</item>
 	<item
 		android:id="@+id/mi_help"

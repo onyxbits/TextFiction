@@ -32,6 +32,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -43,6 +44,7 @@ import android.speech.tts.TextToSpeech.OnInitListener;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.NavUtils;
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -356,6 +358,12 @@ public class GameActivity extends FragmentActivity implements
 			}
 			case R.id.mi_help: {
 				MainActivity.openUri(this, Uri.parse(getString(R.string.url_help)));
+				return true;
+			}
+			case R.id.mi_fullscreen: {
+				Toast.makeText(this, R.string.msg_leave_fullscreen, Toast.LENGTH_SHORT)
+						.show();
+				setFullScreen(true);
 				return true;
 			}
 			case R.id.mi_restart: {
@@ -743,6 +751,37 @@ public class GameActivity extends FragmentActivity implements
 					i = a;
 				}
 			}
+		}
+	}
+
+	@SuppressLint("NewApi")
+	public void setFullScreen(boolean full) {
+
+		Window window = getWindow();
+		if (full) {
+			window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		}
+		else {
+			window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		}
+
+		if (Build.VERSION.SDK_INT >= 11) {
+			if (full) {
+				getActionBar().hide();
+			}
+			else {
+				getActionBar().show();
+			}
+		}
+	}
+
+	@Override
+	public void onBackPressed() {
+		if ((getWindow().getAttributes().flags & WindowManager.LayoutParams.FLAG_FULLSCREEN) != 0) {
+			setFullScreen(false);
+		}
+		else {
+			super.onBackPressed();
 		}
 	}
 }

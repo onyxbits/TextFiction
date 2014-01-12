@@ -59,5 +59,7 @@
 	<string name="msg_no_webbrowser">Kein Webbrowser gefunden!</string>
 	<string name="mg_not_at_a_commandprompt">Nicht an einer Eingabeaufforderung! Spielstand kontne nicht gespeichert werden!</string>
 	<string name="title_activity_setting">Einstellungen</string>
+	<string name="mi_fullscreen">Vollbildmodus</string>
+	<string name="msg_leave_fullscreen">Zurück beended Vollbildmodus</string>
 
 </resources>

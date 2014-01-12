@@ -60,5 +60,7 @@
 	<string name="msg_unmarked">Unmarked \'%1$s\'</string>
 	<string name="mg_not_at_a_commandprompt">Not at a commandprompt! Gamestate not saved!</string>
 	<string name="title_activity_setting">Settings</string>
+	<string name="mi_fullscreen">Fullscreen</string>
+	<string name="msg_leave_fullscreen">Back exits fullscreen mode</string>
 	
 </resources>
