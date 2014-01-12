@@ -54,7 +54,7 @@ public abstract class ZMachine {
 
 	private int runState = STATE_INIT;
 
-	private byte[] inputBuffer;
+	private char[] inputBuffer;
 	private int inputIndex;
 
 	public ZMachine(ZScreen screen, ZStatus status_line, byte[] memory_image) {
@@ -82,7 +82,7 @@ public abstract class ZMachine {
 	 *          what the user entered. Note: this must either be a single byte or
 	 *          a newline terminated string, depending on the runstate.
 	 */
-	public void fillInputBuffer(byte[] input) {
+	public void fillInputBuffer(char[] input) {
 		inputBuffer = input;
 		inputIndex = 0;
 	}
@@ -97,7 +97,22 @@ public abstract class ZMachine {
 	 */
 	public byte get_input_byte(boolean buffered) {
 		if (inputIndex < inputBuffer.length) {
-			byte ret = inputBuffer[inputIndex];
+			byte ret = 13;
+			try {
+				if (inputBuffer[inputIndex] > 128 && inputBuffer[inputIndex] < 145
+						|| inputBuffer[inputIndex] == 8) {
+					// unicode_to_zascii doesn't handle cursor and function keys. 
+					// it does handle backspace by transforming it into delete, but we
+					// don't want that transformation.
+					ret = (byte) inputBuffer[inputIndex];
+				}
+				else {
+					ret = (byte) ZScreen.unicode_to_zascii(inputBuffer[inputIndex]);
+				}
+			}
+			catch (NoSuchKeyException e) {
+				e.printStackTrace();
+			}
 			inputIndex++;
 			return ret;
 		}
@@ -354,7 +369,7 @@ public abstract class ZMachine {
 			System.err.println(Integer.toString(pc, 16));
 			fatal("Story corruption");
 		}
-		
+
 		return STATE_RUNNING; // We actually never get here
 	}
 

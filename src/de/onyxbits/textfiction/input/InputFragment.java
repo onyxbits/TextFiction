@@ -39,12 +39,12 @@ public class InputFragment extends Fragment implements OnClickListener,
 	private ImageButton down;
 
 	// Magic numbers! See: §3.8 of the zmachine standard document.
-	public static final byte[] C_UP = { (byte) 129 };
-	public static final byte[] C_DOWN = { (byte) 130 };
-	public static final byte[] C_LEFT = { (byte) 131 };
-	public static final byte[] C_RIGHT = { (byte) 132 };
-	public static final byte[] ENTER = { (byte) 13 };
-	public static final byte[] DELETE = { (byte) 8 };
+	public static final char[] C_UP = { 129 };
+	public static final char[] C_DOWN = { 130 };
+	public static final char[] C_LEFT = { 131 };
+	public static final char[] C_RIGHT = { 132 };
+	public static final char[] ENTER = { 13 };
+	public static final char[] DELETE = { 8 };
 
 	private int currentVerb = -1;
 
@@ -192,7 +192,7 @@ public class InputFragment extends Fragment implements OnClickListener,
 		if (v.getTag() instanceof CmdIcon) {
 			CmdIcon ci = (CmdIcon) v.getTag();
 			if (ci.atOnce) {
-				inputProcessor.executeCommand((ci.cmd + "\n").getBytes());
+				inputProcessor.executeCommand((ci.cmd + "\n").toCharArray());
 			}
 			else {
 				// Allow the player to select either the verb or an object first. If
@@ -261,7 +261,7 @@ public class InputFragment extends Fragment implements OnClickListener,
 
 	private void executeCommand() {
 		inputProcessor.executeCommand((cmdLine.getText().toString() + "\n")
-				.getBytes());
+				.toCharArray());
 	}
 
 }

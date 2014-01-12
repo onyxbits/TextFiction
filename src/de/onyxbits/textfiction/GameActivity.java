@@ -391,7 +391,7 @@ public class GameActivity extends FragmentActivity implements
 	}
 
 	@Override
-	public void executeCommand(byte[] inputBuffer) {
+	public void executeCommand(char[] inputBuffer) {
 		ZMachine engine = retainerFragment.engine;
 		if (engine != null && engine.getRunState() != ZMachine.STATE_RUNNING) {
 			retainerFragment.engine.fillInputBuffer(inputBuffer);

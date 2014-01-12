@@ -15,7 +15,7 @@ public interface InputProcessor {
 	 * @param inputBuffer
 	 *          user input to hand over to the engine
 	 */
-	public void executeCommand(byte[] inputBuffer);
+	public void executeCommand(char[] inputBuffer);
 	
 	/**
 	 * Turn highlighting of text in the story on/off.

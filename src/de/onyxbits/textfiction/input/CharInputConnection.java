@@ -23,7 +23,7 @@ class CharInputConnection extends BaseInputConnection {
 	@Override
 	public boolean sendKeyEvent(KeyEvent event) {
 		if (event.getAction() == KeyEvent.ACTION_UP) {
-			byte[] tmp = { (byte) event.getUnicodeChar() };
+			char[] tmp = { (char)event.getUnicodeChar() };
 			inputProcessor.executeCommand(tmp);
 		}
 		return true;
