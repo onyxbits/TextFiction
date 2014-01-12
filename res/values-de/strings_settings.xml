@@ -18,4 +18,5 @@
 		<string name="smoothscrolling_summary">Text rollt fliesend</string>
 		<string name="autocollapse_keyboard">Tastatur einklappen</string>
 		<string name="hide_the_keyboard_when_pressing_done">Tastatur automatisch einklappen bei druck auf \'Fertig\'</string>
+		<string name="msg_question_restart">Um das Thema zu wechseln muss das Spiel neu gestartet werden. Jetzt neu starten?</string>
 </resources>

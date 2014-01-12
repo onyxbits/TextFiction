@@ -49,5 +49,7 @@
 		<string name="smoothscrolling_summary">Scroll the storyboard smoothly</string>
 		<string name="autocollapse_keyboard">Autocollapse Keyboard</string>
 		<string name="hide_the_keyboard_when_pressing_done">Hide the keyboard when pressing \'Done\'</string>
+		<string name="msg_question_restart">Changing the theme requires a restart to take effect. Restart now?</string>
+	
 
 </resources>
