@@ -45,6 +45,8 @@ public class ZInstruction5 extends ZInstruction {
 	final static int OP_SET_FONT = 260;
 	final static int OP_SAVE_UNDO = 265;
 	final static int OP_RESTORE_UNDO = 266;
+	final static int OP_PRINT_UNICODE = 267;
+	final static int OP_CHECK_UNICODE = 268;
 
 	final static int SCREEN_UNSPLIT = -1;
 	final static int SCREEN_NOUNSPLIT = -2;
@@ -69,7 +71,7 @@ public class ZInstruction5 extends ZInstruction {
 		has_returned = false;
 		super.decode_instruction();
 	}
-	
+
 	public void execute() {
 		short result;
 
@@ -371,6 +373,18 @@ public class ZInstruction5 extends ZInstruction {
 			case OP_RESTORE_UNDO:
 				result = op_restore_undo();
 				break;
+			case OP_PRINT_UNICODE: {
+				// FIXME: In OP_CHECK_UNICODE we state that we can't do it. Appearently
+				// that doesn't stop some games from trying anyways, so this should 
+				// probably be implemented. Doing a NOP is a safe workaround that 
+				// at least keeps the game from crashing.
+				result = op_nop();
+				break;
+			}
+			case OP_CHECK_UNICODE: {
+				result=0;
+				break;
+			}
 			default:
 				result = op_illegal();
 		}
