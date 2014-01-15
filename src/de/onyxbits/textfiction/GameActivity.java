@@ -171,7 +171,7 @@ public class GameActivity extends FragmentActivity implements
 		// device got rotated.
 		FragmentManager fm = getSupportFragmentManager();
 
-		inputFragment = (InputFragment)fm.findFragmentById(R.id.fragment_input);
+		inputFragment = (InputFragment) fm.findFragmentById(R.id.fragment_input);
 		retainerFragment = (RetainerFragment) fm.findFragmentByTag("retainer");
 		if (retainerFragment == null) {
 			// First start
@@ -241,19 +241,6 @@ public class GameActivity extends FragmentActivity implements
 		prefs.unregisterOnSharedPreferenceChangeListener(this);
 		if (ttsReady) {
 			speaker.shutdown();
-		}
-
-		if (retainerFragment != null) {
-			try {
-				JSONArray array = new JSONArray(retainerFragment.highlighted);
-				File f = new File(FileUtil.getDataDir(storyFile), HIGHLIGHTFILE);
-				PrintStream ps = new PrintStream(f);
-				ps.write(array.toString(2).getBytes());
-				ps.close();
-			}
-			catch (Exception e) {
-				Log.w(getClass().getName(), e);
-			}
 		}
 
 		if (retainerFragment == null || retainerFragment.engine == null) {
@@ -702,6 +689,16 @@ public class GameActivity extends FragmentActivity implements
 			highlight(it.next().message, highlighted);
 		}
 		messages.notifyDataSetChanged();
+		try {
+			JSONArray array = new JSONArray(retainerFragment.highlighted);
+			File f = new File(FileUtil.getDataDir(storyFile), HIGHLIGHTFILE);
+			PrintStream ps = new PrintStream(f);
+			ps.write(array.toString(2).getBytes());
+			ps.close();
+		}
+		catch (Exception e) {
+			Log.w(getClass().getName(), e);
+		}
 	}
 
 	@Override
