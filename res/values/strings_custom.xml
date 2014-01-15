@@ -28,4 +28,70 @@
 		<item>northwest</item>
 	</string-array>
 
+	<!-- JSON list of what goes into the buttonbar -->
+
+	<string name="defaultcommands">[
+  {
+    "imgid": 0,
+    "cmd": "Look",
+    "atonce": true
+  },
+  {
+    "imgid": 1,
+    "cmd": "Examine",
+    "atonce": false
+  },
+  {
+    "imgid": 8,
+    "cmd": "Take",
+    "atonce": false
+  },
+  {
+    "imgid": 5,
+    "cmd": "Open",
+    "atonce": false
+  },
+  {
+    "imgid": 6,
+    "cmd": "Close",
+    "atonce": false
+  },
+  {
+    "imgid": 7,
+    "cmd": "Inventory",
+    "atonce": true
+  },
+    {
+    "imgid": 15,
+    "cmd": "Pull",
+    "atonce": false
+  },
+    {
+    "imgid": 14,
+    "cmd": "Push",
+    "atonce": false
+  },
+  {
+    "imgid": 2,
+    "cmd": "Read",
+    "atonce": false
+  },
+  {
+    "imgid": 24,
+    "cmd": "Drop",
+    "atonce": false
+  },
+  {
+    "imgid": 22,
+    "cmd": "Give",
+    "atonce": false
+  },
+    {
+    "imgid": 11,
+    "cmd": "Wait",
+    "atonce": true
+  },
+
+]</string>
+
 </resources>

@@ -1,17 +1,9 @@
 package de.onyxbits.textfiction;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.PrintStream;
 import java.lang.reflect.Field;
 import java.util.Iterator;
-import java.util.Vector;
 
 import org.json.JSONArray;
 
@@ -155,7 +147,7 @@ public class GameActivity extends FragmentActivity implements
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);
-		
+
 		// Set the custom theme
 		try {
 			Field field = R.style.class.getField(prefs.getString("theme", ""));
@@ -164,12 +156,13 @@ public class GameActivity extends FragmentActivity implements
 		catch (Exception e) {
 			Log.w(getClass().getName(), e);
 		}
-		
+
 		prefs.registerOnSharedPreferenceChangeListener(this);
 
 		super.onCreate(savedInstanceState);
 		LayoutInflater infl = getLayoutInflater();
 		requestWindowFeature(Window.FEATURE_PROGRESS);
+		storyFile = new File(getIntent().getStringExtra(LOADFILE));
 
 		View content = infl.inflate(R.layout.activity_game, null);
 		setContentView(content);
@@ -177,7 +170,8 @@ public class GameActivity extends FragmentActivity implements
 		// Check if this is a genuine start or if we are restarting because the
 		// device got rotated.
 		FragmentManager fm = getSupportFragmentManager();
-		inputFragment = (InputFragment) fm.findFragmentById(R.id.fragment_input);
+
+		inputFragment = (InputFragment)fm.findFragmentById(R.id.fragment_input);
 		retainerFragment = (RetainerFragment) fm.findFragmentByTag("retainer");
 		if (retainerFragment == null) {
 			// First start
@@ -192,26 +186,14 @@ public class GameActivity extends FragmentActivity implements
 				figureMenuState();
 			}
 		}
-		storyFile = new File(getIntent().getStringExtra(LOADFILE));
 
 		// Load the highlight file
 		try {
-			File file = new File(
-					FileUtil.getDataDir(storyFile), HIGHLIGHTFILE);
-	    BufferedReader reader = new BufferedReader( new FileReader (file));
-	    String         line = null;
-	    StringBuilder  stringBuilder = new StringBuilder();
-	    String         ls = System.getProperty("line.separator");
-
-	    while( ( line = reader.readLine() ) != null ) {
-	        stringBuilder.append( line );
-	        stringBuilder.append( ls );
-	    }
-	    reader.close();
-	    JSONArray js = new JSONArray(stringBuilder.toString());
-	    for (int i=0;i<js.length();i++) {
-	    	retainerFragment.highlighted.add(js.getString(i));
-	    }
+			File file = new File(FileUtil.getDataDir(storyFile), HIGHLIGHTFILE);
+			JSONArray js = new JSONArray(FileUtil.getContents(file));
+			for (int i = 0; i < js.length(); i++) {
+				retainerFragment.highlighted.add(js.getString(i));
+			}
 		}
 		catch (Exception e) {
 			// No big deal. Probably the first time this game runs -> use defaults
@@ -266,10 +248,10 @@ public class GameActivity extends FragmentActivity implements
 				JSONArray array = new JSONArray(retainerFragment.highlighted);
 				File f = new File(FileUtil.getDataDir(storyFile), HIGHLIGHTFILE);
 				PrintStream ps = new PrintStream(f);
-				ps.write(array.toString().getBytes());
+				ps.write(array.toString(2).getBytes());
 				ps.close();
 			}
-			catch (IOException e) {
+			catch (Exception e) {
 				Log.w(getClass().getName(), e);
 			}
 		}
@@ -808,5 +790,10 @@ public class GameActivity extends FragmentActivity implements
 		else {
 			super.onBackPressed();
 		}
+	}
+
+	@Override
+	public File getStory() {
+		return storyFile;
 	}
 }

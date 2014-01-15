@@ -6,6 +6,11 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
+/**
+ * For listing all the icons the user may assign to the quickcommand buttons.
+ * @author patrick
+ *
+ */
 class IconAdapter extends BaseAdapter {
 
 	private Context context;
@@ -22,7 +27,7 @@ class IconAdapter extends BaseAdapter {
 		}
 		
 		ret.setImageResource(CmdIcon.ICONS[position]);
-		ret.setTag(CmdIcon.ICONS[position]);
+		ret.setTag(position);
 		return ret;
 	}
 

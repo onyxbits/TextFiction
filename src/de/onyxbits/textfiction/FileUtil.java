@@ -1,8 +1,11 @@
 package de.onyxbits.textfiction;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -183,6 +186,26 @@ public class FileUtil implements Comparator<File> {
 		else {
 			return tmp;
 		}
+	}
+
+	/**
+	 * Read a text file
+	 * @param file the file to read
+	 * @return its contents as a String
+	 * @throws IOException if stuff goes wrong.
+	 */
+	public static String getContents(File file) throws IOException {
+		BufferedReader reader = new BufferedReader(new FileReader(file));
+		String line = null;
+		StringBuilder stringBuilder = new StringBuilder();
+		String ls = System.getProperty("line.separator");
+
+		while ((line = reader.readLine()) != null) {
+			stringBuilder.append(line);
+			stringBuilder.append(ls);
+		}
+		reader.close();
+		return stringBuilder.toString();
 	}
 
 	@Override

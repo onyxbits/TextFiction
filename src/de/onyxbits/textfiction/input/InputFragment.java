@@ -1,10 +1,16 @@
 package de.onyxbits.textfiction.input;
 
+import java.io.File;
+
+import org.json.JSONArray;
+
+import de.onyxbits.textfiction.FileUtil;
 import de.onyxbits.textfiction.R;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,7 +30,11 @@ import android.widget.ViewFlipper;
 public class InputFragment extends Fragment implements OnClickListener,
 		OnEditorActionListener {
 
-	public static final String PREFSFILE = "controls";
+	/**
+	 * Name of the file (relative to the gamedata dir where to quick commmands
+	 * settings are kept.
+	 */
+	public static final String CMDFILE = "quickcommands.json";
 
 	private EditText cmdLine;
 	private ImageButton submit;
@@ -46,7 +56,7 @@ public class InputFragment extends Fragment implements OnClickListener,
 	public static final char[] ENTER = { 13 };
 	public static final char[] DELETE = { 8 };
 
-	private int currentVerb = -1;
+	private boolean hasVerb = false;
 
 	private InputProcessor inputProcessor;
 	private boolean autoCollapse;
@@ -57,8 +67,8 @@ public class InputFragment extends Fragment implements OnClickListener,
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		flipper = (ViewFlipper) inflater
-				.inflate(R.layout.fragment_input, container);
+		flipper = (ViewFlipper) inflater.inflate(R.layout.fragment_input,
+				container, false);
 		buttonBar = (LinearLayout) flipper.findViewById(R.id.quickcmdcontainer);
 		cmdLine = (EditText) flipper.findViewById(R.id.userinput);
 		submit = (ImageButton) flipper.findViewById(R.id.submit);
@@ -82,36 +92,39 @@ public class InputFragment extends Fragment implements OnClickListener,
 		((KeyboardButton) flipper.findViewById(R.id.keyboard))
 				.setInputProcessor(inputProcessor);
 
+		File commands = new File(FileUtil.getDataDir(inputProcessor.getStory()),
+				CMDFILE);
+
 		Context ctx = getActivity();
-		CommandChanger changer = new CommandChanger(cmdLine);
+		CommandChanger changer = new CommandChanger(cmdLine, buttonBar, commands);
 
-		// FIXME: make max number of buttons configurable
-		for (int i = 0; i < 14; i++) {
-			ImageButton b = (ImageButton) inflater.inflate(R.layout.style_cmdbutton,
-					null).findViewById(R.id.protocmdbutton);
-			CmdIcon ico = CmdIcon.create(ctx, i);
-			b.setTag(ico);
-			b.setImageResource(ico.imgid);
-			b.setOnClickListener(this);
-			b.setOnLongClickListener(changer);
-			buttonBar.addView(b);
+		try {
+			String buttonDef = getActivity().getString(R.string.defaultcommands);
+			JSONArray buttons = new JSONArray(buttonDef);
+			if (commands.exists()) {
+				buttonDef = FileUtil.getContents(commands);
+				buttons = new JSONArray(buttonDef);
+			}
+			for (int i = 0; i < buttons.length(); i++) {
+				ImageButton b = (ImageButton) inflater.inflate(
+						R.layout.style_cmdbutton, null).findViewById(R.id.protocmdbutton);
+				CmdIcon ico = CmdIcon.fromJSON(buttons.getJSONObject(i));
+				b.setTag(ico);
+				b.setImageResource(CmdIcon.ICONS[ico.imgid]);
+				b.setOnClickListener(this);
+				b.setOnLongClickListener(changer);
+				buttonBar.addView(b);
+			}
 		}
-
+		catch (Exception e) {
+			Log.w(getClass().getName(), e);
+		}
 		flipper.setInAnimation(AnimationUtils.loadAnimation(ctx,
 				R.animator.slide_in_right));
 		flipper.setOutAnimation(AnimationUtils.loadAnimation(ctx,
 				R.animator.slide_out_left));
 
 		return flipper;
-	}
-
-	protected void updateShortCut(CmdIcon ci) {
-		for (int i = 0; i < CmdIcon.ICONS.length; i++) {
-			ImageButton b = (ImageButton) buttonBar.getChildAt(i);
-			if (ci == b.getTag()) {
-				b.setImageResource(ci.imgid);
-			}
-		}
 	}
 
 	/**
@@ -151,11 +164,6 @@ public class InputFragment extends Fragment implements OnClickListener,
 			throw new ClassCastException(activity.toString()
 					+ " must implement OnArticleSelectedListener");
 		}
-	}
-
-	@Override
-	public void onDetach() {
-		super.onDetach();
 	}
 
 	@Override
@@ -200,12 +208,12 @@ public class InputFragment extends Fragment implements OnClickListener,
 				// be finished and execute it. The other way around: allow more objects
 				// to be added.
 				String tmp = "";
-				if (currentVerb == -1) {
+				if (hasVerb == false) {
 					tmp = cmdLine.getEditableText().toString().trim();
 				}
 				cmdLine.setText(ci.cmd.trim() + " " + tmp);
 				cmdLine.setSelection(cmdLine.getEditableText().toString().length());
-				currentVerb = ci.slot;
+				hasVerb = true;
 				if (tmp.length() > 0) {
 					executeCommand();
 				}
@@ -218,7 +226,7 @@ public class InputFragment extends Fragment implements OnClickListener,
 	 */
 	public void reset() {
 		cmdLine.setText("");
-		currentVerb = -1;
+		hasVerb = false;
 	}
 
 	/**

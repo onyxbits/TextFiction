@@ -1,5 +1,7 @@
 package de.onyxbits.textfiction.input;
 
+import java.io.File;
+
 /**
  * Master callback interface of the package.
  * 
@@ -29,5 +31,12 @@ public interface InputProcessor {
 	 * @param txt the text to synthesize or null to stop speaking.
 	 */
 	public void utterText(CharSequence txt);
+
+	
+	/**
+	 * Query the game that is being played.
+	 * @return path to the currently playing game
+	 */
+	public File getStory();
 		
 }
