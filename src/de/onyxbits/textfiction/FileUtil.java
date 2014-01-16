@@ -47,12 +47,16 @@ public class FileUtil implements Comparator<File> {
 		library = new File(new File(root, HOMEDIR), GAMEDIR);
 		saves = new File(new File(root, HOMEDIR), SAVEDIR);
 		data = new File(new File(root, HOMEDIR), DATADIR);
+	}
+	
+	private static void ensureDirs(){
 		library.mkdirs();
 		saves.mkdirs();
 		data.mkdirs();
 	}
 
 	public static File[] listGames() {
+		ensureDirs();
 		File[] ret = library.listFiles();
 		if (ret == null) {
 			return new File[0];
@@ -70,6 +74,7 @@ public class FileUtil implements Comparator<File> {
 	 * @return list of files in the savegamedir
 	 */
 	public static File[] listSaveGames(File game) {
+		ensureDirs();
 		File f = getSaveGameDir(game);
 		File[] ret = f.listFiles();
 		if (ret == null) {
@@ -87,6 +92,7 @@ public class FileUtil implements Comparator<File> {
 	 * @return the filenames of the save games.
 	 */
 	public static String[] listSaveName(File game) {
+		ensureDirs();
 		File[] f = listSaveGames(game);
 		String ret[] = new String[f.length];
 		for (int i = 0; i < ret.length; i++) {
@@ -110,6 +116,7 @@ public class FileUtil implements Comparator<File> {
 	 *           if something goes wrong
 	 */
 	public static void importGame(File src) throws IOException {
+		ensureDirs();
 		File dst = new File(library, src.getName());
 		byte[] buf = new byte[1024];
 		FileInputStream fin = new FileInputStream(src);
@@ -131,6 +138,7 @@ public class FileUtil implements Comparator<File> {
 	 *          the game file
 	 */
 	public static void deleteGame(File game) {
+		ensureDirs();
 		File[] lst = getSaveGameDir(game).listFiles();
 		for (File f : lst) {
 			f.delete();
@@ -152,6 +160,7 @@ public class FileUtil implements Comparator<File> {
 	 * @return a directory for saving games.
 	 */
 	public static File getSaveGameDir(File game) {
+		ensureDirs();
 		File ret = new File(saves, game.getName());
 		ret.mkdirs();
 		return ret;
@@ -165,6 +174,7 @@ public class FileUtil implements Comparator<File> {
 	 * @return a directory for keeping misc data.
 	 */
 	public static File getDataDir(File game) {
+		ensureDirs();
 		File ret = new File(data, game.getName());
 		ret.mkdirs();
 		return ret;
