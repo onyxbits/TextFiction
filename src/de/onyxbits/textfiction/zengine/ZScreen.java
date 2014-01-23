@@ -104,8 +104,8 @@ public class ZScreen {
 			else
 				return '\ufffd';
 		}
-		else if ((zascii == 0) || (zascii >= 256)) {
-			return '\ufffd';
+		else if (zascii >= 256) {
+			return (char)zascii;
 		}
 		else {
 			//System.err.println("Illegal character code: " + zascii);
