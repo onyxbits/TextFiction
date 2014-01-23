@@ -12,7 +12,9 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_alignParentRight="true"
+		android:contentDescription="@string/cd_compass_northeast"
 		android:layout_alignParentTop="true" />
+		
 
 	<ImageButton
 		android:id="@+id/compass_west"
@@ -20,6 +22,7 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_centerVertical="true"
+		android:contentDescription="@string/cd_compass_west"
 		android:layout_alignParentLeft="true" />
 
 	<ImageButton
@@ -28,6 +31,7 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_alignParentRight="true"
+		android:contentDescription="@string/cd_compass_east"
 		android:layout_centerVertical="true" />
 
 	<ImageButton
@@ -36,6 +40,7 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_alignParentLeft="true"
+		android:contentDescription="@string/cd_compass_southwest"
 		android:layout_alignParentBottom="true" />
 
 	<ImageButton
@@ -44,6 +49,7 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_alignParentBottom="true"
+		android:contentDescription="@string/cd_compass_south"
 		android:layout_centerHorizontal="true" />
 
 	<ImageButton
@@ -52,6 +58,7 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_alignParentBottom="true"
+		android:contentDescription="@string/cd_compass_southeast"
 		android:layout_alignParentRight="true" />
 
 	<ImageButton
@@ -60,6 +67,7 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_alignParentLeft="true"
+		android:contentDescription="@string/cd_compass_northwest"
 		android:layout_alignParentTop="true" />
 
 	<ImageButton
@@ -68,6 +76,7 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_alignParentTop="true"
+		android:contentDescription="@string/cd_compass_north"
 		android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

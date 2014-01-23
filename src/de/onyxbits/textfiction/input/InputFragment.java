@@ -113,6 +113,7 @@ public class InputFragment extends Fragment implements OnClickListener,
 				b.setImageResource(CmdIcon.ICONS[ico.imgid]);
 				b.setOnClickListener(this);
 				b.setOnLongClickListener(changer);
+				b.setContentDescription(ico.cmd);
 				buttonBar.addView(b);
 			}
 		}

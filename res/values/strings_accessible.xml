@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="cd_compass_northeast">compass northeast</string>
+	<string name="cd_compass_west">compass west</string>
+	<string name="cd_compass_east">compass east</string>
+	<string name="cd_compass_southwest">compass southwest</string>
+	<string name="cd_compass_south">compass south</string>
+	<string name="cd_compass_southeast">compass southeast</string>
+	<string name="cd_compass_northwest">compass northwest</string>
+	<string name="cd_compass_north">compass north</string>
+	
+	
+	<string name="cd_collapse_expand_command_buttons">Collapse / Expand command buttons</string>
+	<string name="cd_submit_command">Submit command</string>
+	<string name="cd_continue">Continue</string>
+	<string name="cd_toggle_onscreen_keyboard">toggle onscreen keyboard</string>
+	<string name="cd_cursor_left">cursor left</string>
+	<string name="cd_cursor_down">cursor down</string>
+	<string name="cd_cursor_up">cursor up</string>
+	<string name="cd_cursor_right">cursor right</string>
+	<string name="cd_delete_game">delete game</string>
+
+</resources>

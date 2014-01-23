@@ -46,6 +46,7 @@
 			android:layout_alignBottom="@+id/submit"
 			android:layout_alignParentLeft="true"
 			android:layout_alignTop="@+id/submit"
+			android:contentDescription="@string/cd_collapse_expand_command_buttons"
 			android:src="@drawable/ic_action_expand" />
 
 		<ImageButton
@@ -55,6 +56,7 @@
 			android:layout_height="wrap_content"
 			android:layout_alignParentRight="true"
 			android:layout_alignParentTop="true"
+			android:contentDescription="@string/cd_submit_command"
 			android:src="@drawable/ic_action_submit" />
 	</RelativeLayout>
 
@@ -68,6 +70,7 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_alignParentRight="true"
+			android:contentDescription="@string/cd_continue"
 			android:src="@drawable/ic_action_forward" />
 
 		<de.onyxbits.textfiction.input.KeyboardButton
@@ -78,6 +81,7 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_alignParentLeft="true"
+			android:contentDescription="@string/cd_toggle_onscreen_keyboard"
 			android:src="@drawable/ic_action_keyboard" />
 
 		<LinearLayout
@@ -92,6 +96,7 @@
 				style="?attr/cmdbox_buttons"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
+				android:contentDescription="@string/cd_cursor_left"
 				android:src="@drawable/ic_action_left" />
 
 			<ImageButton
@@ -99,6 +104,7 @@
 				style="?attr/cmdbox_buttons"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
+				android:contentDescription="@string/cd_cursor_down"
 				android:src="@drawable/ic_action_down" />
 
 			<ImageButton
@@ -106,6 +112,7 @@
 				style="?attr/cmdbox_buttons"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
+				android:contentDescription="@string/cd_cursor_up"
 				android:src="@drawable/ic_action_up" />
 
 			<ImageButton
@@ -113,6 +120,7 @@
 				style="?attr/cmdbox_buttons"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
+				android:contentDescription="@string/cd_cursor_right"
 				android:src="@drawable/ic_action_right" />
 		</LinearLayout>
 	</RelativeLayout>
