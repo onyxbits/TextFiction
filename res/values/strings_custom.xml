@@ -28,6 +28,22 @@
 		<item>northwest</item>
 	</string-array>
 
+	<!--
+    Default values for the compass buttons, starting top/center, going 
+	clockwise, exactly eight items required.
+	-->
+
+	<string-array name="initial_compass">
+		<item>Go north</item>
+		<item>Go northeast</item>
+		<item>Go east</item>
+		<item>Go southeast</item>
+		<item>Go south</item>
+		<item>Go southwest</item>
+		<item>Go west</item>
+		<item>Go northwest</item>
+	</string-array>
+
 	<!-- JSON list of what goes into the buttonbar -->
 
 	<string name="defaultcommands">[

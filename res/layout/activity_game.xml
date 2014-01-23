@@ -6,35 +6,47 @@
 	android:orientation="vertical"
 	tools:context=".GameActivity" >
 
-	<ViewFlipper
-		android:id="@+id/window_flipper"
+	<RelativeLayout
+		android:id="@+id/gameview"
 		android:layout_width="match_parent"
-		android:layout_height="0dp"
-		android:layout_weight="1"
-		android:paddingBottom="@dimen/activity_vertical_margin"
-		android:paddingLeft="@dimen/activity_horizontal_margin"
-		android:paddingRight="@dimen/activity_horizontal_margin"
-		android:paddingTop="@dimen/activity_vertical_margin" >
+		android:layout_height="fill_parent"
+		android:layout_weight="1" >
 
-		<ListView
-			android:id="@+id/storyboard"
-			style="?attr/storyboard"
+		<fragment
+			android:id="@+id/fragment_compass"
 			android:layout_width="match_parent"
-			android:layout_height="match_parent" />
+			android:layout_height="match_parent"
+			class="de.onyxbits.textfiction.input.CompassFragment" />
 
-		<ScrollView
-			android:id="@+id/scroll_status"
+		<ViewFlipper
+			android:id="@+id/window_flipper"
 			android:layout_width="match_parent"
-			android:layout_height="match_parent" >
+			android:layout_height="match_parent"
+			android:paddingBottom="@dimen/activity_vertical_margin"
+			android:paddingLeft="@dimen/activity_horizontal_margin"
+			android:paddingRight="@dimen/activity_horizontal_margin"
+			android:paddingTop="@dimen/activity_vertical_margin" >
 
-			<TextView
-				android:id="@+id/status"
-				style="?attr/upperwindow"
+			<ListView
+				android:id="@+id/storyboard"
+				style="?attr/storyboard"
 				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:textIsSelectable="true" />
-		</ScrollView>
-	</ViewFlipper>
+				android:layout_height="match_parent" />
+
+			<ScrollView
+				android:id="@+id/scroll_status"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent" >
+
+				<TextView
+					android:id="@+id/status"
+					style="?attr/upperwindow"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:textIsSelectable="true" />
+			</ScrollView>
+		</ViewFlipper>
+	</RelativeLayout>
 
 	<LinearLayout
 		style="?attr/cmdbox"

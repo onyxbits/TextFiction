@@ -7,6 +7,7 @@ import java.util.Iterator;
 
 import org.json.JSONArray;
 
+import de.onyxbits.textfiction.input.CompassFragment;
 import de.onyxbits.textfiction.input.InputFragment;
 import de.onyxbits.textfiction.input.InputProcessor;
 import de.onyxbits.textfiction.input.WordExtractor;
@@ -115,6 +116,11 @@ public class GameActivity extends FragmentActivity implements
 	private InputFragment inputFragment;
 
 	/**
+	 * On screen compass
+	 */
+	private CompassFragment compassFragment;
+
+	/**
 	 * Contains story- and status screen.
 	 */
 	private ViewFlipper windowFlipper;
@@ -172,6 +178,8 @@ public class GameActivity extends FragmentActivity implements
 		FragmentManager fm = getSupportFragmentManager();
 
 		inputFragment = (InputFragment) fm.findFragmentById(R.id.fragment_input);
+		compassFragment = (CompassFragment) fm
+				.findFragmentById(R.id.fragment_compass);
 		retainerFragment = (RetainerFragment) fm.findFragmentByTag("retainer");
 		if (retainerFragment == null) {
 			// First start
@@ -665,6 +673,7 @@ public class GameActivity extends FragmentActivity implements
 		inputFragment.setAutoCollapse(prefs.getBoolean("autocollapse", false));
 
 		wordExtractor.setKeyclick(prefs.getBoolean("keyclick", false));
+		compassFragment.setKeyclick(prefs.getBoolean("keyclick", false));
 
 	}
 

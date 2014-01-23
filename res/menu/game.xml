@@ -1,6 +1,4 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android" >
-
-	<item
+<menu xmlns:android="http://schemas.android.com/apk/res/android" ><item
 		android:id="@+id/mi_flip_view"
 		android:icon="@drawable/ic_action_flip"
 		android:showAsAction="always|withText"
@@ -37,5 +35,6 @@
 		android:icon="@drawable/ic_action_help"
 		android:title="@string/mi_help">
 	</item>
+	
 
 </menu>

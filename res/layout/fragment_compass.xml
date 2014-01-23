@@ -1,0 +1,73 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/RelativeLayout1"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:orientation="vertical"
+	tools:context=".CompassFragment" >
+
+	<ImageButton
+		android:id="@+id/compass_northeast"
+		style="?attr/compass_northeast"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentRight="true"
+		android:layout_alignParentTop="true" />
+
+	<ImageButton
+		android:id="@+id/compass_west"
+		style="?attr/compass_west"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_centerVertical="true"
+		android:layout_alignParentLeft="true" />
+
+	<ImageButton
+		android:id="@+id/compass_east"
+		style="?attr/compass_east"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentRight="true"
+		android:layout_centerVertical="true" />
+
+	<ImageButton
+		android:id="@+id/compass_southwest"
+		style="?attr/compass_southwest"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentLeft="true"
+		android:layout_alignParentBottom="true" />
+
+	<ImageButton
+		android:id="@+id/compass_south"
+		style="?attr/compass_south"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentBottom="true"
+		android:layout_centerHorizontal="true" />
+
+	<ImageButton
+		android:id="@+id/compass_southeast"
+		style="?attr/compass_southeast"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentBottom="true"
+		android:layout_alignParentRight="true" />
+
+	<ImageButton
+		android:id="@+id/compass_northwest"
+		style="?attr/compass_northwest"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentLeft="true"
+		android:layout_alignParentTop="true" />
+
+	<ImageButton
+		android:id="@+id/compass_north"
+		style="?attr/compass_north"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentTop="true"
+		android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

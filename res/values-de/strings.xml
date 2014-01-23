@@ -61,5 +61,6 @@
 	<string name="title_activity_setting">Einstellungen</string>
 	<string name="mi_fullscreen">Vollbildmodus</string>
 	<string name="msg_leave_fullscreen">Zurück beended Vollbildmodus</string>
+	<string name="title_edit_direction">Richtung bearbeiten</string>
 
 </resources>

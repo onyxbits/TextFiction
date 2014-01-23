@@ -13,7 +13,16 @@
 	</style>
 
 	<!-- Application theme. -->
-	<style name="AppTheme" parent="AppBaseTheme"></style>
+	<style name="AppTheme" parent="AppBaseTheme">
+		<item name="compass_north">@style/compass_blank</item>
+		<item name="compass_east">@style/compass_blank</item>
+		<item name="compass_northeast">@style/compass_blank</item>
+		<item name="compass_southeast">@style/compass_blank</item>
+		<item name="compass_south">@style/compass_blank</item>
+		<item name="compass_southwest">@style/compass_blank</item>
+		<item name="compass_west">@style/compass_blank</item>
+		<item name="compass_northwest">@style/compass_blank</item>
+	</style>
 
 	<declare-styleable name="AppTheme">
 		<attr name="bubble_left" format="reference" />
@@ -27,7 +36,21 @@
 		<attr name="library_list" format="reference" />
 		<attr name="upperwindow" format="reference" />
 		<attr name="prompt" format="reference" />
+		<attr name="compass_north" format="reference" />
+		<attr name="compass_northeast" format="reference" />
+		<attr name="compass_east" format="reference" />
+		<attr name="compass_southeast" format="reference" />
+		<attr name="compass_south" format="reference" />
+		<attr name="compass_southwest" format="reference" />
+		<attr name="compass_west" format="reference" />
+		<attr name="compass_northwest" format="reference" />
 	</declare-styleable>
+
+	<style name="compass_blank">
+		<item name="android:background">@android:color/transparent</item>
+		<item name="android:padding">0dp</item>
+		<item name="android:src">@drawable/ic_compass_blank</item>
+	</style>
 
 	<style name="gingerbread_hack" parent="@android:style/Theme.Dialog">
 		<item name="android:bottomBright">@color/white</item>
