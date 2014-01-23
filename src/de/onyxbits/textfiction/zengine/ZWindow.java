@@ -244,7 +244,7 @@ public class ZWindow {
 	 * @return a formated string
 	 */
 	public String stringyfy(int start, int end) {
-		if (width==0) {
+		if (width<1 || start>=end) {
 			return "";
 		}
 		int len = width;
