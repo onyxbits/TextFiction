@@ -78,6 +78,9 @@ public class LoaderTask extends AsyncTask<File, Integer, ZMachine> {
 
 		if (engine != null) {
 			try {
+				String name = retainer.getActivity().getString(R.string.quicksavename);
+				File qs = new File(FileUtil.getSaveGameDir(story[0]),name);
+				engine.setQuickSaveSlot(qs);
 				engine.restart();
 				engine.run();
 			}

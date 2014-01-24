@@ -5,6 +5,7 @@
 
 package de.onyxbits.textfiction.zengine;
 
+import java.io.File;
 import java.util.EmptyStackException;
 import java.util.Random;
 import java.util.Stack;
@@ -56,6 +57,11 @@ public abstract class ZMachine {
 
 	private char[] inputBuffer;
 	private int inputIndex;
+	
+	/**
+	 * Where the save/restore opcode saveto /restore from.
+	 */
+	private File quickSaveSlot;
 
 	public ZMachine(ZScreen screen, ZStatus status_line, byte[] memory_image) {
 		this.screen = screen;
@@ -472,6 +478,19 @@ public abstract class ZMachine {
 		}
 		/* crash */
 		return -1;
+	}
+
+	/**
+	 * Query the filename of the quicksave slot (the one used by the save/restore
+	 * opcode)
+	 * @return absolute path name
+	 */
+	public File getQuickSaveSlot() {
+		return quickSaveSlot;
+	}
+	
+	public void setQuickSaveSlot(File file) {
+		this.quickSaveSlot=file;
 	}
 
 }

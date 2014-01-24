@@ -146,7 +146,7 @@ public class ZInstruction {
 				return false;
 		}
 	}
-	
+
 	public void decode_instruction() {
 		decode_first_half();
 		save_pc = zm.pc; /* A kludge to support a kludge */
@@ -504,7 +504,7 @@ public class ZInstruction {
 	}
 
 	protected short op_illegal() {
-		zm.fatal("Unknown opcode: "+opnum);
+		zm.fatal("Unknown opcode: " + opnum);
 		return ZFALSE;
 	}
 
@@ -828,11 +828,28 @@ public class ZInstruction {
 	}
 
 	protected short op_save() {
+		if (zm.getQuickSaveSlot()==null) {
+			zm.fatal("Don't know where to save to!");
+		}
+		if ((new ZState(zm)).disk_save(zm.getQuickSaveSlot().getPath(), save_pc))
+			return ZSAVE_SUCCESS;
 		return ZFALSE;
 	}
 
 	protected short op_restore() {
+		ZState restore_state;
+		if (zm.getQuickSaveSlot()==null) {
+			zm.fatal("Don't know where to restore from!");
+		}
+
+		restore_state = new ZState(zm);
+		if (restore_state.restore_from_disk(zm.getQuickSaveSlot().getPath())) {
+			zm.restore(restore_state);
+			decode_second_half();
+			return ZRESTORE_SUCCESS;
+		}
 		return ZFALSE;
+
 	}
 
 	protected short op_restart() {
@@ -875,7 +892,7 @@ public class ZInstruction {
 		zm.print_ascii_char((short) '*');
 		zm.print_ascii_char((short) '*');
 		zm.print_ascii_char((short) 13);
-		//zm.stop();
+		// zm.stop();
 		return ZFALSE;
 	}
 
