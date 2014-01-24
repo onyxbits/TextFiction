@@ -828,15 +828,17 @@ public class ZInstruction {
 	}
 
 	protected short op_save() {
+		/*
 		if (zm.getQuickSaveSlot()==null) {
 			zm.fatal("Don't know where to save to!");
 		}
 		if ((new ZState(zm)).disk_save(zm.getQuickSaveSlot().getPath(), save_pc))
-			return ZSAVE_SUCCESS;
+			return ZSAVE_SUCCESS;*/
 		return ZFALSE;
 	}
 
 	protected short op_restore() {
+		/*
 		ZState restore_state;
 		if (zm.getQuickSaveSlot()==null) {
 			zm.fatal("Don't know where to restore from!");
@@ -847,7 +849,7 @@ public class ZInstruction {
 			zm.restore(restore_state);
 			decode_second_half();
 			return ZRESTORE_SUCCESS;
-		}
+		}*/
 		return ZFALSE;
 
 	}
