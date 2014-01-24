@@ -59,7 +59,7 @@
   },
   {
     "imgid": 8,
-    "cmd": "Take",
+    "cmd": "Get",
     "atonce": false
   },
   {
