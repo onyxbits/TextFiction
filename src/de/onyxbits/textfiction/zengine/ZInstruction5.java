@@ -818,22 +818,6 @@ public class ZInstruction5 extends ZInstruction {
 		return ZFALSE;
 	}
 
-	// protected short op_save()
-	// {
-	// /* TODO */
-	// return ZNOTDONE;
-	// }
-
-	// protected short op_restore()
-	// {
-	// /* TODO */
-	// return ZNOTDONE;
-	// }
-
-	protected short op_restore() {
-		return ZFALSE;
-	}
-
 	protected short op_log_shift() {
 		if (operands[1] >= 0)
 			return (short) ((operands[0] & 0xFFFF) << operands[1]);

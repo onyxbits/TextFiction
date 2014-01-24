@@ -28,7 +28,8 @@ public class LoaderTask extends AsyncTask<File, Integer, ZMachine> {
 
 	/**
 	 * 
-	 * @param retainer where to deliver the loaded engine.
+	 * @param retainer
+	 *          where to deliver the loaded engine.
 	 */
 	public LoaderTask(RetainerFragment retainer) {
 		this.retainer = retainer;
@@ -78,8 +79,11 @@ public class LoaderTask extends AsyncTask<File, Integer, ZMachine> {
 
 		if (engine != null) {
 			try {
-				String name = retainer.getActivity().getString(R.string.quicksavename);
-				File qs = new File(FileUtil.getSaveGameDir(story[0]),name);
+				// NOTE: Don't throw a command save in the same directory as a menu
+				// save. It won't work! The menusave captures the state of the machine
+				// at rest. The command save captures the state in the middle of
+				// execution (while executing the save commmand).
+				File qs = new File(FileUtil.getDataDir(story[0]), "quicksave.bin");
 				engine.setQuickSaveSlot(qs);
 				engine.restart();
 				engine.run();

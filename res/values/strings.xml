@@ -56,7 +56,6 @@
 	<string name="msg_game_saved">Game saved</string>
 	<string name="msg_no_webbrowser">No webbrowser found!</string>
 	<string name="autosavename">AUTOSAVE</string>
-	<string name="quicksavename">QUICKSAVE</string>
 	<string name="msg_marked">Marked \'%1$s\'</string>
 	<string name="msg_unmarked">Unmarked \'%1$s\'</string>
 	<string name="mg_not_at_a_commandprompt">Not at a commandprompt! Gamestate not saved!</string>
