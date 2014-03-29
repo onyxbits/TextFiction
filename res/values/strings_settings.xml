@@ -18,12 +18,16 @@
 		<item name="1">sans</item>
 		<item name="2">serif</item>
 		<item name="3">monospace</item>
+		<item name="4">comicsans</item>
+		<item name="5">ziggyzoe</item>
 	</string-array>
 	<string-array name="font_names">
 		<item name="0">Default</item>
 		<item name="1">Sans</item>
 		<item name="2">Serif</item>
 		<item name="3">Monospace</item>
+		<item name="4">Comic Sans</item>
+		<item name="5">Ziggy Zoe</item>
 	</string-array>
 	<string-array name="fontsize_names_values">
 		<item name="0">small</item>

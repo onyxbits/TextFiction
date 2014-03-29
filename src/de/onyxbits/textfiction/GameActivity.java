@@ -654,6 +654,14 @@ public class GameActivity extends FragmentActivity implements
 		if (font.equals("monospace")) {
 			messages.setTypeface(Typeface.MONOSPACE);
 		}
+		if (font.equals("comicsans")) {
+			Typeface tf = Typeface.createFromAsset(getAssets(), "fonts/LDFComicSans.ttf");
+			messages.setTypeface(tf);
+		}
+		if (font.equals("ziggyzoe")) {
+			Typeface tf = Typeface.createFromAsset(getAssets(), "fonts/ziggyzoe.ttf");
+			messages.setTypeface(tf);
+		}
 
 		String fontSize = prefs.getString("fontsize", "");
 		TextView tmp = new TextView(this);
