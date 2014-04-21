@@ -1,0 +1,102 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<!-- JASON - a classic IF theme without bubbles -->
+
+	<color name="jason.background">#cccccc</color>
+	<color name="jason.cmd_icon_tint">#222222</color>
+	<color name="jason.selected_fill">#00000000</color>
+	<color name="jason.bubble_right">#639dc9</color>
+	<color name="jason.selected_border">#FFFFFFFF</color>
+	<color name="jason.prompt_input">#639dc9</color>
+	<color name="jason.pressed">#FFAAAAAA</color>
+	<color name="jason.text">#FF000000</color>
+	<color name="jason.text.inverse">#FF000000</color>
+	<color name="jason.text.shadow">#999999</color>
+
+	<style name="Jason" parent="AppTheme">
+		<item name="android:windowBackground">@color/jason.background</item>
+		<item name="android:colorBackground">@color/jason.background</item>
+		<item name="android:alertDialogStyle">@style/gingerbread_hack</item>
+		<item name="bubble_left">@style/jason_bubble_left</item>
+		<item name="bubble_right">@style/jason_bubble_right</item>
+		<item name="bubble_none">@style/jason_bubble_flash</item>
+		<item name="cmdbox">@style/jason_cmdbox</item>
+		<item name="cmdbox_buttons">@style/jason_cmdbox_buttons</item>
+		<item name="storyboard">@style/jason_storyboard</item>
+		<item name="library_item">@style/jason_library_item</item>
+		<item name="library_list">@style/jason_library_list</item>
+		<item name="library_item_text">@style/jason_library_item_text</item>
+		<item name="upperwindow">@style/jason_upperwindow</item>
+		<item name="prompt">@style/jason_prompt</item>
+	</style>
+
+	<style name="jason_cmdbox">
+		<item name="android:background">@drawable/shadedregion</item>
+	</style>
+
+	<style name="jason_cmdbox_buttons">
+		<item name="android:background">@drawable/nemo_btn_selector</item>
+		<item name="android:tint">@color/jason.cmd_icon_tint</item>
+	</style>
+
+	<style name="jason_storyboard">
+		<item name="android:divider">@null</item>
+	</style>
+
+	<style name="jason_bubble_left">
+		<item name="android:layout_marginRight">@dimen/jason.bubble_sidemargin</item>
+		<item name="android:layout_marginTop">@dimen/jason.bubble_topmargin</item>
+		<item name="android:layout_gravity">left</item>
+		<item name="android:textColor">@color/jason.text</item>
+		<item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+	</style>
+
+	<style name="jason_bubble_right">
+		<item name="android:layout_marginLeft">@dimen/jason.bubble_sidemargin</item>
+		<item name="android:layout_marginTop">@dimen/jason.bubble_topmargin</item>
+		<item name="android:layout_gravity">right</item>
+		<item name="android:textColor">@color/jason.bubble_right</item>
+		<item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+	</style>
+
+	<style name="jason_bubble_flash">
+		<item name="android:layout_gravity">center</item>
+		<item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
+		<item name="android:typeface">monospace</item>
+		<item name="android:textColor">@color/jason.text.inverse</item>
+		<item name="android:shadowColor">@color/jason.text.shadow</item>
+		<item name="android:shadowDx">2</item>
+		<item name="android:shadowDy">2</item>
+		<item name="android:shadowRadius">2</item>
+	</style>
+
+	<style name="jason_library_item">
+		<item name="android:background">@drawable/nemo_box</item>
+		<item name="android:textColor">@color/jason.text</item>
+	</style>
+
+	<style name="jason_library_item_text">
+		<item name="android:textAppearance">?android:attr/textAppearanceLarge</item>
+		<item name="android:textColor">@color/jason.text</item>
+	</style>
+
+	<style name="jason_library_list">
+		<item name="android:listSelector">@drawable/nemo_lst_selector</item>
+		<item name="android:divider">@null</item>
+	</style>
+
+	<style name="jason_upperwindow">
+		<item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
+		<item name="android:typeface">monospace</item>
+		<item name="android:textColor">@color/jason.text.inverse</item>
+		<item name="android:shadowColor">@color/jason.text.shadow</item>
+		<item name="android:shadowDx">2</item>
+		<item name="android:shadowDy">2</item>
+		<item name="android:shadowRadius">2</item>
+	</style>
+
+	<style name="jason_prompt">
+		<item name="android:textColor">@color/jason.prompt_input</item>
+	</style>
+
+</resources>

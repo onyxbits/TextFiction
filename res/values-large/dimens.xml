@@ -13,4 +13,7 @@
 	<dimen name="lucy.bubble_sidemargin">75dp</dimen>
 	<dimen name="lucy.bubble_topmargin">20dp</dimen>
 	
+	<dimen name="jason.bubble_sidemargin">75dp</dimen>
+	<dimen name="jason.bubble_topmargin">20dp</dimen>
+	
 </resources>
