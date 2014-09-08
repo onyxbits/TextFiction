@@ -58,6 +58,9 @@ public abstract class ZMachine {
 	private char[] inputBuffer;
 	private int inputIndex;
 	
+	public boolean saveCalled;
+	public boolean restoreCalled;
+	
 	/**
 	 * Where the save/restore opcode saveto /restore from.
 	 */

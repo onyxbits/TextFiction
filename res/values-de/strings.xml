@@ -62,5 +62,6 @@
 	<string name="mi_fullscreen">Vollbildmodus</string>
 	<string name="msg_leave_fullscreen">Zurück beended Vollbildmodus</string>
 	<string name="title_edit_direction">Richtung bearbeiten</string>
+	<string name="err_sr_deprecated">Spiele können nur über das Menu geladen/gespeichert werden!</string>
 
 </resources>

@@ -64,5 +64,6 @@
 	<string name="msg_leave_fullscreen">Back exits fullscreen mode</string>
 	<string name="hello_blank_fragment">Hello blank fragment</string>
 	<string name="title_edit_direction">Edit direction</string>
+	<string name="err_sr_deprecated">Games can only be saved/restored from the menu!</string>
 
 </resources>

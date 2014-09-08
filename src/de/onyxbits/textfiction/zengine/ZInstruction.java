@@ -834,6 +834,7 @@ public class ZInstruction {
 		}
 		if ((new ZState(zm)).disk_save(zm.getQuickSaveSlot().getPath(), save_pc))
 			return ZSAVE_SUCCESS;*/
+		zm.saveCalled=true;
 		return ZFALSE;
 	}
 
@@ -850,6 +851,7 @@ public class ZInstruction {
 			decode_second_half();
 			return ZRESTORE_SUCCESS;
 		}*/
+		zm.restoreCalled=true;
 		return ZFALSE;
 
 	}

@@ -404,6 +404,13 @@ public class GameActivity extends FragmentActivity implements
 			try {
 				retainerFragment.engine.run();
 				publishResult();
+				if (retainerFragment.engine.saveCalled || retainerFragment.engine.restoreCalled) {
+					// This is a really ugly hack to let the user know that the save/restore commands
+					// don't work
+					Toast.makeText(this,R.string.err_sr_deprecated,Toast.LENGTH_LONG).show();
+					retainerFragment.engine.saveCalled = false;
+					retainerFragment.engine.restoreCalled = false;
+				}
 			}
 			catch (GrueException e) {
 				retainerFragment.postMortem = e;
