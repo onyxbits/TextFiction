@@ -29,9 +29,14 @@
 				<action android:name="android.intent.action.VIEW" />
 
 				<category android:name="android.intent.category.DEFAULT" />
-
-				<data android:mimeType="application/x-zmachine" />
-				<data android:mimeType="application/x-blorb" />
+				<category android:name="android.intent.category.BROWSABLE" />
+				<data android:scheme="file" />
+				<data android:scheme="" />
+				<data android:host="*" />
+				<data android:pathPattern=".*\\.z3" />
+				<data android:pathPattern=".*\\.z5" />
+				<data android:pathPattern=".*\\.z8" />
+				<data android:pathPattern=".*\\.zblorb" />
 			</intent-filter>
 		</activity>
 		<activity
