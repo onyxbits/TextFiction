@@ -28,6 +28,11 @@
 		<item name="library_item_text">@style/jason_library_item_text</item>
 		<item name="upperwindow">@style/jason_upperwindow</item>
 		<item name="prompt">@style/jason_prompt</item>
+		<item name="loading">@style/jason_loading</item>
+	</style>
+
+	<style name="jason_loading">
+		<item name="android:indeterminateDrawable">@drawable/nemo_loading</item>
 	</style>
 
 	<style name="jason_cmdbox">

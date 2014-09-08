@@ -37,11 +37,9 @@ public class LoaderTask extends AsyncTask<File, Integer, ZMachine> {
 
 	@Override
 	protected void onPreExecute() {
-		Activity gameActivity = retainer.getActivity();
+		GameActivity gameActivity = (GameActivity)retainer.getActivity();
 		if (gameActivity != null) {
-			gameActivity.setProgressBarIndeterminate(true);
-			gameActivity.setProgressBarIndeterminateVisibility(true);
-			gameActivity.setProgressBarVisibility(true);
+			gameActivity.setLoadingVisibility(true);
 		}
 	}
 
@@ -101,9 +99,7 @@ public class LoaderTask extends AsyncTask<File, Integer, ZMachine> {
 		retainer.engine = result;
 		GameActivity gameActivity = (GameActivity) retainer.getActivity();
 		if (gameActivity != null) {
-			gameActivity.setProgressBarIndeterminate(false);
-			gameActivity.setProgressBarIndeterminateVisibility(false);
-			gameActivity.setProgressBarVisibility(false);
+			gameActivity.setLoadingVisibility(false);
 			if (result != null) {
 				gameActivity.publishResult();
 			}
@@ -164,8 +160,8 @@ public class LoaderTask extends AsyncTask<File, Integer, ZMachine> {
 	 */
 	public static boolean isBlorb(byte[] image) {
 		// detect "FORM" header
-		return (image != null && image.length >= 40 && image[0] == 'F'
-				&& image[1] == 'O' && image[2] == 'R' && image[3] == 'M');
+		return (image != null && image.length >= 40 && image[0] == 'F' && image[1] == 'O'
+				&& image[2] == 'R' && image[3] == 'M');
 	}
 
 	/**
@@ -175,8 +171,8 @@ public class LoaderTask extends AsyncTask<File, Integer, ZMachine> {
 	 * @return
 	 */
 	static int readInt(byte[] image, int index) {
-		return image[index] << 24 | (image[index + 1] & 0xFF) << 16
-				| (image[index + 2] & 0xFF) << 8 | (image[index + 3] & 0xFF);
+		return image[index] << 24 | (image[index + 1] & 0xFF) << 16 | (image[index + 2] & 0xFF) << 8
+				| (image[index + 3] & 0xFF);
 	}
 
 	/**
@@ -197,15 +193,15 @@ public class LoaderTask extends AsyncTask<File, Integer, ZMachine> {
 			return new byte[0];
 		}
 
-		if (image[offset] != 'I' || image[offset + 1] != 'F'
-				|| image[offset + 2] != 'R' || image[offset + 3] != 'S') {
+		if (image[offset] != 'I' || image[offset + 1] != 'F' || image[offset + 2] != 'R'
+				|| image[offset + 3] != 'S') {
 			// IFRS chunk header not found!
 			return new byte[0];
 		}
 
 		offset += 4;
-		if (image[offset] != 'R' || image[offset + 1] != 'I'
-				|| image[offset + 2] != 'd' || image[offset + 3] != 'x') {
+		if (image[offset] != 'R' || image[offset + 1] != 'I' || image[offset + 2] != 'd'
+				|| image[offset + 3] != 'x') {
 			// RIdx not found
 			return new byte[0];
 		}
@@ -219,8 +215,8 @@ public class LoaderTask extends AsyncTask<File, Integer, ZMachine> {
 		int start = -1;
 		int i;
 		for (i = 0; i < resources; i += 12) {
-			if (image[offset] == 'E' && image[offset + 1] == 'x'
-					&& image[offset + 2] == 'e' && image[offset + 3] == 'c') {
+			if (image[offset] == 'E' && image[offset + 1] == 'x' && image[offset + 2] == 'e'
+					&& image[offset + 3] == 'c') {
 				int number = readInt(image, offset + 4);
 				if (number == 0) {
 					// start of ZCOD chunk, hopefully
@@ -230,8 +226,8 @@ public class LoaderTask extends AsyncTask<File, Integer, ZMachine> {
 		}
 		if (start > -1) {
 			// check "ZCOD", 4 bytes
-			if (image[start] == 'Z' && image[start + 1] == 'C'
-					&& image[start + 2] == 'O' && image[start + 3] == 'D') {
+			if (image[start] == 'Z' && image[start + 1] == 'C' && image[start + 2] == 'O'
+					&& image[start + 3] == 'D') {
 				int zlength = readInt(image, start + 4);
 				offset = start + 8;
 				byte[] result = new byte[zlength];

@@ -34,6 +34,7 @@ import android.view.WindowManager;
 import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
@@ -149,6 +150,8 @@ public class GameActivity extends FragmentActivity implements
 	private TextToSpeech speaker;
 	private boolean ttsReady;
 	private WordExtractor wordExtractor;
+	
+	private ProgressBar loading;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -230,6 +233,7 @@ public class GameActivity extends FragmentActivity implements
 
 		windowFlipper = (ViewFlipper) content.findViewById(R.id.window_flipper);
 		statusWindow = (TextView) content.findViewById(R.id.status);
+		loading = (ProgressBar) findViewById(R.id.gameloading);
 		statusWindow.setText(retainerFragment.upperWindow);
 
 		speaker = new TextToSpeech(this, this);
@@ -293,8 +297,9 @@ public class GameActivity extends FragmentActivity implements
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	private void setupActionBar(String subTitle) {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-			getActionBar().setDisplayHomeAsUpEnabled(true);
-			getActionBar().setSubtitle(subTitle);
+			//getActionBar().setDisplayHomeAsUpEnabled(true);
+			//getActionBar().setSubtitle(subTitle);
+			getActionBar().hide();
 			setTitle(R.string.app_name);
 		}
 	}
@@ -359,12 +364,6 @@ public class GameActivity extends FragmentActivity implements
 			}
 			case R.id.mi_help: {
 				MainActivity.openUri(this, Uri.parse(getString(R.string.url_help)));
-				return true;
-			}
-			case R.id.mi_fullscreen: {
-				Toast.makeText(this, R.string.msg_leave_fullscreen, Toast.LENGTH_SHORT)
-						.show();
-				setFullScreen(true);
 				return true;
 			}
 			case R.id.mi_restart: {
@@ -816,5 +815,19 @@ public class GameActivity extends FragmentActivity implements
 	@Override
 	public File getStory() {
 		return storyFile;
+	}
+	
+	/**
+	 * Show/hide the spinner indicating that we are currently loading a game
+	 * @param b true to show the spinner.
+	 */
+	public void setLoadingVisibility(boolean b) {
+		loading.setIndeterminate(b);
+		if (b) {
+			loading.setVisibility(View.VISIBLE);
+		}
+		else {
+			loading.setVisibility(View.GONE);
+		}
 	}
 }

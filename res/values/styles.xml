@@ -34,6 +34,7 @@
 		<attr name="library_item" format="reference" />
 		<attr name="library_item_text" format="reference" />
 		<attr name="library_list" format="reference" />
+		<attr name="loading" format="reference" />
 		<attr name="upperwindow" format="reference" />
 		<attr name="prompt" format="reference" />
 		<attr name="compass_north" format="reference" />

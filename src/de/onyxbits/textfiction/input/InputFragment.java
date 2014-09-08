@@ -174,12 +174,7 @@ public class InputFragment extends Fragment implements OnClickListener,
 			return;
 		}
 		if (v == expand) {
-			if (buttonBar.getVisibility() == View.VISIBLE) {
-				buttonBar.setVisibility(View.GONE);
-			}
-			else {
-				buttonBar.setVisibility(View.VISIBLE);
-			}
+			getActivity().openOptionsMenu();
 			return;
 		}
 		if (v == forwards) {

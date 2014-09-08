@@ -28,6 +28,11 @@
 		<item name="library_list">@style/lucy_library_list</item>
 		<item name="upperwindow">@style/lucy_upperwindow</item>
 		<item name="prompt">@style/lucy_prompt</item>
+		<item name="loading">@style/lucy_loading</item>
+	</style>
+
+	<style name="lucy_loading">
+		<item name="android:indeterminateDrawable">@drawable/lucy_loading</item>
 	</style>
 
 	<style name="lucy_cmdbox">

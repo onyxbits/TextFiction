@@ -27,6 +27,11 @@
 		<item name="library_item_text">@style/nemo_library_item_text</item>
 		<item name="upperwindow">@style/nemo_upperwindow</item>
 		<item name="prompt">@style/nemo_prompt</item>
+		<item name="loading">@style/nemo_loading</item>
+	</style>
+
+	<style name="nemo_loading">
+		<item name="android:indeterminateDrawable">@drawable/nemo_loading</item>
 	</style>
 
 	<style name="nemo_cmdbox">
