@@ -61,9 +61,7 @@ public class MainActivity extends FragmentActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 			case R.id.mi_help: {
-				Intent browserIntent = new Intent(Intent.ACTION_VIEW,
-						Uri.parse(getString(R.string.url_help)));
-				startActivity(browserIntent);
+				openUri(this,Uri.parse(getString(R.string.url_help)));
 				return true;
 			}
 			case R.id.mi_settings: {
