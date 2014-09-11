@@ -822,12 +822,19 @@ public class GameActivity extends FragmentActivity implements
 	 * @param b true to show the spinner.
 	 */
 	public void setLoadingVisibility(boolean b) {
-		loading.setIndeterminate(b);
-		if (b) {
-			loading.setVisibility(View.VISIBLE);
+		try {
+			loading.setIndeterminate(b);
+			if (b) {
+				loading.setVisibility(View.VISIBLE);
+			}
+			else {
+				loading.setVisibility(View.GONE);
+			}
 		}
-		else {
-			loading.setVisibility(View.GONE);
+		catch (Exception e) {
+			// TODO: Getting here is a bug! I haven't figured out how to trigger it yet,
+			// the User message on Google Play for the stack trace reads "crash on resume".
+			Log.w("TextFiction",e);
 		}
 	}
 }
