@@ -82,7 +82,7 @@ class ImportTask extends AsyncTask<Object, Integer, Exception> implements
 			context.setProgressBarVisibility(false);
 		}
 		if (result==null && context!=null) {
-			Toast.makeText(context,"File copied. You may delete the original now.",Toast.LENGTH_LONG).show();
+			Toast.makeText(context,R.string.msg_file_copied_you_may_delete_the_original_now,Toast.LENGTH_LONG).show();
 		}
 		master.reScan();
 	}
