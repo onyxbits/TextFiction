@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string-array name="theme_names_values">
+		<item name="0">Nemo</item>
+		<item name="1">Alice</item>
+		<item name="2">Lucy</item>
+		<item name="3">Mina</item>
+		<item name="4">Jason</item>
+	</string-array>
+	<string-array name="theme_names">
+		<item name="0">Nemo</item>
+		<item name="1">Alice</item>
+		<item name="2">Lucy</item>
+		<item name="3">Mina</item>
+		<item name="4">Jason</item>
+	</string-array>
+	<string-array name="font_names_values">
+		<item name="0">default</item>
+		<item name="1">sans</item>
+		<item name="2">serif</item>
+		<item name="3">monospace</item>
+		<item name="4">comicsans</item>
+		<item name="5">ziggyzoe</item>
+	</string-array>
+	<string-array name="font_names">
+		<item name="0">Default</item>
+		<item name="1">Sans</item>
+		<item name="2">Serif</item>
+		<item name="3">Monospace</item>
+		<item name="4">Comic Sans</item>
+		<item name="5">Ziggy Zoe</item>
+	</string-array>
+	<string-array name="fontsize_names_values">
+		<item name="0">small</item>
+		<item name="1">medium</item>
+		<item name="2">large</item>
+	</string-array>
+	<string-array name="fontsize_names">
+		<item name="0">Piccolo</item>
+		<item name="1">Medio</item>
+		<item name="2">Grande</item>
+	</string-array>
+		<string name="title_theme">Tema</string>
+		<string name="font_title">Font</string>
+		<string name="fontsize_title">Grandezza font</string>
+		<string name="category_appearance">Grafica</string>
+		<string name="category_audio">Audio</string>
+		<string name="keyclick_summary">Click quando le parole sono toccate nella storia</string>
+		<string name="keyclick_title">Feedback acustico</string>
+		<string name="narrator_summary">Legge automaticamente i nuovi elementi della storia (la narrazione può sempre essere fermata premendo lo spazio vuoto all\'interno della voce e riavviata tenendo premuto)</string>
+		<string name="narrator_title">Text to Speech</string>
+		<string name="category_misc">Altro</string>
+		<string name="smoothscrolling_title">Scrolling lieve</string>
+		<string name="smoothscrolling_summary">Scroll della storia più lieve</string>
+		<string name="autocollapse_keyboard">Autocollassa Tastiera</string>
+		<string name="hide_the_keyboard_when_pressing_done">Nascondi la tastiera quando si preme \'Fatto\'</string>
+		<string name="msg_question_restart">Se si cambia il tema è meglio far ripartire l\'app. Va bene?</string>
+	
+
+</resources>
