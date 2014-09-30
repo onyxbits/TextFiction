@@ -63,5 +63,6 @@
 	<string name="msg_leave_fullscreen">Zurück beended Vollbildmodus</string>
 	<string name="title_edit_direction">Richtung bearbeiten</string>
 	<string name="err_sr_deprecated">Spiele können nur über das Menu geladen/gespeichert werden!</string>
+	<string name="msg_file_copied_you_may_delete_the_original_now">Datei kopiert. Das Original kann nun gelöscht werden.</string>
 
 </resources>
