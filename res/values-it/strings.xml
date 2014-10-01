@@ -62,8 +62,8 @@
 	<string name="title_activity_setting">Impostazioni</string>
 	<string name="mi_fullscreen">Fullscreen</string>
 	<string name="msg_leave_fullscreen">Indietro per uscire dal pieno schermo</string>
-	<string name="hello_blank_fragment">Hello blank fragment</string>
 	<string name="title_edit_direction">Cambia direzione</string>
 	<string name="err_sr_deprecated">Il gioco può essere salvato/ripristinato soltanto dal menù!</string>
+	<string name="msg_file_copied_you_may_delete_the_original_now">File copiato. Ora puoi cancellare l\'originale.</string>
 
 </resources>
