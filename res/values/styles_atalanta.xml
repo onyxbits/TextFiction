@@ -1,0 +1,107 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<!-- ATALANTA - a classic IF theme without bubbles -->
+
+	<color name="atalanta.background">#333333</color>
+	<color name="atalanta.cmd_icon_tint">#999999</color>
+	<color name="atalanta.selected_fill">#00FFFFFF</color>
+	<color name="atalanta.bubble_right">#639dc9</color>
+	<color name="atalanta.selected_border">#DDDDDD</color>
+	<color name="atalanta.prompt_input">#639dc9</color>
+	<color name="atalanta.pressed">#FFAAAAAA</color>
+	<color name="atalanta.text">#FFCCCCCC</color>
+	<color name="atalanta.text.inverse">#FFCCCCCC</color>
+	<color name="atalanta.text.shadow">#777777</color>
+
+	<style name="Atalanta" parent="Jason">
+		<item name="android:windowBackground">@color/atalanta.background</item>
+		<item name="android:colorBackground">@color/atalanta.background</item>
+		<item name="android:alertDialogStyle">@style/gingerbread_hack</item>
+		<item name="bubble_left">@style/atalanta_bubble_left</item>
+		<item name="bubble_right">@style/atalanta_bubble_right</item>
+		<item name="bubble_none">@style/atalanta_bubble_flash</item>
+		<item name="cmdbox">@style/atalanta_cmdbox</item>
+		<item name="cmdbox_buttons">@style/atalanta_cmdbox_buttons</item>
+		<item name="storyboard">@style/atalanta_storyboard</item>
+		<item name="library_item">@style/atalanta_library_item</item>
+		<item name="library_list">@style/atalanta_library_list</item>
+		<item name="library_item_text">@style/atalanta_library_item_text</item>
+		<item name="upperwindow">@style/atalanta_upperwindow</item>
+		<item name="prompt">@style/atalanta_prompt</item>
+		<item name="loading">@style/atalanta_loading</item>
+	</style>
+
+	<style name="atalanta_loading">
+		<item name="android:indeterminateDrawable">@drawable/nemo_loading</item>
+	</style>
+
+	<style name="atalanta_cmdbox">
+		<item name="android:background">@drawable/shadedregion</item>
+	</style>
+
+	<style name="atalanta_cmdbox_buttons">
+		<item name="android:background">@drawable/nemo_btn_selector</item>
+		<item name="android:tint">@color/atalanta.cmd_icon_tint</item>
+	</style>
+
+	<style name="atalanta_storyboard">
+		<item name="android:divider">@null</item>
+	</style>
+
+	<style name="atalanta_bubble_left">
+		<item name="android:layout_marginRight">@dimen/jason.bubble_sidemargin</item>
+		<item name="android:layout_marginTop">@dimen/jason.bubble_topmargin</item>
+		<item name="android:layout_gravity">left</item>
+		<item name="android:textColor">@color/atalanta.text</item>
+		<item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+	</style>
+
+	<style name="atalanta_bubble_right">
+		<item name="android:layout_marginLeft">@dimen/jason.bubble_sidemargin</item>
+		<item name="android:layout_marginTop">@dimen/jason.bubble_topmargin</item>
+		<item name="android:layout_gravity">right</item>
+		<item name="android:textColor">@color/atalanta.bubble_right</item>
+		<item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+	</style>
+
+	<style name="atalanta_bubble_flash">
+		<item name="android:layout_gravity">center</item>
+		<item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
+		<item name="android:typeface">monospace</item>
+		<item name="android:textColor">@color/atalanta.text.inverse</item>
+		<item name="android:shadowColor">@color/atalanta.text.shadow</item>
+		<item name="android:shadowDx">2</item>
+		<item name="android:shadowDy">2</item>
+		<item name="android:shadowRadius">2</item>
+	</style>
+
+	<style name="atalanta_library_item">
+		<item name="android:background">@drawable/lucy_box</item>
+		<item name="android:textColor">@color/atalanta.text</item>
+	</style>
+
+	<style name="atalanta_library_item_text">
+		<item name="android:textAppearance">?android:attr/textAppearanceLarge</item>
+		<item name="android:textColor">@color/atalanta.text</item>
+	</style>
+
+	<style name="atalanta_library_list">
+		<item name="android:listSelector">@drawable/nemo_lst_selector</item>
+		<item name="android:divider">@null</item>
+	</style>
+
+	<style name="atalanta_upperwindow">
+		<item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
+		<item name="android:typeface">monospace</item>
+		<item name="android:textColor">@color/atalanta.text.inverse</item>
+		<item name="android:shadowColor">@color/atalanta.text.shadow</item>
+		<item name="android:shadowDx">2</item>
+		<item name="android:shadowDy">2</item>
+		<item name="android:shadowRadius">2</item>
+	</style>
+
+	<style name="atalanta_prompt">
+		<item name="android:textColor">@color/atalanta.prompt_input</item>
+	</style>
+
+</resources>
