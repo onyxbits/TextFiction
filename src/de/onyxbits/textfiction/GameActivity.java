@@ -234,7 +234,22 @@ public class GameActivity extends FragmentActivity implements
 
 		speaker = new TextToSpeech(this, this);
 		onSharedPreferenceChanged(prefs, "");
+		dimSoftButtonsIfPossible();
 	}
+	
+  @SuppressLint("NewApi")
+  private void dimSoftButtonsIfPossible() {
+    int currentapiVersion = android.os.Build.VERSION.SDK_INT;
+    if (currentapiVersion >= android.os.Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+      getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE);
+    } 
+  }
+  
+  @Override
+  public void onResume() {
+  	super.onResume();
+  	dimSoftButtonsIfPossible();
+  }
 
 	@Override
 	public void onPause() {
