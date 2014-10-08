@@ -122,7 +122,6 @@ public class LibraryFragment extends Fragment implements
 		File game = (File) mAdapter.getItem(position);
 		Intent intent = new Intent(getActivity(), GameActivity.class);
 		intent.putExtra(GameActivity.LOADFILE, game.getAbsolutePath());
-		intent.putExtra(GameActivity.GAMETITLE,FileUtil.basename(game));
 		startActivity(intent);
 	}
 }

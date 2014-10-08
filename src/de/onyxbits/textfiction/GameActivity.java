@@ -74,11 +74,6 @@ public class GameActivity extends FragmentActivity implements
 	 */
 	public static final String LOADFILE = "loadfile";
 
-	/**
-	 * Optionally, the name of the game may be passed (if none is passed, the
-	 * filename is used as a title).
-	 */
-	public static final String GAMETITLE = "gametitle";
 
 	/**
 	 * How many items to keep in the messagebuffer at most. Note: this should be
