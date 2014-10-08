@@ -156,6 +156,9 @@ public class GameActivity extends FragmentActivity implements
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+    getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                            WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 		// Set the custom theme
 		try {
@@ -214,13 +217,6 @@ public class GameActivity extends FragmentActivity implements
 			}
 		}
 		highlighted = retainerFragment.highlighted.toArray(new String[0]);
-
-		String title = getIntent().getStringExtra(GAMETITLE);
-		if (title == null) {
-			title = storyFile.getName();
-		}
-		setTitle(title);
-		setupActionBar(title);
 
 		storyBoard = (ListView) content.findViewById(R.id.storyboard);
 		wordExtractor = new WordExtractor(this);
@@ -286,22 +282,6 @@ public class GameActivity extends FragmentActivity implements
 					Toast.LENGTH_LONG).show();
 		}
 		super.onDestroy();
-	}
-
-	/**
-	 * Set up the {@link android.app.ActionBar}, if the API is available.
-	 * 
-	 * @param subTitle
-	 *          should be the game name
-	 */
-	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
-	private void setupActionBar(String subTitle) {
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-			//getActionBar().setDisplayHomeAsUpEnabled(true);
-			//getActionBar().setSubtitle(subTitle);
-			getActionBar().hide();
-			setTitle(R.string.app_name);
-		}
 	}
 
 	@Override
@@ -778,37 +758,6 @@ public class GameActivity extends FragmentActivity implements
 					i = a;
 				}
 			}
-		}
-	}
-
-	@SuppressLint("NewApi")
-	public void setFullScreen(boolean full) {
-
-		Window window = getWindow();
-		if (full) {
-			window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		}
-		else {
-			window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		}
-
-		if (Build.VERSION.SDK_INT >= 11) {
-			if (full) {
-				getActionBar().hide();
-			}
-			else {
-				getActionBar().show();
-			}
-		}
-	}
-
-	@Override
-	public void onBackPressed() {
-		if ((getWindow().getAttributes().flags & WindowManager.LayoutParams.FLAG_FULLSCREEN) != 0) {
-			setFullScreen(false);
-		}
-		else {
-			super.onBackPressed();
 		}
 	}
 
