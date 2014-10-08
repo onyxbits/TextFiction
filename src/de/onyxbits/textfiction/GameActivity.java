@@ -796,4 +796,9 @@ public class GameActivity extends FragmentActivity implements
 			Log.w("TextFiction",e);
 		}
 	}
+	
+	@Override
+	public void onOptionsMenuClosed(Menu m) {
+		dimSoftButtonsIfPossible();
+	}
 }
