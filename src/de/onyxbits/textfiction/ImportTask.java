@@ -34,6 +34,11 @@ class ImportTask extends AsyncTask<Object, Integer, Exception> implements
 	 * Flags the files in "toImport" that are to be downloaded
 	 */
 	private boolean[] selected;
+	
+	/**
+	 * Set if we actually did import something
+	 */
+	private boolean didImport=false;
 
 	/**
 	 * The library fragment, we are working for.
@@ -66,6 +71,7 @@ class ImportTask extends AsyncTask<Object, Integer, Exception> implements
 				}
 			}
 		}
+		didImport=true;
 		return null;
 	}
 
@@ -81,7 +87,7 @@ class ImportTask extends AsyncTask<Object, Integer, Exception> implements
 			context.setProgressBarIndeterminateVisibility(false);
 			context.setProgressBarVisibility(false);
 		}
-		if (result==null && context!=null) {
+		if (result==null && context!=null && didImport) {
 			Toast.makeText(context,R.string.msg_file_copied_you_may_delete_the_original_now,Toast.LENGTH_LONG).show();
 		}
 		master.reScan();
