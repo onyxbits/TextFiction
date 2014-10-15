@@ -214,6 +214,7 @@ public class GameActivity extends FragmentActivity implements
 		highlighted = retainerFragment.highlighted.toArray(new String[0]);
 
 		storyBoard = (ListView) content.findViewById(R.id.storyboard);
+		//storyBoard.setVerticalFadingEdgeEnabled(true);
 		wordExtractor = new WordExtractor(this);
 		wordExtractor.setInputFragment(inputFragment);
 		wordExtractor.setInputProcessor(this);

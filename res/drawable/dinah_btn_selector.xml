@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+<!-- 	NOTE: state_checked can't happen and thats' the reason for declaring it. -->
+<!-- 	Without it, the button will be sized to fit the icon, which is too small. -->
+	
+	<item android:drawable="@drawable/dinah_button_down" android:state_pressed="true"/>
+	<item android:drawable="@drawable/dinah_button_up"/>
+	
+
+</selector>

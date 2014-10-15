@@ -8,6 +8,7 @@
 		<item name="3">Mina</item>
 		<item name="4">Jason</item>
 		<item name="5">Atalanta</item>
+		<item name="6">Dinah</item>
 	</string-array>
 	<string-array name="theme_names">
 		<item name="0">Nemo</item>
@@ -16,6 +17,7 @@
 		<item name="3">Mina</item>
 		<item name="4">Jason</item>
 		<item name="5">Atalanta</item>
+		<item name="6">Dinah</item>
 	</string-array>
 	<string-array name="font_names_values">
 		<item name="0">default</item>

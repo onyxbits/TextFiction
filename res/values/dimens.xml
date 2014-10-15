@@ -5,6 +5,8 @@
 	<dimen name="activity_vertical_margin">16dp</dimen>
 	<dimen name="nemo.bubble_sidemargin">25dp</dimen>
 	<dimen name="nemo.bubble_topmargin">10dp</dimen>
+	<dimen name="dinah.bubble_sidemargin">25dp</dimen>
+	<dimen name="dinah.bubble_topmargin">10dp</dimen>
 	<dimen name="alice.bubble_sidemargin">25dp</dimen>
 	<dimen name="alice.bubble_topmargin">10dp</dimen>
 	<dimen name="lucy.bubble_sidemargin">25dp</dimen>

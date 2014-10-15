@@ -1,0 +1,119 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<!-- DINAH - a comic style theme -->
+
+	<color name="dinah.background">#544362</color>
+	<color name="dinah.cmd_icon_tint">#A4B181</color>
+	<color name="dinah.buttonbox">#313E0F</color>
+	<color name="dinah.selected_fill">#00000000</color>
+	<color name="dinah.selected_border">#FFFFFFFF</color>
+	<color name="dinah.prompt_input">#FF000000</color>
+	<color name="dinah.pressed">#FFAAAAAA</color>
+	<color name="dinah.lefttext">#FFC1C4B5</color>
+	<color name="dinah.righttext">#FF000000</color>
+	<color name="dinah.buttontext">#FF000000</color>
+	<color name="dinah.text.inverse">#FF999999</color>
+	<color name="dinah.text.shadow">#FF000000</color>
+
+	<style name="Dinah" parent="AppTheme">
+		<item name="android:windowBackground">@color/dinah.background</item>
+		<item name="android:colorBackground">@color/dinah.background</item>
+		<item name="android:alertDialogStyle">@style/gingerbread_hack</item>
+		<item name="bubble_left">@style/dinah_bubble_left</item>
+		<item name="bubble_right">@style/dinah_bubble_right</item>
+		<item name="bubble_none">@style/dinah_bubble_flash</item>
+		<item name="cmdbox">@style/dinah_cmdbox</item>
+		<item name="cmdbox_buttons">@style/dinah_cmdbox_buttons</item>
+		<item name="storyboard">@style/dinah_storyboard</item>
+		<item name="library_item">@style/dinah_library_item</item>
+		<item name="library_list">@style/dinah_library_list</item>
+		<item name="library_item_text">@style/dinah_library_item_text</item>
+		<item name="upperwindow">@style/dinah_upperwindow</item>
+		<item name="prompt">@style/dinah_prompt</item>
+		<item name="loading">@style/dinah_loading</item>
+		<item name="game_wallpaper">@style/dinah_game_wallpaper</item>
+	</style>
+	
+	<style name="dinah_game_wallpaper">
+		
+	</style>
+
+	<style name="dinah_loading">
+		<item name="android:indeterminateDrawable">@drawable/dinah_loading</item>
+	</style>
+
+	<style name="dinah_cmdbox">
+		<item name="android:background">@drawable/dinah_buttonbox</item>
+		<item name="android:padding">8dp</item>
+	</style>
+
+	<style name="dinah_cmdbox_buttons">
+		<item name="android:background">@drawable/nemo_btn_selector</item>
+		<item name="android:tint">@color/dinah.cmd_icon_tint</item>
+	</style>
+
+	<style name="dinah_storyboard">
+		<item name="android:divider">@null</item>
+	</style>
+
+	<style name="dinah_bubble_left">
+		<item name="android:background">@drawable/dinah_bubble_left</item>
+		<item name="android:layout_marginRight">@dimen/dinah.bubble_sidemargin</item>
+		<item name="android:layout_marginTop">@dimen/dinah.bubble_topmargin</item>
+		<item name="android:layout_gravity">left</item>
+		<item name="android:textColor">@color/dinah.lefttext</item>
+		<item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+	</style>
+
+	<style name="dinah_bubble_right">
+		<item name="android:background">@drawable/dinah_bubble_right</item>
+		<item name="android:layout_marginLeft">@dimen/dinah.bubble_sidemargin</item>
+		<item name="android:layout_marginTop">@dimen/dinah.bubble_topmargin</item>
+		<item name="android:layout_gravity">right</item>
+		<item name="android:textColor">@color/dinah.righttext</item>
+		<item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+	</style>
+
+	<style name="dinah_bubble_flash">
+		<item name="android:layout_gravity">center</item>
+		<item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
+		<item name="android:typeface">monospace</item>
+		<item name="android:textColor">@color/dinah.text.inverse</item>
+		<item name="android:shadowColor">@color/dinah.text.shadow</item>
+		<item name="android:shadowDx">2</item>
+		<item name="android:shadowDy">2</item>
+		<item name="android:shadowRadius">2</item>
+	</style>
+
+	<style name="dinah_library_item">
+		<item name="android:background">@drawable/dinah_btn_selector</item>
+		<item name="android:textColor">@color/dinah.buttontext</item>
+	</style>
+
+	<style name="dinah_library_item_text">
+		<item name="android:textAppearance">?android:attr/textAppearanceLarge</item>
+		<item name="android:textColor">@color/dinah.buttontext</item>
+	</style>
+
+	<style name="dinah_library_list">
+		<item name="android:listSelector">@drawable/dinah_lst_selector</item>
+		<item name="android:divider">@null</item>
+	</style>
+
+	<style name="dinah_upperwindow">
+		<item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
+		<item name="android:typeface">monospace</item>
+		<item name="android:textColor">@color/dinah.text.inverse</item>
+		<item name="android:shadowColor">@color/dinah.text.shadow</item>
+		<item name="android:shadowDx">2</item>
+		<item name="android:shadowDy">2</item>
+		<item name="android:shadowRadius">2</item>
+	</style>
+
+	<style name="dinah_prompt">
+		<item name="android:textColor">@color/dinah.cmd_icon_tint</item>
+		<item name="android:textColorHint">#435121</item>
+		<item name="android:background">@drawable/dinah_prompt_edit_text_holo_light</item>
+	</style>
+
+</resources>

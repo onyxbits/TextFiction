@@ -45,7 +45,15 @@
 		<attr name="compass_southwest" format="reference" />
 		<attr name="compass_west" format="reference" />
 		<attr name="compass_northwest" format="reference" />
+		<attr name="game_wallpaper" format="reference" />
+		<attr name="main_wallpaper" format="reference" />
 	</declare-styleable>
+	
+	<style name="game_wallpaper">
+	</style>
+	
+	<style name="main_wallpaper">
+	</style>
 
 	<style name="compass_blank">
 		<item name="android:background">@android:color/transparent</item>
