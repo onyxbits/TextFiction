@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string-array name="theme_names_values">
+		<item name="0">Nemo</item>
+		<item name="1">Alice</item>
+		<item name="2">Lucy</item>
+		<item name="3">Mina</item>
+		<item name="4">Jason</item>
+		<item name="5">Atalanta</item>
+		<item name="6">Dinah</item>
+	</string-array>
+	<string-array name="theme_names">
+		<item name="0">Nemo</item>
+		<item name="1">Alice</item>
+		<item name="2">Lucy</item>
+		<item name="3">Mina</item>
+		<item name="4">Jason</item>
+		<item name="5">Atalanta</item>
+		<item name="6">Dinah</item>
+	</string-array>
+	<string-array name="font_names_values">
+		<item name="0">default</item>
+		<item name="1">sans</item>
+		<item name="2">serif</item>
+		<item name="3">monospace</item>
+		<item name="4">comicsans</item>
+		<item name="5">ziggyzoe</item>
+	</string-array>
+	<string-array name="font_names">
+		<item name="0">Default</item>
+		<item name="1">Sans</item>
+		<item name="2">Serif</item>
+		<item name="3">Monospace</item>
+		<item name="4">Comic Sans</item>
+		<item name="5">Ziggy Zoe</item>
+	</string-array>
+	<string-array name="fontsize_names_values">
+		<item name="0">small</item>
+		<item name="1">medium</item>
+		<item name="2">large</item>
+	</string-array>
+	<string-array name="fontsize_names">
+		<item name="0">Malé</item>
+		<item name="1">Střední</item>
+		<item name="2">Velké</item>
+	</string-array>
+		<string name="title_theme">Motiv</string>
+		<string name="font_title">Písmo</string>
+		<string name="fontsize_title">Velikost písma</string>
+		<string name="category_appearance">Vzhled</string>
+		<string name="category_audio">Zvuk</string>
+		<string name="keyclick_summary">Tón při klepnutí na slova ve vyprávění</string>
+		<string name="keyclick_title">Zvuková zpětná vazba</string>
+		<string name="narrator_summary">Automaticky předčítat nové části příběhu (vyprávění může být kdykoliv přerušeno ťuknutím do volného prostoru nové položky a znovu spuštěno dlouhým stiskem)</string>
+		<string name="narrator_title">Převod textu na řeč</string>
+		<string name="category_misc">Ostatní</string>
+		<string name="smoothscrolling_title">Plynulé posouvání</string>
+		<string name="smoothscrolling_summary">Zapne plynulé posouvání textu</string>
+		<string name="autocollapse_keyboard">Automatické skrývání klávesnice</string>
+		<string name="hide_the_keyboard_when_pressing_done">Skrýt klávesnici po stisknutí tlačítka \'Hotovo\'</string>
+		<string name="msg_question_restart">Pro uplatnění změny motivu je třeba restartovat aplikaci. Restart hned?</string>
+	
+
+</resources>
