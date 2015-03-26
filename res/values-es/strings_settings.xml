@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string-array name="theme_names_values">
+		<item name="0">Nemo</item>
+		<item name="1">Alice</item>
+		<item name="2">Lucy</item>
+		<item name="3">Mina</item>
+		<item name="4">Jason</item>
+		<item name="5">Atalanta</item>
+		<item name="6">Dinah</item>
+	</string-array>
+	<string-array name="theme_names">
+		<item name="0">Nemo</item>
+		<item name="1">Alice</item>
+		<item name="2">Lucy</item>
+		<item name="3">Mina</item>
+		<item name="4">Jason</item>
+		<item name="5">Atalanta</item>
+		<item name="6">Dinah</item>
+	</string-array>
+	<string-array name="font_names_values">
+		<item name="0">default</item>
+		<item name="1">sans</item>
+		<item name="2">serif</item>
+		<item name="3">monospace</item>
+		<item name="4">comicsans</item>
+		<item name="5">ziggyzoe</item>
+	</string-array>
+	<string-array name="font_names">
+		<item name="0">Default</item>
+		<item name="1">Sans</item>
+		<item name="2">Serif</item>
+		<item name="3">Monospace</item>
+		<item name="4">Comic Sans</item>
+		<item name="5">Ziggy Zoe</item>
+	</string-array>
+	<string-array name="fontsize_names_values">
+		<item name="0">small</item>
+		<item name="1">medium</item>
+		<item name="2">large</item>
+	</string-array>
+	<string-array name="fontsize_names">
+		<item name="0">Pequeña</item>
+		<item name="1">Mediana</item>
+		<item name="2">Grande</item>
+	</string-array>
+		<string name="title_theme">Tema</string>
+		<string name="font_title">Fuente</string>
+		<string name="fontsize_title">Tamaño de Fuente</string>
+		<string name="category_appearance">Apariencia</string>
+		<string name="category_audio">Audio</string>
+		<string name="keyclick_summary">Hacer click en las palabras de la historia</string>
+		<string name="keyclick_title">Retroalimentación acústica</string>
+		<string name="narrator_summary">Automáticamente leer nuevas partes de la historia (la narración se puede detener haciendo clic en un espacio vacío y se puede reiniciar al dejar presionado un espacio vacío)</string>
+		<string name="narrator_title">Texto a voz</string>
+		<string name="category_misc">Misceláneo</string>
+		<string name="smoothscrolling_title">Desplazamiento suave</string>
+		<string name="smoothscrolling_summary">Desplazar la historia suavemente</string>
+		<string name="autocollapse_keyboard">Colapsar Teclado</string>
+		<string name="hide_the_keyboard_when_pressing_done">Esconder el teclado al presionar \'Hecho\'</string>
+		<string name="msg_question_restart">Cambiar el tema requiere un inicio para tomar efecto. Reiniciar ahora?</string>
+	
+
+</resources>

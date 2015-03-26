@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<!-- Name of the app (to be shown in the title bar) -->
+	<string name="app_name">Text Fiction</string>
+
+	<!-- The url to open when the player requests the game catalog -->
+	<string name="url_catalog">http://www.onyxbits.de/textfiction/games</string>
+
+	<!-- This should be the handbook of the interpreter -->
+	<string name="url_help">http://www.onyxbits.de/textfiction/handbook</string>
+
+	<!-- Where the interpreter can be downloaded from (for app recommendation) -->
+	<string name="url_apphome">http://www.onyxbits.de/textfiction</string>
+
+	<!--
+    Words that are highlighted 'out of the box' (player may override this). 
+	NOTE: only lowercase letters and digits are allowed.
+	-->
+	<string-array name="initial_highlights">
+		<item>norte</item>
+		<item>noreste</item>
+		<item>este</item>
+		<item>sureste</item>
+		<item>sur</item>
+		<item>suroeste</item>
+		<item>oeste</item>
+		<item>noroeste</item>
+	</string-array>
+
+	<!--
+    Default values for the compass buttons, starting top/center, going 
+	clockwise, exactly eight items required.
+	-->
+
+	<string-array name="initial_compass">
+		<item>Ir norte</item>
+		<item>Ir noreste</item>
+		<item>Ir este</item>
+		<item>Ir sureste</item>
+		<item>Ir sur</item>
+		<item>Ir suroeste</item>
+		<item>Ir oeste</item>
+		<item>Ir noroeste</item>
+	</string-array>
+
+	<!-- JSON list of what goes into the buttonbar -->
+
+	<string name="defaultcommands">[
+  {
+    "imgid": 0,
+    "cmd": "Mirar",
+    "atonce": true
+  },
+  {
+    "imgid": 1,
+    "cmd": "Examinar",
+    "atonce": false
+  },
+  {
+    "imgid": 8,
+    "cmd": "Tomar",
+    "atonce": false
+  },
+  {
+    "imgid": 5,
+    "cmd": "Abrir",
+    "atonce": false
+  },
+  {
+    "imgid": 6,
+    "cmd": "Cerrar",
+    "atonce": false
+  },
+  {
+    "imgid": 7,
+    "cmd": "Inventario",
+    "atonce": true
+  },
+    {
+    "imgid": 15,
+    "cmd": "Tirar",
+    "atonce": false
+  },
+    {
+    "imgid": 14,
+    "cmd": "Empujar",
+    "atonce": false
+  },
+  {
+    "imgid": 2,
+    "cmd": "Leer",
+    "atonce": false
+  },
+  {
+    "imgid": 24,
+    "cmd": "Dejar",
+    "atonce": false
+  },
+  {
+    "imgid": 22,
+    "cmd": "Dar",
+    "atonce": false
+  },
+    {
+    "imgid": 11,
+    "cmd": "Esperar",
+    "atonce": true
+  }
+
+]</string>
+
+</resources>
