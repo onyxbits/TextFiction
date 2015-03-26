@@ -7,8 +7,6 @@ import org.json.JSONArray;
 
 import de.onyxbits.textfiction.FileUtil;
 import de.onyxbits.textfiction.R;
-import de.onyxbits.textfiction.R.id;
-import de.onyxbits.textfiction.R.layout;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -22,14 +20,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
-import android.view.animation.AccelerateInterpolator;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
-import android.view.animation.Animation.AnimationListener;
-import android.view.animation.DecelerateInterpolator;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.RelativeLayout;
 
 /**
  * The compass is simple container hosting eight (potentially transparent)
