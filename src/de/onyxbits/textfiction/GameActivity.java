@@ -59,9 +59,8 @@ import android.preference.PreferenceManager;
  * @author patrick
  * 
  */
-public class GameActivity extends FragmentActivity implements
-		DialogInterface.OnClickListener, OnInitListener,
-		OnSharedPreferenceChangeListener, InputProcessor {
+public class GameActivity extends FragmentActivity implements DialogInterface.OnClickListener,
+		OnInitListener, OnSharedPreferenceChangeListener, InputProcessor {
 
 	/**
 	 * Name of the file we keep our highlights in
@@ -73,7 +72,6 @@ public class GameActivity extends FragmentActivity implements
 	 * of the game via this extra.
 	 */
 	public static final String LOADFILE = "loadfile";
-
 
 	/**
 	 * How many items to keep in the messagebuffer at most. Note: this should be
@@ -145,15 +143,15 @@ public class GameActivity extends FragmentActivity implements
 	private TextToSpeech speaker;
 	private boolean ttsReady;
 	private WordExtractor wordExtractor;
-	
+
 	private ProgressBar loading;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-    getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                            WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 		// Set the custom theme
 		try {
@@ -179,8 +177,7 @@ public class GameActivity extends FragmentActivity implements
 		FragmentManager fm = getSupportFragmentManager();
 
 		inputFragment = (InputFragment) fm.findFragmentById(R.id.fragment_input);
-		compassFragment = (CompassFragment) fm
-				.findFragmentById(R.id.fragment_compass);
+		compassFragment = (CompassFragment) fm.findFragmentById(R.id.fragment_compass);
 		retainerFragment = (RetainerFragment) fm.findFragmentByTag("retainer");
 		if (retainerFragment == null) {
 			// First start
@@ -214,12 +211,11 @@ public class GameActivity extends FragmentActivity implements
 		highlighted = retainerFragment.highlighted.toArray(new String[0]);
 
 		storyBoard = (ListView) content.findViewById(R.id.storyboard);
-		//storyBoard.setVerticalFadingEdgeEnabled(true);
+		// storyBoard.setVerticalFadingEdgeEnabled(true);
 		wordExtractor = new WordExtractor(this);
 		wordExtractor.setInputFragment(inputFragment);
 		wordExtractor.setInputProcessor(this);
-		messages = new StoryAdapter(this, 0, retainerFragment.messageBuffer,
-				wordExtractor);
+		messages = new StoryAdapter(this, 0, retainerFragment.messageBuffer, wordExtractor);
 
 		storyBoard.setAdapter(messages);
 
@@ -232,20 +228,20 @@ public class GameActivity extends FragmentActivity implements
 		onSharedPreferenceChanged(prefs, "");
 		dimSoftButtonsIfPossible();
 	}
-	
-  @SuppressLint("NewApi")
-  private void dimSoftButtonsIfPossible() {
-    int currentapiVersion = android.os.Build.VERSION.SDK_INT;
-    if (currentapiVersion >= android.os.Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-      getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE);
-    } 
-  }
-  
-  @Override
-  public void onResume() {
-  	super.onResume();
-  	dimSoftButtonsIfPossible();
-  }
+
+	@SuppressLint("NewApi")
+	private void dimSoftButtonsIfPossible() {
+		int currentapiVersion = android.os.Build.VERSION.SDK_INT;
+		if (currentapiVersion >= android.os.Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+			getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE);
+		}
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		dimSoftButtonsIfPossible();
+	}
 
 	@Override
 	public void onPause() {
@@ -266,9 +262,7 @@ public class GameActivity extends FragmentActivity implements
 			if (retainerFragment.postMortem != null) {
 				// Let's not go into details here. The user won't understand them
 				// anyways.
-				Toast
-						.makeText(this, R.string.msg_corrupt_game_file, Toast.LENGTH_SHORT)
-						.show();
+				Toast.makeText(this, R.string.msg_corrupt_game_file, Toast.LENGTH_SHORT).show();
 			}
 			super.onDestroy();
 			return;
@@ -276,21 +270,18 @@ public class GameActivity extends FragmentActivity implements
 
 		if (retainerFragment.postMortem != null) {
 			// Let's not go into details here. The user won't understand them anyways.
-			Toast.makeText(this, R.string.msg_corrupt_game_file, Toast.LENGTH_SHORT)
-					.show();
+			Toast.makeText(this, R.string.msg_corrupt_game_file, Toast.LENGTH_SHORT).show();
 			super.onDestroy();
 			return;
 		}
 
 		if (retainerFragment.engine.getRunState() == ZMachine.STATE_WAIT_CMD) {
 			ZState state = new ZState(retainerFragment.engine);
-			File f = new File(FileUtil.getSaveGameDir(storyFile),
-					getString(R.string.autosavename));
+			File f = new File(FileUtil.getSaveGameDir(storyFile), getString(R.string.autosavename));
 			state.disk_save(f.getPath(), retainerFragment.engine.pc);
 		}
 		else {
-			Toast.makeText(this, R.string.mg_not_at_a_commandprompt,
-					Toast.LENGTH_LONG).show();
+			Toast.makeText(this, R.string.mg_not_at_a_commandprompt, Toast.LENGTH_LONG).show();
 		}
 		super.onDestroy();
 	}
@@ -306,8 +297,7 @@ public class GameActivity extends FragmentActivity implements
 	@Override
 	public boolean onPrepareOptionsMenu(Menu menu) {
 		super.onPrepareOptionsMenu(menu);
-		boolean rest = !(retainerFragment == null
-				|| retainerFragment.engine == null
+		boolean rest = !(retainerFragment == null || retainerFragment.engine == null
 				|| retainerFragment.engine.getRunState() == ZMachine.STATE_RUNNING || retainerFragment.engine
 				.getRunState() == ZMachine.STATE_INIT);
 		menu.findItem(R.id.mi_save).setEnabled(rest && inputFragment.isPrompt());
@@ -328,9 +318,8 @@ public class GameActivity extends FragmentActivity implements
 				saveName = new EditText(this);
 				saveName.setSingleLine(true);
 				AlertDialog.Builder builder = new AlertDialog.Builder(this);
-				builder.setTitle(R.string.title_save_game)
-						.setPositiveButton(android.R.string.ok, this).setView(saveName)
-						.show();
+				builder.setTitle(R.string.title_save_game).setPositiveButton(android.R.string.ok, this)
+						.setView(saveName).show();
 				return true;
 			}
 			case R.id.mi_restore: {
@@ -338,12 +327,10 @@ public class GameActivity extends FragmentActivity implements
 				if (sg.length > 0) {
 					pendingAction = PENDING_RESTORE;
 					AlertDialog.Builder builder = new AlertDialog.Builder(this);
-					builder.setTitle(R.string.title_restore_game).setItems(sg, this)
-							.show();
+					builder.setTitle(R.string.title_restore_game).setItems(sg, this).show();
 				}
 				else {
-					Toast.makeText(this, R.string.msg_no_savegames, Toast.LENGTH_SHORT)
-							.show();
+					Toast.makeText(this, R.string.msg_no_savegames, Toast.LENGTH_SHORT).show();
 				}
 				return true;
 			}
@@ -360,8 +347,7 @@ public class GameActivity extends FragmentActivity implements
 			case R.id.mi_restart: {
 				pendingAction = PENDING_RESTART;
 				AlertDialog.Builder builder = new AlertDialog.Builder(this);
-				builder.setTitle(R.string.title_please_confirm)
-						.setMessage(R.string.msg_really_restart)
+				builder.setTitle(R.string.title_please_confirm).setMessage(R.string.msg_really_restart)
 						.setPositiveButton(android.R.string.yes, this)
 						.setNegativeButton(android.R.string.no, this).show();
 				return true;
@@ -395,9 +381,10 @@ public class GameActivity extends FragmentActivity implements
 				retainerFragment.engine.run();
 				publishResult();
 				if (retainerFragment.engine.saveCalled || retainerFragment.engine.restoreCalled) {
-					// This is a really ugly hack to let the user know that the save/restore commands
+					// This is a really ugly hack to let the user know that the
+					// save/restore commands
 					// don't work
-					Toast.makeText(this,R.string.err_sr_deprecated,Toast.LENGTH_LONG).show();
+					Toast.makeText(this, R.string.err_sr_deprecated, Toast.LENGTH_LONG).show();
 					retainerFragment.engine.saveCalled = false;
 					retainerFragment.engine.restoreCalled = false;
 				}
@@ -465,8 +452,7 @@ public class GameActivity extends FragmentActivity implements
 							break;
 						}
 						case ZWindow.ITALIC: {
-							stmp.setSpan(new StyleSpan(Typeface.ITALIC), reg.start, reg.end,
-									0);
+							stmp.setSpan(new StyleSpan(Typeface.ITALIC), reg.start, reg.end, 0);
 							break;
 						}
 						case ZWindow.FIXED: {
@@ -478,8 +464,15 @@ public class GameActivity extends FragmentActivity implements
 				}
 			}
 			highlight(stmp, highlighted);
-			retainerFragment.messageBuffer
-					.add(new StoryItem(stmp, StoryItem.NARRATOR));
+			try {
+				retainerFragment.messageBuffer.add(new StoryItem(stmp, StoryItem.NARRATOR));
+			}
+			catch (IndexOutOfBoundsException e) {
+				// This is a workaround! Some games manage to mess up the spans. It is
+				// better to loose the styles than to crash the game.
+				retainerFragment.messageBuffer.add(new StoryItem(new SpannableString(tmp),
+						StoryItem.NARRATOR));
+			}
 		}
 		lower.retrieved();
 
@@ -493,8 +486,7 @@ public class GameActivity extends FragmentActivity implements
 		if (prefs.getBoolean("smoothscrolling", true)) {
 			// NOTE:smoothScroll() does not work properly if the theme defines
 			// dividerheight > 0!
-			storyBoard
-					.smoothScrollToPosition(retainerFragment.messageBuffer.size() - 1);
+			storyBoard.smoothScrollToPosition(retainerFragment.messageBuffer.size() - 1);
 		}
 		else {
 			storyBoard.setSelection(retainerFragment.messageBuffer.size() - 1);
@@ -547,10 +539,9 @@ public class GameActivity extends FragmentActivity implements
 
 		if (showstory) {
 			if (now != storyBoard) {
-				windowFlipper.setInAnimation(AnimationUtils.loadAnimation(this,
-						R.animator.slide_in_right));
-				windowFlipper.setOutAnimation(AnimationUtils.loadAnimation(this,
-						R.animator.slide_out_left));
+				windowFlipper.setInAnimation(AnimationUtils.loadAnimation(this, R.animator.slide_in_right));
+				windowFlipper
+						.setOutAnimation(AnimationUtils.loadAnimation(this, R.animator.slide_out_left));
 				windowFlipper.showPrevious();
 			}
 		}
@@ -591,8 +582,7 @@ public class GameActivity extends FragmentActivity implements
 					ZState state = new ZState(retainerFragment.engine);
 					File f = new File(FileUtil.getSaveGameDir(storyFile), name);
 					state.disk_save(f.getPath(), retainerFragment.engine.pc);
-					Toast.makeText(this, R.string.msg_game_saved, Toast.LENGTH_SHORT)
-							.show();
+					Toast.makeText(this, R.string.msg_game_saved, Toast.LENGTH_SHORT).show();
 				}
 			}
 
@@ -607,13 +597,10 @@ public class GameActivity extends FragmentActivity implements
 						retainerFragment.engine.restore(state);
 						figurePromptStyle();
 						figureMenuState();
-						Toast
-								.makeText(this, R.string.msg_game_restored, Toast.LENGTH_SHORT)
-								.show();
+						Toast.makeText(this, R.string.msg_game_restored, Toast.LENGTH_SHORT).show();
 					}
 					else {
-						Toast.makeText(this, R.string.msg_restore_failed,
-								Toast.LENGTH_SHORT).show();
+						Toast.makeText(this, R.string.msg_restore_failed, Toast.LENGTH_SHORT).show();
 					}
 				}
 			}
@@ -628,9 +615,9 @@ public class GameActivity extends FragmentActivity implements
 			// Was the game faster to load?
 			if (retainerFragment != null && retainerFragment.messageBuffer.size() > 0
 					&& prefs.getBoolean("narrator", false)) {
-				speaker.speak(retainerFragment.messageBuffer
-						.get(retainerFragment.messageBuffer.size() - 1).message.toString(),
-						TextToSpeech.QUEUE_FLUSH, null);
+				speaker.speak(
+						retainerFragment.messageBuffer.get(retainerFragment.messageBuffer.size() - 1).message
+								.toString(), TextToSpeech.QUEUE_FLUSH, null);
 			}
 		}
 	}
@@ -694,9 +681,7 @@ public class GameActivity extends FragmentActivity implements
 			retainerFragment.highlighted.add(txt);
 			tmp = R.string.msg_marked;
 		}
-		Toast
-				.makeText(this, getResources().getString(tmp, txt), Toast.LENGTH_SHORT)
-				.show();
+		Toast.makeText(this, getResources().getString(tmp, txt), Toast.LENGTH_SHORT).show();
 		highlighted = retainerFragment.highlighted.toArray(new String[0]);
 		Iterator<StoryItem> it = retainerFragment.messageBuffer.listIterator();
 		while (it.hasNext()) {
@@ -750,8 +735,8 @@ public class GameActivity extends FragmentActivity implements
 				// want to highlight words that are actually just substrings (e.g.
 				// "east" in "lEASTwise").
 				if ((i > 0 && Character.isLetterOrDigit(spanChars[i - 1]))
-						|| (i + wc.length != spanChars.length && Character
-								.isLetterOrDigit(spanChars[i + wc.length]))) {
+						|| (i + wc.length != spanChars.length && Character.isLetterOrDigit(spanChars[i
+								+ wc.length]))) {
 					continue;
 				}
 				int a = i;
@@ -776,10 +761,12 @@ public class GameActivity extends FragmentActivity implements
 	public File getStory() {
 		return storyFile;
 	}
-	
+
 	/**
 	 * Show/hide the spinner indicating that we are currently loading a game
-	 * @param b true to show the spinner.
+	 * 
+	 * @param b
+	 *          true to show the spinner.
 	 */
 	public void setLoadingVisibility(boolean b) {
 		try {
@@ -792,12 +779,14 @@ public class GameActivity extends FragmentActivity implements
 			}
 		}
 		catch (Exception e) {
-			// TODO: Getting here is a bug! I haven't figured out how to trigger it yet,
-			// the User message on Google Play for the stack trace reads "crash on resume".
-			Log.w("TextFiction",e);
+			// TODO: Getting here is a bug! I haven't figured out how to trigger it
+			// yet,
+			// the User message on Google Play for the stack trace reads
+			// "crash on resume".
+			Log.w("TextFiction", e);
 		}
 	}
-	
+
 	@Override
 	public void onOptionsMenuClosed(Menu m) {
 		dimSoftButtonsIfPossible();
