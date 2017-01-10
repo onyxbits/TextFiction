@@ -56,7 +56,7 @@ import android.preference.PreferenceManager;
 /**
  * The activity where actual gameplay takes place.
  * 
- * @author patrick
+ * @author patrick 
  * 
  */
 public class GameActivity extends FragmentActivity implements DialogInterface.OnClickListener,
@@ -578,6 +578,7 @@ public class GameActivity extends FragmentActivity implements DialogInterface.On
 			case PENDING_SAVE: {
 				String name = saveName.getEditableText().toString();
 				name = name.replace('/', '_');
+				name = name.replace(' ', '_');
 				if (name.length() > 0) {
 					ZState state = new ZState(retainerFragment.engine);
 					File f = new File(FileUtil.getSaveGameDir(storyFile), name);

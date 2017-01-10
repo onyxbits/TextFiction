@@ -12,7 +12,6 @@ import de.onyxbits.textfiction.zengine.ZMachine5;
 import de.onyxbits.textfiction.zengine.ZMachine8;
 import de.onyxbits.textfiction.zengine.ZScreen;
 import de.onyxbits.textfiction.zengine.ZStatus;
-import android.app.Activity;
 import android.os.AsyncTask;
 import android.util.Log;
 

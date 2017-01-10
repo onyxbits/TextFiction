@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.animation.AnimationUtils;
+import android.view.inputmethod.InputMethodManager;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -171,6 +172,13 @@ public class InputFragment extends Fragment implements OnClickListener,
 	public void onClick(View v) {
 		if (v == submit) {
 			executeCommand();
+			
+			//If the autoCollapse option is true hide the keyboard
+			if(autoCollapse == true){
+				InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+				imm.hideSoftInputFromWindow(cmdLine.getWindowToken(), 0);
+			}
+			
 			return;
 		}
 		if (v == expand) {
