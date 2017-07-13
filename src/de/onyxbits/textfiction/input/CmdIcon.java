@@ -50,6 +50,18 @@ public class CmdIcon {
 			R.drawable.ic_action_user29,
 			R.drawable.ic_action_user30,
 			R.drawable.ic_action_user31,
+			R.drawable.ic_action_up,
+			R.drawable.ic_action_down,
+			R.drawable.ic_action_left,
+			R.drawable.ic_action_right,
+			R.drawable.ic_action_upleft,
+			R.drawable.ic_action_upright,
+			R.drawable.ic_action_downleft,
+			R.drawable.ic_action_downright,
+			R.drawable.ic_action_up2,
+			R.drawable.ic_action_down2,
+			R.drawable.ic_action_go,
+			R.drawable.ic_action_space,			
 	};
 
 	/**
