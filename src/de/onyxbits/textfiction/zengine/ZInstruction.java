@@ -985,6 +985,11 @@ public class ZInstruction {
 		// System.err.println(Integer.toString(operands[2]&0xFFFF, 16));
 		zm.memory_image[byte_index] = (byte) (operands[2] >>> 8);
 		zm.memory_image[byte_index + 1] = (byte) (operands[2] & 0xFF);
+
+		if (byte_index == ZHeader.FLAGS2 || byte_index == ZHeader.FLAGS2 + 1) {
+			zm.current_window.set_text_style(zm.header.force_fixed() ? ZWindow.FIXED : ZWindow.ROMAN);
+		}
+
 		return ZFALSE;
 	}
 
@@ -992,6 +997,11 @@ public class ZInstruction {
 		int byte_index = (operands[0] & 0xFFFF) + (operands[1] & 0xFFFF);
 
 		zm.memory_image[byte_index] = (byte) (operands[2] & 0xFF);
+
+		if (byte_index == ZHeader.FLAGS2 + 1) {
+			zm.current_window.set_text_style(zm.header.force_fixed() ? ZWindow.FIXED : ZWindow.ROMAN);
+		}
+
 		return ZFALSE;
 	}
 
