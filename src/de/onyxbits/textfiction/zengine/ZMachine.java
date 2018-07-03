@@ -225,18 +225,31 @@ public abstract class ZMachine {
 		return encword;
 	}
 
-	protected short alphabet_lookup(byte zchar) {
-		switch (alphabet) {
-			case 0:
-				return (short) ((short) 'a' + zchar - 6);
-			case 1:
-				return (short) ((short) 'A' + zchar - 6);
-			case 2:
-				if (zchar == 7)
-					return 13;
-				else {
-					return (short) (A2.charAt(zchar - 8));
+	protected short alphabet_lookup(byte zchar) { /* JL: zchar to zscii (zcode) ? */
+		int alphabet_table_address;
+		short zscii;
+
+		alphabet_table_address = (((int)memory_image[0x34]<<8)&0xFF00) | (((int)memory_image[0x34+1]) & 0x00FF);
+		if (alphabet_table_address == 0) { // 0x34 is h_alphabet
+				switch (alphabet) {
+				case 0:
+					return (short)((short)'a' + zchar - 6);
+				case 1:
+					return (short)((short)'A' + zchar - 6);
+				case 2:
+					if (zchar == 7) 
+								return 13;
+					else {
+								return (short)(A2.charAt(zchar-8));
+					}
 				}
+		} else { /* JL: game uses its own alphabet */
+			if ((alphabet >= 0) && (alphabet <=2)) {
+				zscii = (short) memory_image[alphabet_table_address + alphabet * 26 + zchar -6];
+				if (zscii == '^') return 13;
+				if (zscii >= 0) return zscii;
+				else return (short) (zscii +  256); // because of a bug in Inform (or somewhere else)
+			}
 		}
 		fatal("Bad Alphabet");
 		return -1;
