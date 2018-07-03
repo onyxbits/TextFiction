@@ -5,13 +5,13 @@
 	<string name="app_name">Text Fiction</string>
 
 	<!-- The url to open when the player requests the game catalog -->
-	<string name="url_catalog">http://www.onyxbits.de/textfiction/games</string>
+	<string name="url_catalog">https://textfiction.onyxbits.de/stories</string>
 
 	<!-- This should be the handbook of the interpreter -->
-	<string name="url_help">http://www.onyxbits.de/textfiction/handbook</string>
+	<string name="url_help">https://textfiction.onyxbits.de/instructions/</string>
 
 	<!-- Where the interpreter can be downloaded from (for app recommendation) -->
-	<string name="url_apphome">http://www.onyxbits.de/textfiction</string>
+	<string name="url_apphome">https://textfiction.onyxbits.de/</string>
 
 	<!--
     Words that are highlighted 'out of the box' (player may override this). 
