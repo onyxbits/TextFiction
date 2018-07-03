@@ -10,7 +10,7 @@ The icons for the commandbuttons are taken from:
 http://typicons.com/
 
 External dependencies:
-Andoir support library
+Android support library
 
 Homepage:
 http://www.onyxbits.de/textfiction
