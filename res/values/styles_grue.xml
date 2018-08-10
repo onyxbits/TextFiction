@@ -1,0 +1,107 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<!-- GRUE - a classic black & white IF theme without bubbles -->
+
+	<color name="grue.background">#000000</color>
+	<color name="grue.cmd_icon_tint">#888888</color>
+	<color name="grue.selected_fill">#00FFFFFF</color>
+	<color name="grue.bubble_right">#639dc9</color>
+	<color name="grue.selected_border">#DDDDDD</color>
+	<color name="grue.prompt_input">#639dc9</color>
+	<color name="grue.pressed">#FFAAAAAA</color>
+	<color name="grue.text">#FF9E9E9E</color>
+	<color name="grue.text.inverse">#FF9E9E9E</color>
+	<color name="grue.text.shadow">#222222</color>
+
+	<style name="Grue" parent="Jason">
+		<item name="android:windowBackground">@color/grue.background</item>
+		<item name="android:colorBackground">@color/grue.background</item>
+		<item name="android:alertDialogStyle">@style/gingerbread_hack</item>
+		<item name="bubble_left">@style/grue_bubble_left</item>
+		<item name="bubble_right">@style/grue_bubble_right</item>
+		<item name="bubble_none">@style/grue_bubble_flash</item>
+		<item name="cmdbox">@style/grue_cmdbox</item>
+		<item name="cmdbox_buttons">@style/grue_cmdbox_buttons</item>
+		<item name="storyboard">@style/grue_storyboard</item>
+		<item name="library_item">@style/grue_library_item</item>
+		<item name="library_list">@style/grue_library_list</item>
+		<item name="library_item_text">@style/grue_library_item_text</item>
+		<item name="upperwindow">@style/grue_upperwindow</item>
+		<item name="prompt">@style/grue_prompt</item>
+		<item name="loading">@style/grue_loading</item>
+	</style>
+
+	<style name="grue_loading">
+		<item name="android:indeterminateDrawable">@drawable/nemo_loading</item>
+	</style>
+
+	<style name="grue_cmdbox">
+		<item name="android:background">@drawable/shadedregion</item>
+	</style>
+
+	<style name="grue_cmdbox_buttons">
+		<item name="android:background">@drawable/nemo_btn_selector</item>
+		<item name="android:tint">@color/grue.cmd_icon_tint</item>
+	</style>
+
+	<style name="grue_storyboard">
+		<item name="android:divider">@null</item>
+	</style>
+
+	<style name="grue_bubble_left">
+		<item name="android:layout_marginRight">@dimen/jason.bubble_sidemargin</item>
+		<item name="android:layout_marginTop">@dimen/jason.bubble_topmargin</item>
+		<item name="android:layout_gravity">left</item>
+		<item name="android:textColor">@color/grue.text</item>
+		<item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+	</style>
+
+	<style name="grue_bubble_right">
+		<item name="android:layout_marginLeft">@dimen/jason.bubble_sidemargin</item>
+		<item name="android:layout_marginTop">@dimen/jason.bubble_topmargin</item>
+		<item name="android:layout_gravity">right</item>
+		<item name="android:textColor">@color/grue.bubble_right</item>
+		<item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+	</style>
+
+	<style name="grue_bubble_flash">
+		<item name="android:layout_gravity">center</item>
+		<item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
+		<item name="android:typeface">monospace</item>
+		<item name="android:textColor">@color/grue.text.inverse</item>
+		<item name="android:shadowColor">@color/grue.text.shadow</item>
+		<item name="android:shadowDx">2</item>
+		<item name="android:shadowDy">2</item>
+		<item name="android:shadowRadius">2</item>
+	</style>
+
+	<style name="grue_library_item">
+		<item name="android:background">@drawable/grue_box</item>
+		<item name="android:textColor">@color/grue.text</item>
+	</style>
+
+	<style name="grue_library_item_text">
+		<item name="android:textAppearance">?android:attr/textAppearanceLarge</item>
+		<item name="android:textColor">@color/grue.text</item>
+	</style>
+
+	<style name="grue_library_list">
+		<item name="android:listSelector">@drawable/grue_lst_selector</item>
+		<item name="android:divider">@null</item>
+	</style>
+
+	<style name="grue_upperwindow">
+		<item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
+		<item name="android:typeface">monospace</item>
+		<item name="android:textColor">@color/grue.text.inverse</item>
+		<item name="android:shadowColor">@color/grue.text.shadow</item>
+		<item name="android:shadowDx">2</item>
+		<item name="android:shadowDy">2</item>
+		<item name="android:shadowRadius">2</item>
+	</style>
+
+	<style name="grue_prompt">
+		<item name="android:textColor">@color/grue.prompt_input</item>
+	</style>
+
+</resources>
